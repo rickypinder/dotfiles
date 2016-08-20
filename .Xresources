@@ -1,0 +1,92 @@
+xvt.termName: rxvt-256color
+URxvt.imLocale: "en_US.UTF-8"
+! Import color scheme
+!#include ".Xresources.d/base16/base16-ocean.dark.256.xresources"
+!#include ".Xresources.d/var/seti.xresources"
+! Set default font
+!*.font: xft:ProFont:style=Regular:pixelsize=11
+!*.boldFont: xft:ProFont:style=Regular:pixelsize=11
+*.font: xft:Source Code Pro:style=Regular:size=11, \
+        xft:Sans:style=Regular:size=11, \
+        xft:FreeSerif:style=Regular:size=11, \
+        xft:Unifont:style=Sans-Serif:size=11, \
+        xft:FontAwesome:size=11
+*.boldFont: xft:Source Code Pro:style=Regular:size=11, \
+        xft:Sans:style=Regular:size=11, \
+        xft:FreeSerif:style=Regular:size=11, \
+        xft:Unifont:style=Sans-Serif:size=11, \
+        xft:FontAwesome:size=11
+Emacs.font: Source Code Pro 11
+! URxvt options
+!URxvt.borderColor: #272822
+URxvt.scrollBar: false
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt.internalBorder: 8
+!real trasnparancy and background color
+!URxvt.depth: 32
+!URxvt.background: [90]#2d2d2d
+! urxvt perl extensions
+URxvt.perl-ext-common: fullscreen,default,matcher,url-select
+! fullscreen
+URxvt.keysym.F11: perl:fullscreen:switch
+! open url in browser
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/firefox
+URxvt.url-select.underline: true
+! Set the cursor theme
+Xcursor.theme: Neutral_Plus
+
+! Font options
+!Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+!Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! rofi options
+rofi.font:                           Source Code Pro 8
+rofi.color-normal:                   #2b303b, #c0c5ce, #2b303b, #bf616a, #2b303b
+rofi.color-urgent:                   #2b303b, #d08770, #2b303b, #d08770, #2b303b
+rofi.color-active:                   #2b303b, #a3be8c, #2b303b, #a3be8c, #2b303b
+rofi.color-window:                   #2b303b, #343d46
+rofi.opacity:                        100
+rofi.terminal:                       urxvtc
+rofi.ssh-client:                     ssh
+rofi.bw:                             1
+rofi.padding:                        4
+rofi.location:                       1
+rofi.yoffset:                        20
+rofi.width:                          100
+
+! Jellybeans Terminal Colours
+urxvt.background: #151515
+urxvt.foreground: #ffffff
+! black
+urxvt.color0: #888888
+urxvt.color8: #525252
+! red
+urxvt.color1: #cf6a4c
+urxvt.color9: #ff9d80
+! green
+urxvt.color2: #99ad6a
+urxvt.color10: #c3e6ad
+! yellow
+urxvt.color3: #fad07a
+urxvt.color11: #ffefbf
+! blue
+urxvt.color4: #8197bf
+urxvt.color12: #accaff
+! magenta
+urxvt.color5: #8787af
+urxvt.color13: #c4c4ff
+! cyan
+urxvt.color6: #8fbfdc
+urxvt.color14: #80bfaf
+! white
+urxvt.color7: #888888
+urxvt.color15: #e8e8d3

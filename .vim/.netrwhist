@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/pinder'
+let g:netrw_dirhist_2='/home/pinder/gitdownloads'
+let g:netrw_dirhist_3='/home/pinder/gitdownloads/SpaceInvadingTerminals'
+let g:netrw_dirhist_4='/home/pinder'
+let g:netrw_dirhist_5='/home/pinder/programming/random'
+let g:netrw_dirhist_6='/home/pinder/programming/pickaxe'
+let g:netrw_dirhist_7='/home/pinder/programming/pickaxe/strings'
