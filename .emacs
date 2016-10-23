@@ -15,8 +15,6 @@
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
 
-(setq default-directory "C:/Users/Pinde/Documents/")
-
 (setq inhibit-startup-screen t)
 
 (require 'package)
