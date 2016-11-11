@@ -4,16 +4,23 @@
 
 (global-linum-mode 1)
 
+(add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
+(add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
+
 (define-key global-map (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-x o") 'switch-window)
+(global-set-key (kbd "M-p") 'ace-window)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
-(setq-default indent-tabs-mode nil) ; Get rid of those filthy tabs!
+(defvar org-log-done t)
 
-(setq org-log-done t)
+(setq-default indent-tabs-mode nil)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
+
+(setq-default default-directory "C:/Users/Pinde/")
 
 (setq inhibit-startup-screen t)
 
@@ -26,15 +33,15 @@ Return a list of installed packages or nil for every skipped package."
   (mapcar
    (lambda (package)
      (if (package-installed-p package)
-	 nil
+         nil
        (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-	   (package-install package)
-	 package)))
-     packages))
+           (package-install package)
+         package)))
+   packages))
 
 ;; Make sure to have downloaded archive descriptions
-  (or (file-exists-p package-user-dir)
-      (package-refresh-contents))
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -43,19 +50,19 @@ Return a list of installed packages or nil for every skipped package."
 (package-initialize)
 
 (ensure-package-installed 'evil
-			  'evil-surround
-			  'base16-theme
-			  'ido-vertical-mode
-			  'org-bullets
-			  'neotree
-			  'smex
-			  'ido-ubiquitous
-			  'powerline
-			  'airline-themes
-			  'flycheck
-			  'quickrun
+                          'evil-surround
+                          'ido-vertical-mode
+                          'org-bullets
+                          'neotree
+                          'smex
+                          'ido-ubiquitous
+                          'powerline
+                          'airline-themes
+                          'flycheck
+                          'quickrun
                           'magit
-)
+                          'switch-window
+                          )
 
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -66,8 +73,8 @@ Return a list of installed packages or nil for every skipped package."
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
-(require 'base16-theme)
-(load-theme 'base16-harmonic16-dark t)
+(require 'solarized-theme)
+(load-theme 'solarized-light t)
 
 (require 'ido-vertical-mode)
 (ido-mode 1)
@@ -85,7 +92,15 @@ Return a list of installed packages or nil for every skipped package."
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+(setq neo-theme 'ascii)
+(global-set-key "\C-cn" 'neotree-toggle)
+(setq neo-smart-open t)
+(add-hook 'neotree-mode-hook
+          (lambda ()
+            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
 (require 'powerline)
 (require 'airline-themes)
@@ -98,7 +113,7 @@ Return a list of installed packages or nil for every skipped package."
       airline-utf-glyph-branch              #xe0a0
       airline-utf-glyph-readonly            #xe0a2
       airline-utf-glyph-linenumber          #xe0a1)
-(load-theme 'airline-luna t)
+(load-theme 'airline-solarized-gui t)
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -121,12 +136,12 @@ Return a list of installed packages or nil for every skipped package."
    (vector "#ffffff" "#f36c60" "#8bc34a" "#fff59d" "#4dd0e1" "#b39ddb" "#81d4fa" "#263238"))
  '(custom-safe-themes
    (quote
-    ("962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
+    ("2b8dff32b9018d88e24044eb60d8f3829bd6bbeab754e70799b78593af1c3aba" "962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
  '(fci-rule-color "#37474f")
  '(hl-sexp-background-color "#1c1f26")
  '(package-selected-packages
    (quote
-    (multi-web-mode evil-surround quickrun flycheck base16-theme airline-themes powerline ido-ubiquitous neotree emacs-neotree ido-vertical-mode evil-visual-mark-mode)))
+    (switch-window google-this solarized-theme magit evil-surround quickrun flycheck airline-themes powerline ido-ubiquitous neotree emacs-neotree ido-vertical-mode evil-visual-mark-mode)))
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
