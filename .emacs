@@ -3,13 +3,16 @@
 (scroll-bar-mode -1)
 
 (global-linum-mode 1)
+(global-hl-line-mode 1)
 
 (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
 (add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
+(add-hook 'ruby-mode-hook (lambda () (global-rbenv-mode)))
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-x o") 'switch-window)
 (global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "C-c g") 'magit-status)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
@@ -19,8 +22,6 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
-
-(setq-default default-directory "C:/Users/Pinde/")
 
 (setq inhibit-startup-screen t)
 
@@ -62,6 +63,8 @@ Return a list of installed packages or nil for every skipped package."
                           'quickrun
                           'magit
                           'switch-window
+			  'solarized-theme
+                          'rbenv
                           )
 
 (require 'org-bullets)
@@ -125,6 +128,19 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'quickrun)
 
+(require 'rbenv)
+;; Setting rbenv path
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
+(setq rbenv-modeline-function 'rbenv--modeline-plain)
+
+(ac-config-default)
+
+(require 'google-translate)
+(require 'google-translate-default-ui)
+(global-set-key "\C-ct" 'google-translate-at-point)
+(global-set-key "\C-cT" 'google-translate-query-translate)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -141,7 +157,7 @@ Return a list of installed packages or nil for every skipped package."
  '(hl-sexp-background-color "#1c1f26")
  '(package-selected-packages
    (quote
-    (switch-window google-this solarized-theme magit evil-surround quickrun flycheck airline-themes powerline ido-ubiquitous neotree emacs-neotree ido-vertical-mode evil-visual-mark-mode)))
+    (google-translate auto-complete rbenv exec-path-from-shell switch-window google-this solarized-theme magit evil-surround flycheck powerline ido-ubiquitous neotree emacs-neotree ido-vertical-mode evil-visual-mark-mode)))
  '(tool-bar-mode nil)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -165,9 +181,12 @@ Return a list of installed packages or nil for every skipped package."
      (340 . "#fff59d")
      (360 . "#8bc34a"))))
  '(vc-annotate-very-old-color nil))
+
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:inherit nil :stipple nil :background "#fdf6e3" :foreground "#657b83" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "PfEd" :family "Meslo LG M DZ for Powerline")))))
