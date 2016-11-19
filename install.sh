@@ -1,7 +1,7 @@
 #!/bin/bash
 for f in .*
 do
-    if [ "$f" = ".git"]
+    if [ "$f" = ".git" ]
     then
         continue
     fi
