@@ -1,6 +1,10 @@
 #!/bin/bash
 for f in .*
 do
+    if [ "$f" = ".git"]
+    then
+        continue
+    fi
     echo "$(pwd)/$f"
     ln -s $(pwd)/$f ~/$f
 done
