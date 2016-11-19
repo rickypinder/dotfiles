@@ -9,8 +9,14 @@ do
     ln -s $(pwd)/$f ~/$f
 done
 
-xrdb -load ~/.Xresources
+sudo apt-get install zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+echo "DEFAULT_USER is: "
+read DEFAULT_USER
+echo $DEFAULT_USER > .zshrc
 cd
 git clone https://github.com/powerline/fonts
 cd fonts
 ./install.sh
+
+xrdb -load ~/.Xresources
