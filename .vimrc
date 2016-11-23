@@ -1,12 +1,21 @@
+" Plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+
+call plug#end() " Add plugins to &runtimepath
+
 " Always show statusline
 set laststatus=2
 
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set t_Co=256
-
 " Colors
-colorscheme jellybeans " use jellybeans colorscheme
+set t_Co=256
 syntax enable " enable symtax processing
+set background=dark
+colorscheme solarized
 
 " Spaces & Tabs
 set tabstop=2 " number of visual spaces per TAB
@@ -23,6 +32,7 @@ filetype indent on " load filetype-specific ident files
 set wildmenu " visual autocomplete for command menu
 set lazyredraw " redraw only when we need to
 set showmatch " highlight matching [{()}]
+set laststatus=2 " Always show statusline
 
 " Searching
 set incsearch " search as characters are entered
@@ -41,4 +51,8 @@ set foldmethod=indent " fold based on indent level
 nnoremap j gj 
 nnoremap k gk
 
-execute pathogen#infect()
+" Nerdtree
+map <leader>n :NERDTreeToggle<CR>
+
+" Airline 
+let g:airline_powerline_fonts = 1
