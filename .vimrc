@@ -46,6 +46,37 @@ set foldnestmax=10 " 10 nested fold max
 nnoremap <space> za
 set foldmethod=indent " fold based on indent level
 
+" stuff
+set autoindent " maintains indent of current line
+
+if exists('$SUDO_USER')
+  set nobackup " don't create root owned files
+  set nowritebackup 
+else
+  set backupdir=~/local/.vim/tmp/backup
+  set backupdir+=~/.vim/tmp/backup        " keep backup files out of the way
+  set backupdir+=.
+endif
+
+if exists('$SUDO_USER')
+  set noswapfile " don't create root owned files
+else
+  set directory=~/local/.vim/tmp/swap//
+  set directory+=~/.vim/tmp/swap//    " keep swap files out of the way
+  set directory+=.
+endif
+
+if has('persistent_undo')
+  if exists('$SUDO_USER')
+    set noundofile    " don't create root owned files
+  else
+    set undodir=~/local/.vim/tmp/undo
+    set undodir+=~/.vim/tmp/undo   " keep undo files out of the way
+    set undodir+=.
+    set undofile    " actually use undo files 
+  endif
+endif
+
 " Movement
 " move vertically by visual line
 nnoremap j gj 
