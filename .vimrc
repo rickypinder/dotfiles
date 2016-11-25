@@ -4,18 +4,31 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'mhinz/vim-startify'
+Plug 'guns/xterm-color-table.vim'
 
 call plug#end() " Add plugins to &runtimepath
 
+set encoding=utf8
 " Always show statusline
 set laststatus=2
+
+if has('folding')
+  if has('window')
+    set fillchars=vert:│
+  endif
+endif
 
 " Colors
 set t_Co=256
 syntax enable " enable symtax processing
-set background=dark
-colorscheme solarized
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+colorscheme base16-ocean
+
 
 " Spaces & Tabs
 set tabstop=2 " number of visual spaces per TAB
@@ -63,6 +76,7 @@ if exists('$SUDO_USER')
 else
   set directory=~/local/.vim/tmp/swap//
   set directory+=~/.vim/tmp/swap//    " keep swap files out of the way
+
   set directory+=.
 endif
 
@@ -77,6 +91,37 @@ if has('persistent_undo')
   endif
 endif
 
+if has('viminfo')
+  if exists('$SUDO_USER')
+    set viminfo= " don't create root-owned files
+  else
+    if isdirectory('~/local/.vim/tmp')
+      set viminfo+=n~/local/.vim/tmp/viminfo
+    else
+      set viminfo+=n~/.vim/tmp/viminfo " override ~/.viminfo default
+    endif
+
+    if !empty(glob('~/.vim/tmp/viminfo'))
+      if !filereadable(expand('~/.vim/tmp/viminfo'))
+        echoerr 'warning ~/.vim/tmp/viminfo exists but is not readable'
+      endif
+    endif
+  endif
+endif
+
+if has('mksession')
+  if isdirectory('~/local/.vim/tmp')
+    set viewdir=~/loca/.vim/tmp/view
+  else
+    set viewdir=~/.vim/tmp/view " override ~/.vim/view default
+  endif
+  set viewoptions=cursor,folds " save/restore just these (with ':{mk, loadview#)
+endif
+
+
+
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " Movement
 " move vertically by visual line
 nnoremap j gj 
@@ -86,4 +131,5 @@ nnoremap k gk
 map <leader>n :NERDTreeToggle<CR>
 
 " Airline 
+let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
