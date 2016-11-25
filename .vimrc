@@ -10,9 +10,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'mhinz/vim-startify'
-Plug 'guns/xterm-color-table.vim'
 
 call plug#end() " Add plugins to &runtimepath
 
@@ -138,3 +138,6 @@ map <leader>n :NERDTreeToggle<CR>
 " Airline 
 let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
+
+" CTRLP
+let g:ctrlp_show_hidden = 1
