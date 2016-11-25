@@ -1,3 +1,9 @@
+" 
+" 
+" RPINDER .VIMRC FILE
+"  http://github.com/rpinder
+" 
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 
@@ -20,7 +26,7 @@ if has('folding')
   endif
 endif
 
-" Colors
+" Colors 
 set t_Co=256
 syntax enable " enable symtax processing
 if filereadable(expand("~/.vimrc_background"))
@@ -28,7 +34,6 @@ if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
 endif
 colorscheme base16-ocean
-
 
 " Spaces & Tabs
 set tabstop=2 " number of visual spaces per TAB
