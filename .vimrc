@@ -55,7 +55,6 @@ set laststatus=2 " Always show statusline
 " Searching
 set incsearch " search as characters are entered
 set hlsearch " highlist matches
-nnoremap <leader><space> :nohlsearch<CR>
 
 " Folding  
 set foldenable " enable folding
@@ -132,12 +131,18 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 nnoremap j gj 
 nnoremap k gk
 
-" Nerdtree
-map <leader>n :NERDTreeToggle<CR>
-
 " Airline 
 let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 
 " CTRLP
 let g:ctrlp_show_hidden = 1
+
+" leader
+map <space> <leader>
+nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>p :CtrlP<cr>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>w :w<cr>
+
