@@ -13,6 +13,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'mhinz/vim-startify'
+Plug 'neomake/neomake'
 
 call plug#end() " Add plugins to &runtimepath
 
@@ -137,6 +138,10 @@ let g:airline_powerline_fonts = 1
 
 " CTRLP
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_map =''
+
+" Neomake
+autocmd InsertChange,TextChanged * update | Neomake
 
 " leader
 map <space> <leader>

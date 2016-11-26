@@ -100,3 +100,5 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
