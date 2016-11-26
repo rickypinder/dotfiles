@@ -23,11 +23,10 @@ Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 " Other
 Plug 'mhinz/vim-startify'
 
-call plug#end() " Add plugins to &runtimepath
+call plug#end()                                  " Add plugins to &runtimepath
 
 set encoding=utf8
-" Always show statusline
-set laststatus=2
+set laststatus=2                                 " Always show statusline
 
 if has('folding')
   if has('window')
@@ -36,8 +35,8 @@ if has('folding')
 endif
 
 " Colors 
-set t_Co=256
-syntax enable " enable symtax processing
+set t_Co=256                                     " terminal colours look like gvim
+syntax enable                                    " enable symtax processing
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
@@ -45,73 +44,77 @@ endif
 colorscheme base16-ocean
 
 " Spaces & Tabs
-set tabstop=2 " number of visual spaces per TAB
-set softtabstop=2 " number of spaces in tab when editing
-set expandtab "tabs are spaces
+set tabstop=2                                    " number of visual spaces per TAB
+set softtabstop=2                                " number of spaces in tab when editing
+set expandtab                                    " tabs are spaces
 set smarttab 
 set shiftwidth=2
 
 " UI Config
-set number " show line numbers
-set showcmd " show command in bottom bar
-set cursorline " highlight current line
-filetype indent on " load filetype-specific ident files
-set wildmenu " visual autocomplete for command menu
-set lazyredraw " redraw only when we need to
-set showmatch " highlight matching [{()}]
-set laststatus=2 " Always show statusline
+set number                                       " show line numbers
+set showcmd                                      " show command in bottom bar
+set cursorline                                   " highlight current line
+filetype indent on                               " load filetype-specific ident files
+set wildmenu                                     " visual autocomplete for command menu
+set lazyredraw                                   " redraw only when we need to
+set showmatch                                    " highlight matching [{()}]
+set laststatus=2                                 " Always show statusline
 
 " Searching
-set incsearch " search as characters are entered
-set hlsearch " highlist matches
+set incsearch                                    " search as characters are entered
+set hlsearch                                     " highlist matches
 
 " Folding  
-set foldenable " enable folding
-set foldlevelstart=10 " open most folds by default
-set foldnestmax=10 " 10 nested fold max
-nnoremap <space> za
-set foldmethod=indent " fold based on indent level
+set foldenable                                   " enable folding
+set foldlevelstart=10                            " open most folds by default
+set foldnestmax=10                               " 10 nested fold max
+set foldmethod=indent                            " fold based on indent level
 
 " stuff
-set autoindent " maintains indent of current line
+set autoindent                                   " maintains indent of current line
+
+noremap <Up>    <Nop>
+noremap <Down>  <Nop>
+noremap <Left>  <Nop>
+noremap <Right> <Nop>
 
 if exists('$SUDO_USER')
-  set nobackup " don't create root owned files
+  set nobackup                                   " don't create root owned files
   set nowritebackup 
 else
   set backupdir=~/local/.vim/tmp/backup
-  set backupdir+=~/.vim/tmp/backup        " keep backup files out of the way
+  set backupdir+=~/.vim/tmp/backup               " keep backup files out of the way
   set backupdir+=.
 endif
 
 if exists('$SUDO_USER')
-  set noswapfile " don't create root owned files
+  set noswapfile                                 " don't create root owned files
 else
   set directory=~/local/.vim/tmp/swap//
-  set directory+=~/.vim/tmp/swap//    " keep swap files out of the way
+  set directory+=~/.vim/tmp/swap//               " keep swap files out of the way
 
   set directory+=.
 endif
 
 if has('persistent_undo')
   if exists('$SUDO_USER')
-    set noundofile    " don't create root owned files
+    set noundofile                               " don't create root owned files
   else
     set undodir=~/local/.vim/tmp/undo
-    set undodir+=~/.vim/tmp/undo   " keep undo files out of the way
+    set undodir+=~/.vim/tmp/undo                 " keep undo files out of the way
     set undodir+=.
-    set undofile    " actually use undo files 
+    set undofile                                 " actually use undo files 
   endif
 endif
 
 if has('viminfo')
   if exists('$SUDO_USER')
-    set viminfo= " don't create root-owned files
+    set viminfo=                                  " don't create root-owned files
   else
     if isdirectory('~/local/.vim/tmp')
       set viminfo+=n~/local/.vim/tmp/viminfo
     else
-      set viminfo+=n~/.vim/tmp/viminfo " override ~/.viminfo default
+      set viminfo+=n~/.vim/tmp/viminfo           " override ~/.viminfo default
     endif
 
     if !empty(glob('~/.vim/tmp/viminfo'))
@@ -126,9 +129,9 @@ if has('mksession')
   if isdirectory('~/local/.vim/tmp')
     set viewdir=~/loca/.vim/tmp/view
   else
-    set viewdir=~/.vim/tmp/view " override ~/.vim/view default
+    set viewdir=~/.vim/tmp/view                  " override ~/.vim/view default
   endif
-  set viewoptions=cursor,folds " save/restore just these (with ':{mk, loadview#)
+  set viewoptions=cursor,folds                   " save/restore just these (with ':{mk, loadview#)
 endif
 
 
