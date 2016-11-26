@@ -13,6 +13,9 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 
 call plug#end()                                  " Add plugins to &runtimepath
 
@@ -43,6 +46,7 @@ set shiftwidth=2
 
 " UI Config
 set number                                       " show line numbers
+set relativenumber                               " Relative line numbers
 set showcmd                                      " show command in bottom bar
 set cursorline                                   " highlight current line
 filetype indent on                               " load filetype-specific ident files
@@ -50,6 +54,7 @@ set wildmenu                                     " visual autocomplete for comma
 set lazyredraw                                   " redraw only when we need to
 set showmatch                                    " highlight matching [{()}]
 set laststatus=2                                 " Always show statusline
+highlight CursorLineNr ctermfg=yellow            " Current line number is yellow
 
 " Searching
 set incsearch                                    " search as characters are entered
