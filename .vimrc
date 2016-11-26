@@ -7,20 +7,11 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-" File searching
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
-
-" Status line
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-
-" Colours
 Plug 'chriskempson/base16-vim'
-
-" Linting
 Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-
-" Other
 Plug 'mhinz/vim-startify'
 
 call plug#end()                                  " Add plugins to &runtimepath
