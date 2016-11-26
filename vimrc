@@ -7,7 +7,7 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
@@ -139,7 +139,6 @@ let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 
 " CTRLP
-let g:ctrlp_show_hidden = 1
 let g:ctrlp_map =''
 
 " Neomake

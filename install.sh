@@ -1,17 +1,12 @@
 #!/bin/bash
-cd
-git clone https://github.com/powerline/fonts
-cd fonts
-./install.sh
-
-for f in .*
+for f in *
 do
-    if [ "$f" = ".git" ]
+    if [ "$f" = ".git" ] || [ "$f" = "." ] || [ "$f" =  ".." ] || [ "$f" = "install.sh" ] || [ "$f" = ".misc" ]
     then
         continue
     fi
     echo "$(pwd)/$f"
-    ln -s $(pwd)/$f ~/$f
+    ln -s $(pwd)/$f ~/.$f
 done
 
 xrdb -load ~/.Xresources
