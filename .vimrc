@@ -7,13 +7,21 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+" File searching
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
+
+" Status line
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+
+" Colours
 Plug 'chriskempson/base16-vim'
+
+" Linting
+Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+
+" Other
 Plug 'mhinz/vim-startify'
-Plug 'neomake/neomake'
 
 call plug#end() " Add plugins to &runtimepath
 
@@ -141,7 +149,6 @@ let g:ctrlp_show_hidden = 1
 let g:ctrlp_map =''
 
 " Neomake
-autocmd InsertChange,TextChanged * update | Neomake
 
 " leader
 map <space> <leader>
