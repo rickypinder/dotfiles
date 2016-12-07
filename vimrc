@@ -21,11 +21,12 @@ Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+"Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'valloric/youcompleteme'
 
 call plug#end()                                  " Add plugins to &runtimepath
 
@@ -165,4 +166,4 @@ nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>w :w<cr>
-
+nnoremap <leader>r :exec '!python' shellscape(@%, 1)<cr>

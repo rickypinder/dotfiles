@@ -7,6 +7,7 @@
 
 (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
 (add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
+(add-hook 'eshell-mode-hook (lambda () (global-hl-line-mode -1)))
 (add-hook 'ruby-mode-hook (lambda () (global-rbenv-mode)))
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -22,7 +23,7 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
-
+ 
 (setq inhibit-startup-screen t)
 
 (require 'package)
@@ -63,7 +64,7 @@ Return a list of installed packages or nil for every skipped package."
                           'quickrun
                           'magit
                           'switch-window
-			  'solarized-theme
+                          'base16-theme
                           'rbenv
                           )
 
@@ -76,8 +77,9 @@ Return a list of installed packages or nil for every skipped package."
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
-(require 'solarized-theme)
-(load-theme 'solarized-light t)
+
+(load-theme 'spacemacs-dark t)
+
 
 (require 'ido-vertical-mode)
 (ido-mode 1)
@@ -105,18 +107,23 @@ Return a list of installed packages or nil for every skipped package."
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
-(require 'powerline)
-(require 'airline-themes)
-(setq powerline-utf-8-separator-left        #xe0b0
-      powerline-utf-8-separator-right       #xe0b2
-      airline-utf-glyph-separator-left      #xe0b0
-      airline-utf-glyph-separator-right     #xe0b2
-      airline-utf-glyph-subseparator-left   #xe0b1
-      airline-utf-glyph-subseparator-right  #xe0b3
-      airline-utf-glyph-branch              #xe0a0
-      airline-utf-glyph-readonly            #xe0a2
-      airline-utf-glyph-linenumber          #xe0a1)
-(load-theme 'airline-solarized-gui t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (require 'powerline)                                ;;
+;; (require 'airline-themes)                           ;;
+;; (setq powerline-utf-8-separator-left        #xe0b0  ;;
+;;       powerline-utf-8-separator-right       #xe0b2  ;;
+;;       airline-utf-glyph-separator-left      #xe0b0  ;;
+;;       airline-utf-glyph-separator-right     #xe0b2  ;;
+;;       airline-utf-glyph-subseparator-left   #xe0b1  ;;
+;;       airline-utf-glyph-subseparator-right  #xe0b3  ;;
+;;       airline-utf-glyph-branch              #xe0a0  ;;
+;;       airline-utf-glyph-readonly            #xe0a2  ;;
+;;       airline-utf-glyph-linenumber          #xe0a1) ;;
+;; (load-theme 'airline-base16-gui-dark t)             ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'spaceline-config)
+(spaceline-spacemacs-theme)
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -146,46 +153,19 @@ Return a list of installed packages or nil for every skipped package."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#ffffff" "#f36c60" "#8bc34a" "#fff59d" "#4dd0e1" "#b39ddb" "#81d4fa" "#263238"))
  '(custom-safe-themes
    (quote
-    ("2b8dff32b9018d88e24044eb60d8f3829bd6bbeab754e70799b78593af1c3aba" "962dacd99e5a99801ca7257f25be7be0cebc333ad07be97efd6ff59755e6148f" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
- '(fci-rule-color "#37474f")
- '(hl-sexp-background-color "#1c1f26")
+    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "7790dbc91156dd9a5c7f2ee99e5f7e6549f244038b46ed6352d7693be2e0aec6" "0c3b1358ea01895e56d1c0193f72559449462e5952bded28c81a8e09b53f103f" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "8ee0c6bcfe3105114a7855fa68a2dc083a5fe687f464cc6395c172fa2e10650f" "eb0a314ac9f75a2bf6ed53563b5d28b563eeba938f8433f6d1db781a47da1366" default)))
  '(package-selected-packages
    (quote
-    (google-translate auto-complete rbenv exec-path-from-shell switch-window google-this solarized-theme magit evil-surround flycheck powerline ido-ubiquitous neotree emacs-neotree ido-vertical-mode evil-visual-mark-mode)))
- '(tool-bar-mode nil)
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#f36c60")
-     (40 . "#ff9800")
-     (60 . "#fff59d")
-     (80 . "#8bc34a")
-     (100 . "#81d4fa")
-     (120 . "#4dd0e1")
-     (140 . "#b39ddb")
-     (160 . "#f36c60")
-     (180 . "#ff9800")
-     (200 . "#fff59d")
-     (220 . "#8bc34a")
-     (240 . "#81d4fa")
-     (260 . "#4dd0e1")
-     (280 . "#b39ddb")
-     (300 . "#f36c60")
-     (320 . "#ff9800")
-     (340 . "#fff59d")
-     (360 . "#8bc34a"))))
- '(vc-annotate-very-old-color nil))
-
-
+    (spacemacs-theme helm spaceline switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous google-translate flycheck exec-path-from-shell evil-surround dracula-theme base16-theme auto-complete airline-themes)))
+ '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#fdf6e3" :foreground "#657b83" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "PfEd" :family "Meslo LG L DZ for Powerline")))))
+ '(default ((t (:family "Meslo LG M DZ for Powerline" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+
+
+(put 'erase-buffer 'disabled nil)
