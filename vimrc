@@ -169,6 +169,7 @@ map <space> <leader>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>T :TagbarToggle<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>r :!python %<cr>
