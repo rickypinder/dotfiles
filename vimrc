@@ -50,11 +50,12 @@ endif
 colorscheme base16-ocean
 
 " Spaces & Tabs
-set tabstop=2                                    " number of visual spaces per TAB
-set softtabstop=2                                " number of spaces in tab when editing
+set tabstop=4                                    " number of visual spaces per TAB
+set softtabstop=4                                " number of spaces in tab when editing
 set expandtab                                    " tabs are spaces
 set smarttab 
-set shiftwidth=2
+set shiftwidth=4
+
 
 " UI Config
 set number                                       " show line numbers
@@ -146,9 +147,8 @@ if has('mksession')
   set viewoptions=cursor,folds                   " save/restore just these (with ':{mk, loadview#)
 endif
 
-
-
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
 
 " Movement
 " move vertically by visual line
@@ -173,3 +173,6 @@ nnoremap <leader>T :TagbarToggle<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>r :!python %<cr>
+nnoremap <leader>lo :lopen<cr>
+nnoremap <leader>lc :lclose<cr>
+nnoremap <leader>ll :ll<cr>
