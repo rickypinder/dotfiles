@@ -163,7 +163,8 @@ let g:airline_powerline_fonts = 1
 let g:ctrlp_map =''
 
 " Neomake
-
+let g:neomake_c_enabled_makers = [] " ycm handles c and c++
+let g:neomake_cpp_enabled_makers = [] 
 " leader
 map <space> <leader>
 nnoremap <leader>b :CtrlPBuffer<cr>
