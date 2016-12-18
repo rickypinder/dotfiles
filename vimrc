@@ -191,5 +191,6 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>lo :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 nnoremap <leader>ll :ll<cr>
-autocmd FileType c nnoremap <leader>ca :A<cr>
-autocmd FileType python nnoremap <leader>cr :!python %<cr>
+autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
+autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
+autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
