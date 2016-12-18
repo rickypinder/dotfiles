@@ -1,9 +1,9 @@
 " 
 " 
-" RPINDER .VIMRC FILE
+" RPINDER .VIMRC FILE 
 "  http://github.com/rpinder
 " 
-
+"
 " Plugins
 
 " vim-plug (https://github.com/junegunn/vim-plug) settings 
@@ -14,20 +14,24 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
-Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'valloric/youcompleteme'
-Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree'                       " File browsing
+Plug 'Xuyuanp/nerdtree-git-plugin' 
+Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file browinsg
+Plug 'vim-airline/vim-airline'                   " status line
+Plug 'vim-airline/vim-airline-themes' 
+Plug 'chriskempson/base16-vim'                   " colorscheme
+Plug 'neomake/neomake'                           " linter/maker
+Plug 'dojoteef/neomake-autolint' 
+Plug 'mhinz/vim-startify'                        " startscreen showing most recent files
+Plug 'tpope/vim-fugitive'                        " git
+Plug 'tpope/vim-surround'                        " easily change surrounding punctuation
+Plug 'tpope/vim-commentary'                      " comment plugin
+Plug 'valloric/youcompleteme'                    " autocomplete
+Plug 'majutsushi/tagbar'                         " class outline viewer
+Plug 'jiangmiao/auto-pairs'                      " insert r delete brackets, parens, quotes in pair
+Plug 'vim-scripts/a.vim'                         " switch between header and corresponding file
 
 call plug#end()                                  " Add plugins to &runtimepath
 
@@ -149,6 +153,7 @@ endif
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
+autocmd FileType vim setlocal let b:autopairs_loaded=1
 
 " Movement
 " move vertically by visual line
@@ -177,3 +182,4 @@ nnoremap <leader>r :!python %<cr>
 nnoremap <leader>lo :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 nnoremap <leader>ll :ll<cr>
+autocmd FileType c nnoremap <leader>ca :A<cr>
