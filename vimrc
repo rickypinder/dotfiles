@@ -153,10 +153,6 @@ if has('mksession')
   set viewoptions=cursor,folds                   " save/restore just these (with ':{mk, loadview#)
 endif
 
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
-autocmd FileType vim let b:AutoPairs = {'(':')', "'":"'"}
-
 " Movement
 " move vertically by visual line
 nnoremap j gj 
@@ -191,6 +187,13 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>lo :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 nnoremap <leader>ll :ll<cr>
-autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
-autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
-autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
+
+if has('autocmd')
+    autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
+    autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
+    autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
+    autocmd FileType vim let b:AutoPairs = {'(':')', "'":"'"}
+
+end
