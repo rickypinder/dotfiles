@@ -3,7 +3,6 @@
 " RPINDER .VIMRC FILE
 "  http://github.com/rpinder
 "
-"
 
 " Plugins
 
@@ -46,6 +45,15 @@ if has('folding')
         set fillchars=vert:│
     endif
 endif
+
+if has('autocmd')
+    autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
+    autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
+    autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
+    autocmd FileType vim let b:AutoPairs = {'(':')', "'":"'", '[':']', '{':'}'}
+end
 
 " Colors
 set t_Co=256                                     " terminal colours look like gvim
@@ -180,6 +188,23 @@ nnoremap <leader>lo :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 nnoremap <leader>ll :ll<cr>
 
+" Startify
+let g:startify_list_order = [
+            \['   Bookmarks'],
+            \'bookmarks',
+            \['   Recent files'],
+            \'files',
+            \['   Recent files in current dir'],
+            \'dir',
+            \['   Sessions'],
+            \'sessions',
+            \['   Commands'],
+            \'commands'
+            \]
+let g:startify_files_number = 5
+let g:startify_update_oldfiles = 1
+let g:startify_bookmarks = [ '~/dotfiles/vimrc', '~/dotfiles/zshrc']
+
 " jk or kj to escape insert mode
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -194,12 +219,3 @@ nnoremap <leader><space> :nohlsearch<CR>
 " plugin keybinds
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>T :TagbarToggle<CR>
-
-if has('autocmd')
-    autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
-    autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
-    autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
-    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-    autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
-    autocmd FileType vim let b:AutoPairs = {'(':')', "'":"'"}
-end
