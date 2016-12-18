@@ -32,6 +32,7 @@ Plug 'valloric/youcompleteme'                    " autocomplete
 Plug 'majutsushi/tagbar'                         " class outline viewer
 Plug 'jiangmiao/auto-pairs'                      " insert r delete brackets, parens, quotes in pair
 Plug 'vim-scripts/a.vim'                         " switch between header and corresponding file
+Plug 'airblade/vim-gitgutter'                    " shows git diff in the gutter
 
 call plug#end()                                  " Add plugins to &runtimepath
 
