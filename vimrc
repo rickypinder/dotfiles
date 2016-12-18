@@ -155,7 +155,7 @@ endif
 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
-autocmd FileType vim setlocal let b:autopairs_loaded=1
+autocmd FileType vim let b:AutoPairs = {'(':')', "'":"'"}
 
 " Movement
 " move vertically by visual line
