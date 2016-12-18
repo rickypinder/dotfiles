@@ -176,6 +176,9 @@ let g:ycm_confirm_extra_conf = 0
 let g:neomake_c_enabled_makers = [] " ycm handles c and c++
 let g:neomake_cpp_enabled_makers = [] 
 
+inoremap jk <Esc>
+inoremap kj <Esc>
+
 " leader
 map <space> <leader>
 nnoremap <leader>b :CtrlPBuffer<cr>
