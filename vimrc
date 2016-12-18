@@ -4,6 +4,7 @@
 "  http://github.com/rpinder
 " 
 "
+
 " Plugins
 
 " vim-plug (https://github.com/junegunn/vim-plug) settings 
@@ -168,19 +169,24 @@ let g:airline_powerline_fonts = 1
 " CTRLP
 let g:ctrlp_map =''
 
+" YCM
+let g:ycm_confirm_extra_conf = 0
+
 " Neomake
 let g:neomake_c_enabled_makers = [] " ycm handles c and c++
 let g:neomake_cpp_enabled_makers = [] 
+
 " leader
 map <space> <leader>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>T :TagbarToggle<CR>
+nnoremap <leader>t :CtrlPTag<cr>
 nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <leader>w :w<cr>
-nnoremap <leader>r :!python %<cr>
 nnoremap <leader>lo :lopen<cr>
 nnoremap <leader>lc :lclose<cr>
 nnoremap <leader>ll :ll<cr>
 autocmd FileType c nnoremap <leader>ca :A<cr>
+autocmd FileType python nnoremap <leader>cr :!python %<cr>
