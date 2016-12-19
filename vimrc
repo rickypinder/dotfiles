@@ -34,7 +34,6 @@ Plug 'jiangmiao/auto-pairs'                      " insert r delete brackets, par
 Plug 'vim-scripts/a.vim'                         " switch between header and corresponding file
 Plug 'airblade/vim-gitgutter'                    " shows git diff in the gutter
 Plug 'ntpeters/vim-better-whitespace'            " highlight trailing whitespace
-Plug 'ludovicchabant/vim-gutentags'              " handles tags
 Plug 'mtth/scratch.vim'                          " unobtrusive scratch window
 
 call plug#end()                                  " Add plugins to &runtimepath
