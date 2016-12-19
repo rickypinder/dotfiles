@@ -21,7 +21,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file browinsg
 Plug 'vim-airline/vim-airline'                   " status line
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'                   " colorscheme
+"Plug 'chriskempson/base16-vim'                   " colorscheme
+Plug 'ajh17/spacegray.vim'
 Plug 'neomake/neomake'                           " linter/maker
 Plug 'dojoteef/neomake-autolint'
 Plug 'mhinz/vim-startify'                        " startscreen showing most recent files
@@ -37,6 +38,19 @@ Plug 'ntpeters/vim-better-whitespace'            " highlight trailing whitespace
 Plug 'mtth/scratch.vim'                          " unobtrusive scratch window
 
 call plug#end()                                  " Add plugins to &runtimepath
+
+if has("gui_running")
+    set guioptions+=c
+    set guioptions+=R
+    set guioptions-=m
+    set guioptions-=r
+    set guioptions-=b
+    set guioptions-=T
+    set guioptions-=R
+    set guioptions-=L
+    set guioptions-=e
+    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ 11
+endif
 
 set encoding=utf8
 set laststatus=2                                 " Always show statusline
@@ -59,11 +73,12 @@ end
 " Colors
 set t_Co=256                                     " terminal colours look like gvim
 syntax enable                                    " enable symtax processing
-if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-endif
-colorscheme base16-ocean
+" if filereadable(expand("~/.vimrc_background"))
+"     let base16colorspace=256
+"     source ~/.vimrc_background
+" endif
+" colorscheme base16-ocean
+colorscheme spacegray
 
 " Spaces & Tabs
 set tabstop=4                                    " number of visual spaces per TAB
