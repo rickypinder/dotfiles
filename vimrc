@@ -234,3 +234,14 @@ nnoremap <leader><space> :nohlsearch<CR>
 " plugin keybinds
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>T :TagbarToggle<CR>
+
+
+" Gets rid of the annoying different colour gutter/line number coulumn
+highlight LineNr ctermbg=black
+highlight CursorLineNr ctermbg=black
+highlight SignColumn ctermbg=black
+
+highlight GitGutterAdd ctermbg=black
+highlight GitGutterChange ctermbg=black
+highlight GitGutterDelete ctermbg=black
+highlight GitGutterChangeDelete ctermbg=black
