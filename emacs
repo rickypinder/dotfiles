@@ -11,6 +11,10 @@
          (linum-format (concat " %" (number-to-string w) "d ")))
     ad-do-it))
 
+(defun open-dotfile () (interactive)
+       (find-file "~/dotfiles/emacs")
+       (emacs-lisp-mode))
+
 (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
 (add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
 (add-hook 'eshell-mode-hook (lambda () (global-hl-line-mode -1)))
@@ -69,9 +73,23 @@ Return a list of installed packages or nil for every skipped package."
                           'rbenv
                           'spacegray-theme
                           'hlinum
+                          'auto-complete
+                          'auto-complete-c-headers
+                          'pdf-tools
                           )
 
 (load-theme 'spacegray t)
+
+(ac-config-default)
+
+(pdf-tools-install)
+
+(defun my:ac-c-headers-init ()
+  (require 'auto-complete-c-headers)
+  (add-to-list 'ac-sources 'ac-source-c-headers))
+
+(add-hook 'c++-mode-hook 'my:ac-c-headers-init)
+(add-hook 'c-mode-hook 'my:ac-c-headers-init)
 
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -146,4 +164,4 @@ Return a list of installed packages or nil for every skipped package."
     ("1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "64ca5a1381fa96cb86fd6c6b4d75b66dc9c4e0fc1288ee7d914ab8d2638e23a9" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" default)))
  '(package-selected-packages
    (quote
-    (hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme))))
+    (pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme))))
