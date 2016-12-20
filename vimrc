@@ -28,13 +28,14 @@ Plug 'mhinz/vim-startify'                        " startscreen showing most rece
 Plug 'tpope/vim-fugitive'                        " git
 Plug 'tpope/vim-surround'                        " easily change surrounding punctuation
 Plug 'tpope/vim-commentary'                      " comment plugin
-Plug 'valloric/youcompleteme'                    " autocomplete
 Plug 'majutsushi/tagbar'                         " class outline viewer
 Plug 'jiangmiao/auto-pairs'                      " insert r delete brackets, parens, quotes in pair
 Plug 'vim-scripts/a.vim'                         " switch between header and corresponding file
 Plug 'airblade/vim-gitgutter'                    " shows git diff in the gutter
 Plug 'ntpeters/vim-better-whitespace'            " highlight trailing whitespace
 Plug 'mtth/scratch.vim'                          " unobtrusive scratch window
+Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
 call plug#end()                                  " Add plugins to &runtimepath
 
@@ -193,7 +194,7 @@ nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>t :CtrlPTag<cr>
 
 " YCM
-let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " Neomake
 let g:neomake_c_enabled_makers = []              " ycm handles c and c++

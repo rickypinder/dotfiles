@@ -5,6 +5,12 @@
 (global-linum-mode 1)
 (global-hl-line-mode 1)
 
+(defadvice linum-update-window (around linum-dynamic activate)
+  (let* ((w (length (number-to-string
+                     (count-lines (point-min) (point-max)))))
+         (linum-format (concat " %" (number-to-string w) "d ")))
+    ad-do-it))
+
 (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
 (add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
 (add-hook 'eshell-mode-hook (lambda () (global-hl-line-mode -1)))
@@ -12,8 +18,6 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-x o") 'switch-window)
-(global-set-key (kbd "M-p") 'ace-window)
-(global-set-key (kbd "C-c g") 'magit-status)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
@@ -58,28 +62,26 @@ Return a list of installed packages or nil for every skipped package."
                           'neotree
                           'smex
                           'ido-ubiquitous
-                          'powerline
-                          'airline-themes
                           'flycheck
                           'quickrun
                           'magit
                           'switch-window
-                          'base16-theme
                           'rbenv
+                          'spacegray-theme
+                          'hlinum
                           )
+
+(load-theme 'spacegray t)
 
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (require 'evil)
 (evil-mode t)
+(setq evil-mode-line-format '(before . mode-line-front-space))
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
-
-
-(load-theme 'spacemacs-dark t)
-
 
 (require 'ido-vertical-mode)
 (ido-mode 1)
@@ -107,23 +109,6 @@ Return a list of installed packages or nil for every skipped package."
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (require 'powerline)                                ;;
-;; (require 'airline-themes)                           ;;
-;; (setq powerline-utf-8-separator-left        #xe0b0  ;;
-;;       powerline-utf-8-separator-right       #xe0b2  ;;
-;;       airline-utf-glyph-separator-left      #xe0b0  ;;
-;;       airline-utf-glyph-separator-right     #xe0b2  ;;
-;;       airline-utf-glyph-subseparator-left   #xe0b1  ;;
-;;       airline-utf-glyph-subseparator-right  #xe0b3  ;;
-;;       airline-utf-glyph-branch              #xe0a0  ;;
-;;       airline-utf-glyph-readonly            #xe0a2  ;;
-;;       airline-utf-glyph-linenumber          #xe0a1) ;;
-;; (load-theme 'airline-base16-gui-dark t)             ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -141,13 +126,16 @@ Return a list of installed packages or nil for every skipped package."
 (setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
 (setq rbenv-modeline-function 'rbenv--modeline-plain)
 
-(ac-config-default)
+(require 'hlinum)
+(hlinum-activate)
 
-(require 'google-translate)
-(require 'google-translate-default-ui)
-(global-set-key "\C-ct" 'google-translate-at-point)
-(global-set-key "\C-cT" 'google-translate-query-translate)
-
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Meslo LG M DZ for Powerline" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal))))
+ '(linum-highlight-face ((t (:background "#343d46" :foreground "yellow")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -155,17 +143,7 @@ Return a list of installed packages or nil for every skipped package."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "7790dbc91156dd9a5c7f2ee99e5f7e6549f244038b46ed6352d7693be2e0aec6" "0c3b1358ea01895e56d1c0193f72559449462e5952bded28c81a8e09b53f103f" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "8ee0c6bcfe3105114a7855fa68a2dc083a5fe687f464cc6395c172fa2e10650f" "eb0a314ac9f75a2bf6ed53563b5d28b563eeba938f8433f6d1db781a47da1366" default)))
+    ("1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "64ca5a1381fa96cb86fd6c6b4d75b66dc9c4e0fc1288ee7d914ab8d2638e23a9" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" default)))
  '(package-selected-packages
    (quote
-    (spacemacs-theme helm spaceline switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous google-translate flycheck exec-path-from-shell evil-surround dracula-theme base16-theme auto-complete airline-themes)))
- '(tool-bar-mode nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Meslo LG M DZ for Powerline" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
-
-
-(put 'erase-buffer 'disabled nil)
+    (hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme))))
