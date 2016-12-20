@@ -21,8 +21,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file browinsg
 Plug 'vim-airline/vim-airline'                   " status line
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'chriskempson/base16-vim'                   " colorscheme
-Plug 'ajh17/spacegray.vim'
+Plug 'chriskempson/base16-vim'                   " colorscheme
 Plug 'neomake/neomake'                           " linter/maker
 Plug 'dojoteef/neomake-autolint'
 Plug 'mhinz/vim-startify'                        " startscreen showing most recent files
@@ -73,12 +72,12 @@ end
 " Colors
 set t_Co=256                                     " terminal colours look like gvim
 syntax enable                                    " enable symtax processing
-" if filereadable(expand("~/.vimrc_background"))
-"     let base16colorspace=256
-"     source ~/.vimrc_background
-" endif
-" colorscheme base16-ocean
-colorscheme spacegray
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    source ~/.vimrc_background
+endif
+colorscheme base16-ocean
+colorscheme base16-ocean
 
 " Spaces & Tabs
 set tabstop=4                                    " number of visual spaces per TAB
