@@ -5,7 +5,6 @@
 (global-linum-mode 1)
 (global-hl-line-mode 1)
 
-
 (defadvice linum-update-window (around linum-dynamic activate)
   (let* ((w (length (number-to-string
                      (count-lines (point-min) (point-max)))))
@@ -39,7 +38,7 @@
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
- 
+
 (setq inhibit-startup-screen t)
 
 
@@ -105,17 +104,33 @@ Return a list of installed packages or nil for every skipped package."
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+(require 'evil-leader)
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key
+ "0" 'winum-select-window-0-or-10
+ "1" 'winum-select-window-1
+ "2" 'winum-select-window-2
+ "3" 'winum-select-window-3
+ "4" 'winum-select-window-4
+ "5" 'winum-select-window-5
+ "6" 'winum-select-window-6
+ "7" 'winum-select-window-7
+ "8" 'winum-select-window-8
+ "9" 'winum-select-window-9)
+
+(global-evil-leader-mode)
 (require 'evil)
 (evil-mode t)
 ; I should just use a modeline plugin
 (setq evil-mode-line-format '(before . mode-line-front-space))
-(setq evil-normal-state-tag   (propertize " N " 'face '((:background "#343D46" :foreground "black")))
-      evil-emacs-state-tag    (propertize " E " 'face '((:background "#C189EB" :foreground "black")))
-      evil-insert-state-tag   (propertize " I " 'face '((:background "#B4EB90" :foreground "black")))
-      evil-motion-state-tag   (propertize " M " 'face '((:background "#89EBCA" :foreground "black")))
-      evil-visual-state-tag   (propertize " V " 'face '((:background "#DCA432" :foreground "black")))
-      evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a" :foreground "black")))
-      evil-operator-state-tag (propertize " O " 'face '((:background "#C189EB" :foreground "black"))))
+(setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:background "#343d46")))
+      evil-emacs-state-tag    (propertize " EMACS   " 'face '((:background "#C189EB")))
+      evil-insert-state-tag   (propertize " INSERT  " 'face '((:background "#27AE60")))
+      evil-motion-state-tag   (propertize " MOTION  " 'face '((:background "#89EBCA")))
+      evil-visual-state-tag   (propertize " VISUAL  " 'face '((:background "#DCA432")))
+      evil-replace-state-tag  (propertize " REPLACE " 'face '((:background "#bf616a")))
+      evil-operator-state-tag (propertize " NORMAL  " 'face '((:background "#343d46"))))
+
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
