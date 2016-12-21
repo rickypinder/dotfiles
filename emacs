@@ -99,11 +99,12 @@ Return a list of installed packages or nil for every skipped package."
 (evil-mode t)
 ; I should just use a modeline plugin
 (setq evil-mode-line-format '(before . mode-line-front-space))
-(setq evil-normal-state-tag   (propertize " N " 'face '((:background "#343d46" :foreground "black")))
+(setq evil-normal-state-tag   (propertize " N " 'face '((:background "#343D46" :foreground "black")))
       evil-emacs-state-tag    (propertize " E " 'face '((:background "#C189EB" :foreground "black")))
       evil-insert-state-tag   (propertize " I " 'face '((:background "#B4EB90" :foreground "black")))
-      evil-motion-state-tag   (propertize " M " 'face '((:background "green"   :foreground "black")))
+      evil-motion-state-tag   (propertize " M " 'face '((:background "#89EBCA" :foreground "black")))
       evil-visual-state-tag   (propertize " V " 'face '((:background "#DCA432" :foreground "black")))
+      evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a" :foreground "black" )))
       evil-operator-state-tag (propertize " O " 'face '((:background "#C189EB" :foreground "black"))))
 
 (require 'evil-surround)
