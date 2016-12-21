@@ -5,6 +5,7 @@
 (global-linum-mode 1)
 (global-hl-line-mode 1)
 
+
 (defadvice linum-update-window (around linum-dynamic activate)
   (let* ((w (length (number-to-string
                      (count-lines (point-min) (point-max)))))
@@ -18,6 +19,9 @@
 (defun open-zsh () (interactive)
        (find-file "~/dotfiles/zshrc")
        (shell-script-mode))
+
+(defun load-emacs () (interactive)
+       (load-file "~/.emacs"))
 
 (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
 (add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
@@ -37,6 +41,7 @@
 (setq auto-save-default nil)
  
 (setq inhibit-startup-screen t)
+
 
 (require 'package)
 
@@ -81,6 +86,7 @@ Return a list of installed packages or nil for every skipped package."
                           'auto-complete-c-headers
                           'pdf-tools
                           'key-chord
+                          'winum
                           )
 
 (load-theme 'spacegray t)
@@ -108,7 +114,7 @@ Return a list of installed packages or nil for every skipped package."
       evil-insert-state-tag   (propertize " I " 'face '((:background "#B4EB90" :foreground "black")))
       evil-motion-state-tag   (propertize " M " 'face '((:background "#89EBCA" :foreground "black")))
       evil-visual-state-tag   (propertize " V " 'face '((:background "#DCA432" :foreground "black")))
-      evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a" :foreground "black" )))
+      evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a" :foreground "black")))
       evil-operator-state-tag (propertize " O " 'face '((:background "#C189EB" :foreground "black"))))
 
 (require 'evil-surround)
@@ -165,6 +171,10 @@ Return a list of installed packages or nil for every skipped package."
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
+(require 'winum)
+(setq winum-mode-line-position 14)
+(winum-mode)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -185,7 +195,7 @@ Return a list of installed packages or nil for every skipped package."
  '(fci-rule-color "#343d46")
  '(package-selected-packages
    (quote
-    (key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
+    (winum key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -208,3 +218,6 @@ Return a list of installed packages or nil for every skipped package."
      (340 . "#ebcb8b")
      (360 . "#B4EB89"))))
  '(vc-annotate-very-old-color nil))
+
+(set-face-foreground 'modeline-inactive "#777777")
+(set-face-background 'modeline-inactive "#181b22")
