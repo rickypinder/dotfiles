@@ -5,23 +5,70 @@
 ;;
 ;;
 
+;; last edited: 22/12/2016
+
+;; I know very little elisp
+
+;; Crediting
+;;   I will try and credit all the code I paste into this file however sometimes
+;;   I will forget or there will be some things I added in before I started
+;;   crediting so just tell me if I forget something
+
+;; TODO
+;; + setup emacs for c/c++
+;;   - semantic autocomplete
+;;   - easily switch between header and source file
+;;   - fuzzy finder (?)
+;; + make my .emacs more organised
+;;   - documentation
+;;     - file size doesn't matter, lots of comments 
+;;   - re-order parts
+;;   - use multiple files
+;;   - move to init.el
+;;   - use-package (?)
+;;   - org mode integration (?)
+;; + smooth scrolling
+
+;-------------------------------------------------------------------------------
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          UI CONFIG
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; remove useless (to me) clutter
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(when (display-graphic-p) ;; these elements don't exist in the terminal emacs
+  (tool-bar-mode -1)      ;; so turning them off isn't needed
+  (scroll-bar-mode -1))
 
-(global-linum-mode 1)
-(global-hl-line-mode 1)
+(global-linum-mode 1)     ;; enables line numbers in fringe
+(global-hl-line-mode 1)   ;; toggles line highlighting in all buffers
 
+(setq column-number-mode t) ;; puts column number in the mode line
+
+;; puts a space between number line and window border
 (defadvice linum-update-window (around linum-dynamic activate)
   (let* ((w (length (number-to-string
                      (count-lines (point-min) (point-max)))))
          (linum-format (concat " %" (number-to-string w) "d ")))
     ad-do-it))
 
+(setq inhibit-startup-screen t) ;; disables emacs start screen
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;           CUSTOM FUNCTIONS 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; opens emacs configuration file and puts buffer into the correct mode
 (defun open-dotfile () (interactive)
        (find-file "~/dotfiles/.emacs")
        (emacs-lisp-mode))
 
+;; opens zsh configuration file and puts buffer into the correct mode
 (defun open-zsh () (interactive)
        (find-file "~/dotfiles/.zshrc")
        (shell-script-mode))
@@ -29,10 +76,23 @@
 (defun load-emacs () (interactive)
        (load-file "~/.emacs"))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          MODE HOOKS 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
 (add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
 (add-hook 'eshell-mode-hook (lambda () (global-hl-line-mode -1)))
 (add-hook 'ruby-mode-hook (lambda () (global-rbenv-mode)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          CUSTOM KEYBINDS 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-x o") 'switch-window)
@@ -46,10 +106,23 @@
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
 
-(setq inhibit-startup-screen t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          AUTOMATIC PACKAGE INSTALLATION
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; This code is from the "Automatically installing Packages" section of the
+;; "From Vim to Emacs in Fourteen Days article by Arron Bieber posted on May
+;; 24th 2015
+
+;; http://blog.aaronbieber.com/2015/05/24/from-vim-to-emacs-in-fourteen-days.html
 
 (require 'package)
+
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed, ask for installation if it's not.
@@ -67,10 +140,6 @@ Return a list of installed packages or nil for every skipped package."
 ;; Make sure to have downloaded archive descriptions
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
-
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 (package-initialize)
 
@@ -97,6 +166,12 @@ Return a list of installed packages or nil for every skipped package."
                           'git-gutter
                           'github-browse-file
                           )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          PACKAGE CONFIG  
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load-theme 'spacegray t)
 
@@ -254,5 +329,8 @@ Return a list of installed packages or nil for every skipped package."
      (360 . "#B4EB89"))))
  '(vc-annotate-very-old-color nil))
 
+;; This makes the inactive modeline darker than the active modeline. This
+;; probably isn't the best solution but this apparently needs to be ran after the
+;; section - probably isn't true
 (set-face-foreground 'modeline-inactive "#777777")
 (set-face-background 'modeline-inactive "#181b22")
