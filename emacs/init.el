@@ -1,6 +1,6 @@
 ;;
 ;;
-;; RPINDER .EMACS FILE
+;; RPINDER INIT.EL FILE
 ;;   http://github.com/rpinder
 ;;
 ;;
@@ -65,7 +65,7 @@
 
 ;; opens emacs configuration file and puts buffer into the correct mode
 (defun open-dotfile () (interactive)
-       (find-file "~/dotfiles/.emacs")
+       (find-file "~/dotfiles/emacs/init.el")
        (emacs-lisp-mode))
 
 ;; opens zsh configuration file and puts buffer into the correct mode
