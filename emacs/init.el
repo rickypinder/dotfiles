@@ -19,96 +19,23 @@
 ;;   - semantic autocomplete
 ;;   - easily switch between header and source file
 ;;   - fuzzy finder (?)
-;; + make my .emacs more organised
-;;   - documentation
-;;   - re-order parts
-;;   - use-package (?)
-;;   - org mode integration (?)
 ;; + smooth scrolling
 ;; + email inside emacs
 ;; + set up irc
 ;;   - facebook messanger bitbee thing
-;; + latex 
+;; + latex environment
 
 ;-------------------------------------------------------------------------------
 
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;          UI CONFIG
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; remove useless (to me) clutter
+;;   I have this here so I don't see them when emacs is loading
 (menu-bar-mode -1)
 (when (display-graphic-p) ;; these elements don't exist in the terminal emacs
   (tool-bar-mode -1)      ;; so turning them off isn't needed
   (scroll-bar-mode -1))
 
-(global-linum-mode 1)     ;; enables line numbers in fringe
-(global-hl-line-mode 1)   ;; toggles line highlighting in all buffers
-
-(setq column-number-mode t) ;; puts column number in the mode line
-
-;; puts a space between number line and window border
-(defadvice linum-update-window (around linum-dynamic activate)
-  (let* ((w (length (number-to-string
-                     (count-lines (point-min) (point-max)))))
-         (linum-format (concat " %" (number-to-string w) "d ")))
-    ad-do-it))
-
-(setq inhibit-startup-screen t) ;; disables emacs start screen
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;           CUSTOM FUNCTIONS 
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; opens emacs configuration file and puts buffer into the correct mode
-(defun open-dotfile () (interactive)
-       (find-file "~/dotfiles/emacs/init.el")
-       (emacs-lisp-mode))
-
-;; opens zsh configuration file and puts buffer into the correct mode
-(defun open-zsh () (interactive)
-       (find-file "~/dotfiles/.zshrc")
-       (shell-script-mode))
-
-(defun load-emacs () (interactive)
-       (load-file "~/.emacs"))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;          MODE HOOKS 
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
-(add-hook 'eshell-mode-hook (lambda () (set-window-fringes nil 0 0)))
-(add-hook 'eshell-mode-hook (lambda () (global-hl-line-mode -1)))
-(add-hook 'ruby-mode-hook (lambda () (global-rbenv-mode)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;          CUSTOM KEYBINDS 
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(define-key global-map (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "C-x o") 'switch-window)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-(defvar org-log-done t)
-
-(setq-default indent-tabs-mode nil)
-
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-(setq auto-save-default nil)
+(setq custom-file "~/.emacs.d/custom.el") ;; I don't want the custom stuff inside this file
+(load custom-file)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -172,15 +99,103 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
+;;          UI CONFIG
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(load-theme 'spacegray t)   ;; loads spacegray theme
+
+(global-linum-mode 1)       ;; enables line numbers in fringe
+
+(setq column-number-mode t) ;; puts column number in the mode line
+
+;; puts a space between number line and window border
+(defadvice linum-update-window (around linum-dynamic activate)
+  (let* ((w (length (number-to-string
+                     (count-lines (point-min) (point-max)))))
+         (linum-format (concat " %" (number-to-string w) "d ")))
+    ad-do-it))
+
+(setq inhibit-startup-screen t) ;; disables emacs start screen
+
+;; Inactive modeline is darker 
+(set-face-foreground 'modeline-inactive "#777777")
+(set-face-background 'modeline-inactive "#181b22")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;           CUSTOM FUNCTIONS 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; opens emacs configuration file
+(defun open-dotfile () (interactive)
+       (find-file "~/dotfiles/emacs/init.el"))
+
+;; opens zsh configuration file
+(defun open-zsh () (interactive)
+       (find-file "~/dotfiles/.zshrc"))
+
+;; self explanatory
+(defun load-emacs () (interactive)
+       (load-file "~/.emacs.d/init.el"))
+
+;; this turns off line numbers and line highlighting, and also gets rid of the fringe
+(defun setup-eshell ()
+  (linum-mode -1)
+  (set-window-fringes nil 0 0 )
+  (hl-line-mode -1))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          HOOKS 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; makes the eshell experience more pleasant
+(add-hook 'eshell-mode-hook  'setup-eshell)
+
+;; all programming buffers have line highlighting
+(add-hook 'prog-mode-hook (lambda () (hl-line-mode 1)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          CUSTOM KEYBINDS 
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; C-c o(pen) 
+(global-set-key (kbd "C-c o d") 'open-dotfile)
+(global-set-key (kbd "C-c o z") 'open-zsh)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;          MISCELLANEOUS  
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Use spaces for indenting
+(setq-default indent-tabs-mode nil)
+
+;; put all backups into one directory
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+
+;; stop emacs from autosaving
+(setq auto-save-default nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;          PACKAGE CONFIG  
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'spacegray t)
+;;----------------------------------------------------------
+;;          AUTO-COMPLETE
+;;----------------------------------------------------------
 
 (ac-config-default)
-
-(pdf-tools-install)
 
 (defun my:ac-c-headers-init ()
   (require 'auto-complete-c-headers)
@@ -189,27 +204,14 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'c++-mode-hook 'my:ac-c-headers-init)
 (add-hook 'c-mode-hook 'my:ac-c-headers-init)
 
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-(require 'evil-leader)
-(evil-leader/set-leader "<SPC>")
-(evil-leader/set-key
- "0" 'winum-select-window-0-or-10
- "1" 'winum-select-window-1
- "2" 'winum-select-window-2
- "3" 'winum-select-window-3
- "4" 'winum-select-window-4
- "5" 'winum-select-window-5
- "6" 'winum-select-window-6
- "7" 'winum-select-window-7
- "8" 'winum-select-window-8
- "9" 'winum-select-window-9)
+;;----------------------------------------------------------
+;;          EVIL
+;;----------------------------------------------------------
 
-(global-evil-leader-mode)
 (require 'evil)
 (evil-mode t)
-; I should just use a modeline plugin
+; I should just use a modeline package
 (setq evil-mode-line-format '(before . mode-line-front-space))
 (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:background "#343d46")))
       evil-emacs-state-tag    (propertize " EMACS   " 'face '((:background "#C189EB")))
@@ -222,6 +224,10 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
+
+;;----------------------------------------------------------
+;;          INTERACTIVELY DO THINGS (ido)
+;;----------------------------------------------------------
 
 (require 'ido-vertical-mode)
 (ido-mode 1)
@@ -238,6 +244,10 @@ Return a list of installed packages or nil for every skipped package."
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+;;----------------------------------------------------------
+;;         NEOTREE 
+;;----------------------------------------------------------
+
 (require 'neotree)
 (setq neo-theme 'ascii)
 (global-set-key "\C-cn" 'neotree-toggle)
@@ -249,16 +259,29 @@ Return a list of installed packages or nil for every skipped package."
             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
+;;----------------------------------------------------------
+;;         FLYCHECK 
+;;----------------------------------------------------------
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
+;;----------------------------------------------------------
+;;          TRAMP
+;;----------------------------------------------------------
+
 (require 'tramp)
 
-(setq package-enable-at-startup nil)
+;;----------------------------------------------------------
+;;          QUICKRUN
+;;----------------------------------------------------------
 
 (require 'quickrun)
+
+;;----------------------------------------------------------
+;;          RBENV
+;;----------------------------------------------------------
 
 (require 'rbenv)
 ;; Setting rbenv path
@@ -266,23 +289,68 @@ Return a list of installed packages or nil for every skipped package."
 (setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
 (setq rbenv-modeline-function 'rbenv--modeline-plain)
 
+;;----------------------------------------------------------
+;;          HLINUM
+;;----------------------------------------------------------
+
 (require 'hlinum)
 (hlinum-activate)
+
+;;----------------------------------------------------------
+;;          KEY-CHORD
+;;----------------------------------------------------------
 
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
+;;----------------------------------------------------------
+;;          WINUM
+;;----------------------------------------------------------
+
 (require 'winum)
-(setq winum-mode-line-position 14)
+(setq winum-mode-line-position 8)
+
+;; winum-keymap-prefix is currently broken so I'm doing this instead
+(global-set-key (kbd "C-c 0") 'winum-select-window-0-or-10)
+(global-set-key (kbd "C-c 1") 'winum-select-window-1)
+(global-set-key (kbd "C-c 2") 'winum-select-window-2)
+(global-set-key (kbd "C-c 3") 'winum-select-window-3)
+(global-set-key (kbd "C-c 4") 'winum-select-window-4)
+(global-set-key (kbd "C-c 5") 'winum-select-window-5)
+(global-set-key (kbd "C-c 6") 'winum-select-window-6)
+(global-set-key (kbd "C-c 7") 'winum-select-window-7)
+(global-set-key (kbd "C-c 8") 'winum-select-window-8)
+(global-set-key (kbd "C-c 9") 'winum-select-window-9)
+
 (winum-mode)
+
+;;----------------------------------------------------------
+;;          WHICH-KEY
+;;----------------------------------------------------------
 
 (require 'which-key)
 (which-key-mode)
 
-;; This makes the inactive modeline darker than the active modeline. This
-;; probably isn't the best solution but this apparently needs to be ran after the
-;; section - probably isn't true
-(set-face-foreground 'modeline-inactive "#777777")
-(set-face-background 'modeline-inactive "#181b22")
+;;----------------------------------------------------------
+;;          ORG MODE
+;;----------------------------------------------------------
+
+(defvar org-log-done t)
+
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;;----------------------------------------------------------
+;;          PDF TOOLS
+;;----------------------------------------------------------
+
+(pdf-tools-install)
+
+;;----------------------------------------------------------
+;;          SWITCH WINDOW
+;;----------------------------------------------------------
+
+(require 'switch-window)
+(global-set-key (kbd "C-x o") 'switch-window)
