@@ -86,6 +86,7 @@ Return a list of installed packages or nil for every skipped package."
                           'pdf-tools
                           'key-chord
                           'winum
+                          'which-key
                           )
 
 (load-theme 'spacegray t)
@@ -190,6 +191,9 @@ Return a list of installed packages or nil for every skipped package."
 (setq winum-mode-line-position 14)
 (winum-mode)
 
+(require 'which-key)
+(which-key-mode)
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -210,7 +214,7 @@ Return a list of installed packages or nil for every skipped package."
  '(fci-rule-color "#343d46")
  '(package-selected-packages
    (quote
-    (winum key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
+    (which-key winum key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
