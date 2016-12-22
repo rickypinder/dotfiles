@@ -1,3 +1,4 @@
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -88,6 +89,7 @@ Return a list of installed packages or nil for every skipped package."
                           'winum
                           'which-key
                           'git-gutter
+                          'github-browse-file
                           )
 
 (load-theme 'spacegray t)
@@ -198,7 +200,6 @@ Return a list of installed packages or nil for every skipped package."
 (require 'git-gutter)
 (global-git-gutter-mode t)
 (git-gutter:linum-setup)
-(global-set-key (kbd "C-c C-g") 'git-gutter-mode)
 (global-set-key (kbd "C-c C-k") 'git-gutter:previous-hunk)
 (global-set-key (kbd "C-c C-j") 'git-gutter:next-hunk)
 
@@ -210,7 +211,7 @@ Return a list of installed packages or nil for every skipped package."
  '(default ((t (:family "Meslo LG M DZ for Powerline" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal))))
  '(linum-highlight-face ((t (:background "#343d46" :foreground "yellow")))))
 (custom-set-variables
- '(git-gutter:update-interval 2)
+ '(git-gutter:update-interval 1)
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
