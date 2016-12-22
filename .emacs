@@ -19,11 +19,11 @@
     ad-do-it))
 
 (defun open-dotfile () (interactive)
-       (find-file "~/dotfiles/emacs")
+       (find-file "~/dotfiles/.emacs")
        (emacs-lisp-mode))
 
 (defun open-zsh () (interactive)
-       (find-file "~/dotfiles/zshrc")
+       (find-file "~/dotfiles/.zshrc")
        (shell-script-mode))
 
 (defun load-emacs () (interactive)
