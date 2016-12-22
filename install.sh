@@ -9,6 +9,6 @@ do
         continue
     fi
     echo "$(pwd)/$f"
-    ln -s $(pwd)/$f ~/.$f
+    ln -s $(pwd)/$f ~/$f
 done
 
