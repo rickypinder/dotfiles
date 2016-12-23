@@ -95,6 +95,7 @@ Return a list of installed packages or nil for every skipped package."
                           'winum
                           'which-key
                           'github-browse-file
+                          'yasnippet
                           )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -195,6 +196,8 @@ Return a list of installed packages or nil for every skipped package."
 ;;          AUTO-COMPLETE
 ;;----------------------------------------------------------
 
+(require 'auto-complete)
+(require 'auto-complete-config)
 (ac-config-default)
 
 (defun my:ac-c-headers-init ()
@@ -266,6 +269,7 @@ Return a list of installed packages or nil for every skipped package."
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+
 
 ;;----------------------------------------------------------
 ;;          TRAMP
@@ -354,3 +358,10 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'switch-window)
 (global-set-key (kbd "C-x o") 'switch-window)
+
+;;----------------------------------------------------------
+;;          YASNIPPET
+;;----------------------------------------------------------
+
+(require 'yasnippet)
+(yas-global-mode 1)
