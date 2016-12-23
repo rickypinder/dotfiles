@@ -19,7 +19,6 @@
 ;;   - semantic autocomplete
 ;;   - easily switch between header and source file
 ;;   - fuzzy finder (?)
-;; + smooth scrolling
 ;; + email inside emacs
 ;; + set up irc
 ;;   - facebook messanger bitbee thing
