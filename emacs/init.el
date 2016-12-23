@@ -140,29 +140,26 @@ Return a list of installed packages or nil for every skipped package."
 (defun open-zsh () (interactive)
        (find-file "~/dotfiles/.zshrc"))
 
-;; self explanatory
+;; loads the emacs initialization file
 (defun load-emacs () (interactive)
        (load-file "~/.emacs.d/init.el"))
 
-;; this turns off line numbers and line highlighting, and also gets rid of the fringe
+;; This turns off line numbers and line highlighting,
+;; and also gets rid of the fringe
 (defun setup-eshell ()
   (linum-mode -1)
   (set-window-fringes nil 0 0 )
   (hl-line-mode -1))
 
-;; inserts comment subheadings like the ones in the 'PACKAGE CONFIG' section
-;;    This is probably done horribly but I was in a rush and wanted to quickly
-;;    have this functuality. I will try and improve this soon
+;; Inserts comment subheadings like the ones in the PACKAGE CONFIG section
+;; This is probably done horribly, tell me how to improve it
 (defun sub-comment ()
   (interactive)
   (let ((x (read-string "Enter comment: ")))
-    (message "Commenting %s." x)
+    (message "inserting subheading comment with the text: %s." x)
     (insert ";;------------------------------------------------\n")
-    (insert ";;          ")
-    (insert x)
-    (insert "\n")
+    (insert ";;          " x "\n")
     (insert ";;------------------------------------------------\n")))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
