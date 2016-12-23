@@ -150,6 +150,20 @@ Return a list of installed packages or nil for every skipped package."
   (set-window-fringes nil 0 0 )
   (hl-line-mode -1))
 
+;; inserts comment subheadings like the ones in the 'PACKAGE CONFIG' section
+;;    This is probably done horribly but I was in a rush and wanted to quickly
+;;    have this functuality. I will try and improve this soon
+(defun sub-comment ()
+  (interactive)
+  (let ((x (read-string "Enter comment: ")))
+    (message "Commenting %s." x)
+    (insert ";;------------------------------------------------\n")
+    (insert ";;          ")
+    (insert x)
+    (insert "\n")
+    (insert ";;------------------------------------------------\n")))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          HOOKS 
