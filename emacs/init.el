@@ -87,8 +87,6 @@ Return a list of installed packages or nil for every skipped package."
                           'rbenv
                           'spacegray-theme
                           'hlinum
-                          'auto-complete
-                          'auto-complete-c-headers
                           'pdf-tools
                           'key-chord
                           'winum
@@ -96,6 +94,11 @@ Return a list of installed packages or nil for every skipped package."
                           'github-browse-file
                           'yasnippet
                           'smooth-scrolling
+                          'company
+                          'irony
+                          'company-irony
+                          'company-c-headers
+                          'flycheck-irony
                           )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -193,20 +196,34 @@ Return a list of installed packages or nil for every skipped package."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;----------------------------------------------------------
-;;          AUTO-COMPLETE
+;;          COMPANY-MODE
 ;;----------------------------------------------------------
 
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
 
-(defun my:ac-c-headers-init ()
-  (require 'auto-complete-c-headers)
-  (add-to-list 'ac-sources 'ac-source-c-headers))
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
 
-(add-hook 'c++-mode-hook 'my:ac-c-headers-init)
-(add-hook 'c-mode-hook 'my:ac-c-headers-init)
+;; replace the `completion-at-point' and `complete-symbol' bindings in
+;; irony-mode's buffers by irony-mode's function
+(defun my-irony-mode-hook ()
+  (define-key irony-mode-map [remap completion-at-point]
+    'irony-completion-at-point-async)
+  (define-key irony-mode-map [remap complete-symbol]
+    'irony-completion-at-point-async))
 
+(add-hook 'irony-mode-hook 'my-irony-mode-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+(setq company-idle-delay 0.1)
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-c-headers))
 
 ;;----------------------------------------------------------
 ;;          EVIL
@@ -223,7 +240,6 @@ Return a list of installed packages or nil for every skipped package."
       evil-visual-state-tag   (propertize " VISUAL  " 'face '((:background "#DCA432")))
       evil-replace-state-tag  (propertize " REPLACE " 'face '((:background "#bf616a")))
       evil-operator-state-tag (propertize " NORMAL  " 'face '((:background "#343d46"))))
-
 
 (require 'evil-surround)
 (global-evil-surround-mode 1)
@@ -270,6 +286,8 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 ;;----------------------------------------------------------
 ;;          TRAMP
