@@ -19,7 +19,7 @@
  '(git-gutter:update-interval 1)
  '(package-selected-packages
    (quote
-    (flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
+    (smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote

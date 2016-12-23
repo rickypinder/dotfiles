@@ -96,6 +96,7 @@ Return a list of installed packages or nil for every skipped package."
                           'which-key
                           'github-browse-file
                           'yasnippet
+                          'smooth-scrolling
                           )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -365,3 +366,12 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'yasnippet)
 (yas-global-mode 1)
+
+;;----------------------------------------------------------
+;;          SMOOTH SCROLLING
+;;----------------------------------------------------------
+
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
+(setq smooth-scroll-margin 5)
+
