@@ -11,9 +11,7 @@
 
 ;; TODO
 ;; + setup emacs for c/c++
-;;   - semantic autocomplete
 ;;   - easily switch between header and source file
-;;   - fuzzy finder (?)
 ;; + email inside emacs
 ;; + set up irc
 ;;   - facebook messanger bitbee thing
@@ -374,7 +372,6 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; mashing jk when in evil insert mode will put me into normal mode
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
 ;;----------------------------------------------------------
 ;;          WINUM
