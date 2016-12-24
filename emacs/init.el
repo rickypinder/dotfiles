@@ -172,6 +172,9 @@ Return a list of installed packages or nil for every skipped package."
 ;; all programming buffers have line highlighting
 (add-hook 'prog-mode-hook 'setup-prog-buffers)
 
+(add-hook 'c-mode-common-hook
+          (lambda() (local-set-key (kbd "C-c o") 'ff-find-other-file)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          CUSTOM KEYBINDS 
