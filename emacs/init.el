@@ -326,13 +326,7 @@ Return a list of installed packages or nil for every skipped package."
 (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
 ;; use irony-mode flycheck checker for C, C++ and Objective-C
-(add-hook 'c-mode-hook
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-
-(add-hook 'cpp-mode-hook
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
-
-(add-hook 'objc-mode-hook
+(eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 ;;----------------------------------------------------------
