@@ -94,6 +94,7 @@ Return a list of installed packages or nil for every skipped package."
                           'company-c-headers
                           'flycheck-irony
                           'fiplr
+                          'ample-theme
                           )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -102,7 +103,11 @@ Return a list of installed packages or nil for every skipped package."
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'spacegray t)   ;; loads spacegray theme
+(if (display-graphic-p)
+    (progn
+     (load-theme 'spacegray t)) ;; loads spacegray theme if using emacs window
+  (load-theme 'ample t t)       ;; loads ample theme in terminal
+  (enable-theme 'ample))
 
 (global-linum-mode 1)       ;; enables line numbers in fringe
 
