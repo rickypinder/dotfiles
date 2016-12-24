@@ -94,6 +94,7 @@ Return a list of installed packages or nil for every skipped package."
                           'company-irony
                           'company-c-headers
                           'flycheck-irony
+                          'fiplr
                           )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -452,3 +453,9 @@ Return a list of installed packages or nil for every skipped package."
 ;; screen with scroll when the cursor reaches 5 lines from top/bottom
 (setq smooth-scroll-margin 5)
 
+;;---------------------------------------------------------
+;;          FIPLR
+;;---------------------------------------------------------
+
+(require 'fiplr)
+(global-set-key (kbd "C-c f") 'fiplr-find-file)
