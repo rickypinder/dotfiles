@@ -169,8 +169,16 @@ Return a list of installed packages or nil for every skipped package."
     (insert ";;\n")
     (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"))
 
+;; setup emacs for prog buffers
 (defun setup-prog-buffers ()
   (hl-line-mode 1))
+
+;; launches a live markdown preview of the current file
+;; This sort of works? I would like for it to be ran outside of emacs but I am
+;; not sure how to do that
+(defun launch-vmd ()
+  (interactive)
+  (shell-command (concat "vmd " (buffer-file-name) " &")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
