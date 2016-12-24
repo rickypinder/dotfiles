@@ -11,11 +11,12 @@
 
 ;; TODO
 ;; + email inside emacs
-;; + set up irc
-;;   - facebook messanger bitbee thing
+;; + set up eirc
 ;; + latex environment
-;; + set up emacs for python
-;; + set up emacs for ruby
+;; + set up emacs for python and ruby
+;;   - jedi?
+;; + set up rtags or something similar
+;;   - and an easy way to search tags (like vim's ctrlp)
 
 ;-------------------------------------------------------------------------------
 
