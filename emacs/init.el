@@ -153,9 +153,20 @@ Return a list of installed packages or nil for every skipped package."
   (interactive)
   (let ((x (read-string "Enter comment: ")))
     (message "inserting subheading comment with the text: %s." x)
-    (insert ";;------------------------------------------------\n")
+    (insert ";;----------------------------------------------------------\n")
     (insert ";;          " x "\n")
-    (insert ";;------------------------------------------------\n")))
+    (insert ";;----------------------------------------------------------\n")))
+
+;; inserts comment headings such as "HOOKS" or "CUSTOM FUNCTIONS"
+(defun heading-comment ()
+  (interactive)
+  (let ((x (read-string "Enter comment: ")))
+    (message "inserting heading comment with the test: %s." x)
+    (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n")
+    (insert ";;\n")
+    (insert ";;          " x "\n"))
+    (insert ";;\n")
+    (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"))
 
 (defun setup-prog-buffers ()
   (hl-line-mode 1))
