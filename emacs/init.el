@@ -9,11 +9,6 @@
 
 ;; I know very little elisp
 
-;; Crediting
-;;   I will try and credit all the code I paste into this file however sometimes
-;;   I will forget or there will be some things I added in before I started
-;;   crediting so just tell me if I forget something
-
 ;; TODO
 ;; + setup emacs for c/c++
 ;;   - semantic autocomplete
@@ -111,6 +106,8 @@ Return a list of installed packages or nil for every skipped package."
 
 (global-linum-mode 1)       ;; enables line numbers in fringe
 
+(show-paren-mode)           ;; highlights matching parens
+
 (setq column-number-mode t) ;; puts column number in the mode line
 
 ;; puts a space between number line and window border
@@ -161,6 +158,9 @@ Return a list of installed packages or nil for every skipped package."
     (insert ";;          " x "\n")
     (insert ";;------------------------------------------------\n")))
 
+(defun setup-prog-buffers ()
+  (hl-line-mode 1))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          HOOKS 
@@ -171,7 +171,7 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'eshell-mode-hook  'setup-eshell)
 
 ;; all programming buffers have line highlighting
-(add-hook 'prog-mode-hook (lambda () (hl-line-mode 1)))
+(add-hook 'prog-mode-hook 'setup-prog-buffers)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -179,6 +179,7 @@ Return a list of installed packages or nil for every skipped package."
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; line is automatically indented
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; C-c o(pen) 
@@ -210,9 +211,11 @@ Return a list of installed packages or nil for every skipped package."
 ;;          COMPANY-MODE
 ;;----------------------------------------------------------
 
+;; load company mode after emacs has initialized
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; start irony-mode when these file-types are open
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
 (add-hook 'objc-mode-hook 'irony-mode)
@@ -228,11 +231,14 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+;; make the autocomplete window appear faster
 (setq company-idle-delay 0.1)
 
+;; use irony-mode as a backend for company
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
 
+;; autocomplete c header files
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-c-headers))
 
@@ -240,9 +246,12 @@ Return a list of installed packages or nil for every skipped package."
 ;;          EVIL
 ;;----------------------------------------------------------
 
+;; enables evil mode
 (require 'evil)
 (evil-mode t)
-; I should just use a modeline package
+
+;; places a box at the start of the modeline containing text of the current evil state
+;; and a background color (from spacegray theme) to match
 (setq evil-mode-line-format '(before . mode-line-front-space))
 (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:background "#343d46")))
       evil-emacs-state-tag    (propertize " EMACS   " 'face '((:background "#C189EB")))
@@ -252,6 +261,7 @@ Return a list of installed packages or nil for every skipped package."
       evil-replace-state-tag  (propertize " REPLACE " 'face '((:background "#bf616a")))
       evil-operator-state-tag (propertize " NORMAL  " 'face '((:background "#343d46"))))
 
+;; enables an evil port of tpope's surround.vim plugin
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
@@ -259,15 +269,27 @@ Return a list of installed packages or nil for every skipped package."
 ;;          INTERACTIVELY DO THINGS (ido)
 ;;----------------------------------------------------------
 
-(require 'ido-vertical-mode)
+;; enable ido-mode
+(require 'ido)
 (ido-mode 1)
+
+;; display results vertically
+(require 'ido-vertical-mode)
 (ido-vertical-mode 1)
+
+;; use C-n and C-p to navigate results
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+
+;; if the entered string does not match any item, any item containing the
+;; entered characters in the given sequence will match.
 (setq ido-enable-flex-matching t)
+
+;; use ido whereever possible
 (setq ido-everywhere t)
 (require 'ido-ubiquitous)
 (ido-ubiquitous-mode 1)
 
+;; M-x enhancement for emacs built on top of ido
 (require 'smex)
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
@@ -280,8 +302,12 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'neotree)
 (setq neo-theme 'ascii)
-(global-set-key "\C-cn" 'neotree-toggle)
+(global-set-key (kbd "C-c n") 'neotree-toggle)
+
+;; neotree will try to find current file and jump to node
 (setq neo-smart-open t)
+
+;; stops evil keybindings from messing up neotree
 (add-hook 'neotree-mode-hook
           (lambda ()
             (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
@@ -295,9 +321,18 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; disables something annoying
 (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
-(eval-after-load 'flycheck
+;; use irony-mode flycheck checker for C, C++ and Objective-C
+(add-hook 'c-mode-hook
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+(add-hook 'cpp-mode-hook
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+(add-hook 'objc-mode-hook
   '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 ;;----------------------------------------------------------
@@ -317,15 +352,21 @@ Return a list of installed packages or nil for every skipped package."
 ;;----------------------------------------------------------
 
 (require 'rbenv)
+
 ;; Setting rbenv path
-(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
-(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME")
+                       "/.rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims")
+                      (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
+
+;; removes the colors in the mode-line
 (setq rbenv-modeline-function 'rbenv--modeline-plain)
 
 ;;----------------------------------------------------------
 ;;          HLINUM
 ;;----------------------------------------------------------
 
+;; extends linum-mode to highlight current line number
 (require 'hlinum)
 (hlinum-activate)
 
@@ -335,6 +376,8 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'key-chord)
 (key-chord-mode 1)
+
+;; mashing jk when in evil insert mode will put me into normal mode
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
@@ -343,6 +386,9 @@ Return a list of installed packages or nil for every skipped package."
 ;;----------------------------------------------------------
 
 (require 'winum)
+
+;; puts the mode-line indicator in the space after buffer indicator but before
+;; current line number percentage of total file
 (setq winum-mode-line-position 8)
 
 ;; winum-keymap-prefix is currently broken so I'm doing this instead
@@ -363,6 +409,7 @@ Return a list of installed packages or nil for every skipped package."
 ;;          WHICH-KEY
 ;;----------------------------------------------------------
 
+;; displays keybindings following your currently entered incomplete command
 (require 'which-key)
 (which-key-mode)
 
@@ -370,8 +417,11 @@ Return a list of installed packages or nil for every skipped package."
 ;;          ORG MODE
 ;;----------------------------------------------------------
 
-(defvar org-log-done t)
+;; each time you turn an entry from a TODO state into a DONE state a line
+;; 'CLOSED: [timestamp] will be inserted just after the headline
+(defvar org-log-done 'time)
 
+;; show org-mode bullets as UTF-8 characters
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
@@ -379,12 +429,14 @@ Return a list of installed packages or nil for every skipped package."
 ;;          PDF TOOLS
 ;;----------------------------------------------------------
 
+;; activates pdf tools
 (pdf-tools-install)
 
 ;;----------------------------------------------------------
 ;;          SWITCH WINDOW
 ;;----------------------------------------------------------
 
+;; offer a visual way to choose a window to switch to
 (require 'switch-window)
 (global-set-key (kbd "C-x o") 'switch-window)
 
@@ -392,6 +444,7 @@ Return a list of installed packages or nil for every skipped package."
 ;;          YASNIPPET
 ;;----------------------------------------------------------
 
+;; template system for emacs
 (require 'yasnippet)
 (yas-global-mode 1)
 
@@ -401,5 +454,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'smooth-scrolling)
 (smooth-scrolling-mode 1)
+
+;; screen with scroll when the cursor reaches 5 lines from top/bottom
 (setq smooth-scroll-margin 5)
 
