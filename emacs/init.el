@@ -5,17 +5,17 @@
 ;;
 ;;
 
-;; last edited: 22/12/2016
+;; last edited: 24/12/2016
 
 ;; I know very little elisp
 
 ;; TODO
-;; + setup emacs for c/c++
-;;   - easily switch between header and source file
 ;; + email inside emacs
 ;; + set up irc
 ;;   - facebook messanger bitbee thing
 ;; + latex environment
+;; + set up emacs for python
+;; + set up emacs for ruby
 
 ;-------------------------------------------------------------------------------
 
