@@ -470,8 +470,8 @@ Return a list of installed packages or nil for every skipped package."
 (require 'smooth-scrolling)
 (smooth-scrolling-mode 1)
 
-;; screen with scroll when the cursor reaches 5 lines from top/bottom
-(setq smooth-scroll-margin 5)
+;; screen with scroll when the cursor reaches 10 lines from top/bottom
+(setq smooth-scroll-margin 10)
 
 ;;---------------------------------------------------------
 ;;          FIPLR
