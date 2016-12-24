@@ -34,8 +34,6 @@ Plug 'vim-scripts/a.vim'                         " switch between header and cor
 Plug 'airblade/vim-gitgutter'                    " shows git diff in the gutter
 Plug 'ntpeters/vim-better-whitespace'            " highlight trailing whitespace
 Plug 'mtth/scratch.vim'                          " unobtrusive scratch window
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
 call plug#end()                                  " Add plugins to &runtimepath
 
