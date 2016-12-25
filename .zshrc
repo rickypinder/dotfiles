@@ -7,7 +7,13 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+
+# set ZSH_THEME to agnoster at local machine but avit over ssh
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    ZSH_THEME="avit"
+else
+    ZSH_THEME="agnoster"
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
