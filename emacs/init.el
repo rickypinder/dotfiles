@@ -125,8 +125,10 @@ Return a list of installed packages or nil for every skipped package."
 (setq inhibit-startup-screen t) ;; disables emacs start screen
 
 ;; Inactive modeline is darker 
-(set-face-foreground 'modeline-inactive "#777777")
-(set-face-background 'modeline-inactive "#181b22")
+(when (display-graphic-p)
+  (set-face-foreground 'modeline-inactive "#777777")
+  (set-face-background 'modeline-inactive "#181b22"))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
