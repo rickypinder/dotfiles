@@ -7,6 +7,8 @@ These are my dotfiles
 + oh-my-zsh
 + agnoster theme
 + base16-ocean colorscheme
++ different zsh theme on local vs ssh. (no powerline symbols over ssh)
++ different tmux theme on loca vs ssh. (no powerline symbols over ssh)
 
 ##Emacs
 + spacegray colorscheme
