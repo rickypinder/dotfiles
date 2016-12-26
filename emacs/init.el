@@ -5,7 +5,7 @@
 ;;
 ;;
 
-;; last edited: 24/12/2016
+;; last edited: 26/12/2016
 
 ;; I know very little elisp
 
@@ -95,6 +95,7 @@ Return a list of installed packages or nil for every skipped package."
                           'flycheck-irony
                           'fiplr
                           'ample-theme
+                          'shell-pop
                           )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -200,7 +201,7 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'prog-mode-hook 'setup-prog-buffers)
 
 (add-hook 'c-mode-common-hook
-          (lambda() (local-set-key (kbd "C-c o") 'ff-find-other-file)))
+          (lambda() (local-set-key (kbd "C-c c a") 'ff-find-other-file)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -486,3 +487,10 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'fiplr)
 (global-set-key (kbd "C-c f") 'fiplr-find-file)
+
+;;----------------------------------------------------------
+;;          SHELL POP
+;;----------------------------------------------------------
+
+(require 'shell-pop)
+(global-set-key (kbd "C-c t") 'shell-pop)

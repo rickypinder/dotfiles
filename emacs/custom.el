@@ -12,6 +12,8 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default bold shadow italic underline bold bold-italic bold])
+ '(shell-pop-shell-type (quote ("eshell" "*eshell*" (lambda nil (eshell shell-pop-term-shell)))))
+ '(shell-pop-full-span t)
  '(custom-safe-themes
    (quote
     ("d8f76414f8f2dcb045a37eb155bfaa2e1d17b6573ed43fb1d18b936febc7bbc2" "1b27e3b3fce73b72725f3f7f040fd03081b576b1ce8bbdfcb0212920aec190ad" "64ca5a1381fa96cb86fd6c6b4d75b66dc9c4e0fc1288ee7d914ab8d2638e23a9" "721bb3cb432bb6be7c58be27d583814e9c56806c06b4077797074b009f322509" "946e871c780b159c4bb9f580537e5d2f7dba1411143194447604ecbaf01bd90c" default)))
@@ -19,7 +21,7 @@
  '(git-gutter:update-interval 1)
  '(package-selected-packages
    (quote
-    (ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
+    (shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord pdf-tools hlinum switch-window smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
