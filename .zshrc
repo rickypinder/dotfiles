@@ -92,6 +92,18 @@ source $ZSH/oh-my-zsh.sh
 
 alias tmux="tmux -2"
 
+# use different tmux config depending on  ssh or local
+if [ -f ~/.tmux.conf ];
+then
+    rm ~/.tmux.conf 
+fi
+
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    ln -s ~/dotfiles/.tmuxssh.conf ~/.tmux.conf
+else
+    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+fi
+
 DEFAULT_USER='ricky'
 
 export RBENV_ROOT="${HOME}/.rbenv"
