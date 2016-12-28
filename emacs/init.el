@@ -177,12 +177,17 @@ Return a list of installed packages or nil for every skipped package."
     (insert ";;\n")
     (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"))
 
+(defun find-other-file-in-other-window ()
+  (interactive)
+  (ff-find-other-file t nil))
+
 ;; setup emacs for prog buffers
 (defun setup-prog-buffers ()
   (hl-line-mode 1))
 
 (defun setup-c-buffers ()
-  (local-set-key (kbd "C-c c a") 'ff-find-other-file))
+  (local-set-key (kbd "C-c c a") 'ff-find-other-file)
+  (local-set-key (kbd "C-c c A") 'find-other-file-in-other-window))
 
 ;; launches a live markdown preview of the current file
 ;; This sort of works? I would like for it to be ran outside of emacs but I am
@@ -458,8 +463,9 @@ Return a list of installed packages or nil for every skipped package."
 ;;----------------------------------------------------------
 
 ;; activates pdf tools
-(when (display-graphic-p) ;; these elements don't exist in the terminal emacs
+(when (display-graphic-p) 
   (pdf-tools-install))
+
 ;;----------------------------------------------------------
 ;;          SWITCH WINDOW
 ;;----------------------------------------------------------
