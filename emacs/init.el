@@ -297,6 +297,9 @@ Return a list of installed packages or nil for every skipped package."
 ;; make the autocomplete window appear faster
 (setq company-idle-delay 0.1)
 
+;; show numbers in completion window
+(setq company-show-numbers t)
+
 ;; use irony-mode as a backend for company
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-irony))
