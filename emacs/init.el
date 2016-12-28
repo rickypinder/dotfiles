@@ -494,3 +494,4 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'shell-pop)
 (global-set-key (kbd "C-c t") 'shell-pop)
+(add-hook 'shell-pop-out-hook (lambda() (kill-buffer "*eshell-1*")))
