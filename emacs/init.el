@@ -453,8 +453,8 @@ Return a list of installed packages or nil for every skipped package."
 ;;----------------------------------------------------------
 
 ;; activates pdf tools
-(pdf-tools-install)
-
+(when (display-graphic-p) ;; these elements don't exist in the terminal emacs
+  (pdf-tools-install))
 ;;----------------------------------------------------------
 ;;          SWITCH WINDOW
 ;;----------------------------------------------------------
