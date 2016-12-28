@@ -181,6 +181,9 @@ Return a list of installed packages or nil for every skipped package."
 (defun setup-prog-buffers ()
   (hl-line-mode 1))
 
+(defun setup-c-buffers ()
+  (local-set-key (kbd "C-c c a") 'ff-find-other-file))
+
 ;; launches a live markdown preview of the current file
 ;; This sort of works? I would like for it to be ran outside of emacs but I am
 ;; not sure how to do that
@@ -200,8 +203,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; all programming buffers have line highlighting
 (add-hook 'prog-mode-hook 'setup-prog-buffers)
 
-(add-hook 'c-mode-common-hook
-          (lambda() (local-set-key (kbd "C-c c a") 'ff-find-other-file)))
+(add-hook 'c-mode-common-hook 'setup-c-buffers)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -325,6 +327,9 @@ Return a list of installed packages or nil for every skipped package."
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+(global-set-key "\C-x\S-f" 'ido-find-file-other-window)
+(global-set-key "\C-x\S-b" 'ido-switch-buffer-other-window)
 
 ;;----------------------------------------------------------
 ;;         NEOTREE 
@@ -487,6 +492,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'fiplr)
 (global-set-key (kbd "C-c f") 'fiplr-find-file)
+(global-set-key "\C-c\S-f" 'fiplr-find-file-other-window)
 
 ;;----------------------------------------------------------
 ;;          SHELL POP
