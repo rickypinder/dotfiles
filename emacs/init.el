@@ -110,8 +110,6 @@ Return a list of installed packages or nil for every skipped package."
   (load-theme 'ample t t)       ;; loads ample theme in terminal
   (enable-theme 'ample))
 
-(global-linum-mode 1)       ;; enables line numbers in fringe
-
 (show-paren-mode)           ;; highlights matching parens
 
 (setq column-number-mode t) ;; puts column number in the mode line
@@ -202,7 +200,8 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; setup emacs for prog buffers
 (defun setup-prog-buffers ()
-  (hl-line-mode 1))
+  (hl-line-mode 1)
+  (linum-mode 1))
 
 (defun setup-c-buffers ()
   (local-set-key (kbd "C-c c a") 'ff-find-other-file)
