@@ -138,16 +138,27 @@ Return a list of installed packages or nil for every skipped package."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; opens emacs configuration file
-(defun open-dotfile () (interactive)
-       (find-file "~/dotfiles/emacs/init.el"))
+(defun open-dotfile ()
+  (interactive)
+  (find-file "~/dotfiles/emacs/init.el"))
+
+(defun open-dotfile-other-window ()
+  (interactive)
+  (find-file-other-window "~/dotfiles/emacs/init.el"))
 
 ;; opens zsh configuration file
-(defun open-zsh () (interactive)
-       (find-file "~/dotfiles/.zshrc"))
+(defun open-zsh ()
+  (interactive)
+  (find-file "~/dotfiles/.zshrc"))
+
+(defun open-zsh-other-window ()
+  (interactive)
+  (find-file-other-window "~/dotfiles/.zshrc"))
 
 ;; loads the emacs initialization file
-(defun load-emacs () (interactive)
-       (load-file "~/.emacs.d/init.el"))
+(defun load-emacs ()
+  (interactive)
+  (load-file "~/.emacs.d/init.el"))
 
 ;; This turns off line numbers and line highlighting,
 ;; and also gets rid of the fringe
@@ -180,6 +191,14 @@ Return a list of installed packages or nil for every skipped package."
 (defun find-other-file-in-other-window ()
   (interactive)
   (ff-find-other-file t nil))
+
+(defun scroll-other-window-two ()
+  (interactive)
+  (scroll-other-window 2))
+
+(defun scroll-other-window-down-two ()
+  (interactive)
+  (scroll-other-window-down 2))
 
 ;; setup emacs for prog buffers
 (defun setup-prog-buffers ()
@@ -221,7 +240,14 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; C-c o(pen) 
 (global-set-key (kbd "C-c o d") 'open-dotfile)
+(global-set-key "\C-co\S-d" 'open-dotfile-other-window)
+
 (global-set-key (kbd "C-c o z") 'open-zsh)
+(global-set-key "\C-co\S-z" 'open-zsh-other-window)
+
+;; scroll other window with shift+jk
+(global-set-key "\S-k" 'scroll-other-window-down-two)
+(global-set-key "\S-j" 'scroll-other-window-two)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -301,6 +327,9 @@ Return a list of installed packages or nil for every skipped package."
 ;; enables an evil port of tpope's surround.vim plugin
 (require 'evil-surround)
 (global-evil-surround-mode 1)
+
+(define-key evil-normal-state-map "\S-j" nil)
+(define-key evil-motion-state-map "\S-k" nil)
 
 ;;----------------------------------------------------------
 ;;          INTERACTIVELY DO THINGS (ido)
