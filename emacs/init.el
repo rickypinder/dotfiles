@@ -499,14 +499,6 @@ Return a list of installed packages or nil for every skipped package."
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;;----------------------------------------------------------
-;;          PDF TOOLS
-;;----------------------------------------------------------
-
-;; activates pdf tools
-(when (display-graphic-p) 
-  (pdf-tools-install))
-
 ;; ;;----------------------------------------------------------
 ;; ;;          SWITCH WINDOW
 ;; ;;----------------------------------------------------------
