@@ -5,7 +5,7 @@
 ;;
 ;;
 
-;; last edited: 26/12/2016
+;; last edited: 29/12/2016
 
 ;; I know very little elisp
 
@@ -27,8 +27,8 @@
   (tool-bar-mode -1)      ;; so turning them off isn't needed
   (scroll-bar-mode -1))
 
-(setq custom-file "~/.emacs.d/custom.el") ;; I don't want the custom stuff inside this file
-(load custom-file)
+(setq custom-file "~/.emacs.d/custom.el") ;; I don't want the custom stuff 
+(load custom-file)                        ;; inside this file
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -137,30 +137,39 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; opens emacs configuration file
 (defun open-dotfile ()
+  " Opens the file ~/dotfiles/emacs/init.el "
   (interactive)
   (find-file "~/dotfiles/emacs/init.el"))
 
 (defun open-dotfile-other-window ()
+  " Opens the file ~/dotfiles/emacs/init.el in another window "
   (interactive)
   (find-file-other-window "~/dotfiles/emacs/init.el"))
 
 ;; opens zsh configuration file
 (defun open-zsh ()
+  " Opens the file ~/dotfiles/.zshrc "
   (interactive)
   (find-file "~/dotfiles/.zshrc"))
 
 (defun open-zsh-other-window ()
+  " Opens the file ~/dotfiles/.zshrc in another window "
   (interactive)
   (find-file-other-window "~/dotfiles/.zshrc"))
 
 ;; loads the emacs initialization file
 (defun load-emacs ()
+  " loads the emacs configuration file "
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
 ;; This turns off line numbers and line highlighting,
 ;; and also gets rid of the fringe
 (defun setup-eshell ()
+" sets up eshell by
+  removing line numbers
+  removng fringes
+  turning off line highlghting "
   (linum-mode -1)
   (set-window-fringes nil 0 0 )
   (hl-line-mode -1))
@@ -168,6 +177,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; Inserts comment subheadings like the ones in the PACKAGE CONFIG section
 ;; This is probably done horribly, tell me how to improve it
 (defun sub-comment ()
+  " Inserts elisp comment sub-headings "
   (interactive)
   (let ((x (read-string "Enter comment: ")))
     (message "inserting subheading comment with the text: %s." x)
@@ -177,6 +187,7 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; inserts comment headings such as "HOOKS" or "CUSTOM FUNCTIONS"
 (defun heading-comment ()
+  " Inserts elisp comment headings "
   (interactive)
   (let ((x (read-string "Enter comment: ")))
     (message "inserting heading comment with the test: %s." x)
@@ -187,23 +198,28 @@ Return a list of installed packages or nil for every skipped package."
     (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"))
 
 (defun find-other-file-in-other-window ()
+  " opens corresponding .c, .cpp, .h, .hpp etc file in other window "
   (interactive)
   (ff-find-other-file t nil))
 
 (defun scroll-other-window-two ()
+  " scrolls the other window by 2 lines "
   (interactive)
   (scroll-other-window 2))
 
 (defun scroll-other-window-down-two ()
+  " scrolls the other window down by 2 lines "
   (interactive)
   (scroll-other-window-down 2))
 
 ;; setup emacs for prog buffers
 (defun setup-prog-buffers ()
+  " enables line highlighting and line numbers for programming buffers "
   (hl-line-mode 1)
   (linum-mode 1))
 
 (defun setup-c-buffers ()
+  " enables c local key binds "
   (local-set-key (kbd "C-c c a") 'ff-find-other-file)
   (local-set-key (kbd "C-c c A") 'find-other-file-in-other-window))
 
@@ -211,6 +227,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; This sort of works? I would like for it to be ran outside of emacs but I am
 ;; not sure how to do that
 (defun launch-vmd ()
+  " launches a live markdown preview of the currnent file using vmd "
   (interactive)
   (shell-command (concat "vmd " (buffer-file-name) " &")))
 
