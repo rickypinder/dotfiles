@@ -144,7 +144,8 @@ Return a list of installed packages or nil for every skipped package."
 (defun open-dotfile-other-window ()
   " Opens the file ~/dotfiles/emacs/init.el in another window "
   (interactive)
-  (find-file-other-window "~/dotfiles/emacs/init.el"))
+  (find-file-other-window "~/dotfiles/emacs/init.el")
+  (previous-multiframe-window))
 
 ;; opens zsh configuration file
 (defun open-zsh ()
@@ -155,7 +156,8 @@ Return a list of installed packages or nil for every skipped package."
 (defun open-zsh-other-window ()
   " Opens the file ~/dotfiles/.zshrc in another window "
   (interactive)
-  (find-file-other-window "~/dotfiles/.zshrc"))
+  (find-file-other-window "~/dotfiles/.zshrc")
+  (previous-multiframe-window))
 
 ;; loads the emacs initialization file
 (defun load-emacs ()
@@ -200,7 +202,8 @@ Return a list of installed packages or nil for every skipped package."
 (defun find-other-file-in-other-window ()
   " opens corresponding .c, .cpp, .h, .hpp etc file in other window "
   (interactive)
-  (ff-find-other-file t nil))
+  (ff-find-other-file t nil)
+  (previous-multiframe-window))
 
 (defun scroll-other-window-two ()
   " scrolls the other window by 2 lines "
