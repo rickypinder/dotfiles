@@ -70,7 +70,6 @@ Return a list of installed packages or nil for every skipped package."
 (ensure-package-installed
  'ido-vertical-mode
  'org-bullets
- 'neotree
  'smex
  'ido-ubiquitous
  'flycheck
@@ -79,7 +78,6 @@ Return a list of installed packages or nil for every skipped package."
  'rbenv
  'spacegray-theme
  'hlinum
- 'pdf-tools
  'key-chord
  'winum
  'which-key
@@ -397,25 +395,6 @@ Return a list of installed packages or nil for every skipped package."
 
 (global-set-key "\C-x\S-f" 'ido-find-file-other-window)
 (global-set-key "\C-x\S-b" 'ido-switch-buffer-other-window)
-
-;;----------------------------------------------------------
-;;         NEOTREE 
-;;----------------------------------------------------------
-
-(require 'neotree)
-(setq neo-theme 'ascii)
-(global-set-key (kbd "C-c n") 'neotree-toggle)
-
-;; neotree will try to find current file and jump to node
-(setq neo-smart-open t)
-
-;; ;; stops evil keybindings from messing up neotree
-;; (add-hook 'neotree-mode-hook
-;;           (lambda ()
-;;             (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-;;             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-;;             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-;;             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
 ;;----------------------------------------------------------
 ;;         FLYCHECK 
