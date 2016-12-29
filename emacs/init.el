@@ -126,6 +126,9 @@ Return a list of installed packages or nil for every skipped package."
   (set-face-foreground 'modeline-inactive "#777777")
   (set-face-background 'modeline-inactive "#181b22"))
 
+(setq display-time-24hr-format t)
+(display-time-mode 1)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;           CUSTOM FUNCTIONS 
