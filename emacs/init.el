@@ -128,7 +128,6 @@ Return a list of installed packages or nil for every skipped package."
   (set-face-foreground 'modeline-inactive "#777777")
   (set-face-background 'modeline-inactive "#181b22"))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;           CUSTOM FUNCTIONS 
@@ -257,7 +256,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; line is automatically indented
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;; C-c o(pen) 
+;; C-c o(pen)  use shift to open that file in another window
 (global-set-key (kbd "C-c o d") 'open-dotfile)
 (global-set-key "\C-co\S-d" 'open-dotfile-other-window)
 
