@@ -330,8 +330,15 @@ Return a list of installed packages or nil for every skipped package."
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
-(define-key evil-normal-state-map "\S-j" nil)
-(define-key evil-motion-state-map "\S-k" nil)
+(define-key evil-normal-state-map "\S-j" nil) ;; I'm using these keys for 
+(define-key evil-motion-state-map "\S-k" nil) ;; scrolling the other window 
+
+;; I never use vim arrow keys so these get in the way of useful
+;; things such as snake and tetris
+(define-key evil-motion-state-map (kbd "<left>")  nil)
+(define-key evil-motion-state-map (kbd "<down>")  nil)
+(define-key evil-motion-state-map (kbd "<up>")    nil)
+(define-key evil-motion-state-map (kbd "<right>") nil)
 
 ;;----------------------------------------------------------
 ;;          INTERACTIVELY DO THINGS (ido)
