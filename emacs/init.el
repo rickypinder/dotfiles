@@ -67,36 +67,34 @@ Return a list of installed packages or nil for every skipped package."
 
 (package-initialize)
 
-(ensure-package-installed 'evil
-                          'evil-surround
-                          'ido-vertical-mode
-                          'org-bullets
-                          'neotree
-                          'smex
-                          'ido-ubiquitous
-                          'flycheck
-                          'quickrun
-                          'magit
-                          'switch-window
-                          'rbenv
-                          'spacegray-theme
-                          'hlinum
-                          'pdf-tools
-                          'key-chord
-                          'winum
-                          'which-key
-                          'github-browse-file
-                          'yasnippet
-                          'smooth-scrolling
-                          'company
-                          'irony
-                          'company-irony
-                          'company-c-headers
-                          'flycheck-irony
-                          'fiplr
-                          'ample-theme
-                          'shell-pop
-                          )
+(ensure-package-installed
+ 'ido-vertical-mode
+ 'org-bullets
+ 'neotree
+ 'smex
+ 'ido-ubiquitous
+ 'flycheck
+ 'quickrun
+ 'magit
+ 'rbenv
+ 'spacegray-theme
+ 'hlinum
+ 'pdf-tools
+ 'key-chord
+ 'winum
+ 'which-key
+ 'github-browse-file
+ 'yasnippet
+ 'smooth-scrolling
+ 'company
+ 'irony
+ 'company-irony
+ 'company-c-headers
+ 'flycheck-irony
+ 'fiplr
+ 'ample-theme
+ 'shell-pop
+ )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -330,34 +328,38 @@ Return a list of installed packages or nil for every skipped package."
 ;;          EVIL
 ;;----------------------------------------------------------
 
-;; enables evil mode
-(require 'evil)
-(evil-mode t)
+;; I'm trying out emacs keybindings for a while (at least a month) as I've
+;; never used them and would like to see how a non-modal editing style would
+;; work
 
-;; places a box at the start of the modeline containing text of the current evil state
-;; and a background color (from spacegray theme) to match
-(setq evil-mode-line-format '(before . mode-line-front-space))
-(setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:background "#343d46")))
-      evil-emacs-state-tag    (propertize " EMACS   " 'face '((:background "#C189EB")))
-      evil-insert-state-tag   (propertize " INSERT  " 'face '((:background "#27AE60")))
-      evil-motion-state-tag   (propertize " MOTION  " 'face '((:background "#89EBCA")))
-      evil-visual-state-tag   (propertize " VISUAL  " 'face '((:background "#DCA432")))
-      evil-replace-state-tag  (propertize " REPLACE " 'face '((:background "#bf616a")))
-      evil-operator-state-tag (propertize " NORMAL  " 'face '((:background "#343d46"))))
+;; ;; enables evil mode
+;; (require 'evil)
+;; (evil-mode t)
 
-;; enables an evil port of tpope's surround.vim plugin
-(require 'evil-surround)
-(global-evil-surround-mode 1)
+;; ;; places a box at the start of the modeline containing text of the current evil state
+;; ;; and a background color (from spacegray theme) to match
+;; (setq evil-mode-line-format '(before . mode-line-front-space))
+;; (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:background "#343d46")))
+;;       evil-emacs-state-tag    (propertize " EMACS   " 'face '((:background "#C189EB")))
+;;       evil-insert-state-tag   (propertize " INSERT  " 'face '((:background "#27AE60")))
+;;       evil-motion-state-tag   (propertize " MOTION  " 'face '((:background "#89EBCA")))
+;;       evil-visual-state-tag   (propertize " VISUAL  " 'face '((:background "#DCA432")))
+;;       evil-replace-state-tag  (propertize " REPLACE " 'face '((:background "#bf616a")))
+;;       evil-operator-state-tag (propertize " NORMAL  " 'face '((:background "#343d46"))))
 
-(define-key evil-normal-state-map "\S-j" nil) ;; I'm using these keys for 
-(define-key evil-motion-state-map "\S-k" nil) ;; scrolling the other window 
+;; ;; enables an evil port of tpope's surround.vim plugin
+;; (require 'evil-surround)
+;; (global-evil-surround-mode 1)
 
-;; I never use vim arrow keys so these get in the way of useful
-;; things such as snake and tetris
-(define-key evil-motion-state-map (kbd "<left>")  nil)
-(define-key evil-motion-state-map (kbd "<down>")  nil)
-(define-key evil-motion-state-map (kbd "<up>")    nil)
-(define-key evil-motion-state-map (kbd "<right>") nil)
+;; (define-key evil-normal-state-map "\S-j" nil) ;; I'm using these keys for 
+;; (define-key evil-motion-state-map "\S-k" nil) ;; scrolling the other window 
+
+;; ;; I never use vim arrow keys so these get in the way of useful
+;; ;; things such as snake and tetris
+;; (define-key evil-motion-state-map (kbd "<left>")  nil)
+;; (define-key evil-motion-state-map (kbd "<down>")  nil)
+;; (define-key evil-motion-state-map (kbd "<up>")    nil)
+;; (define-key evil-motion-state-map (kbd "<right>") nil)
 
 ;;----------------------------------------------------------
 ;;          INTERACTIVELY DO THINGS (ido)
@@ -404,13 +406,13 @@ Return a list of installed packages or nil for every skipped package."
 ;; neotree will try to find current file and jump to node
 (setq neo-smart-open t)
 
-;; stops evil keybindings from messing up neotree
-(add-hook 'neotree-mode-hook
-          (lambda ()
-            (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-            (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-            (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
+;; ;; stops evil keybindings from messing up neotree
+;; (add-hook 'neotree-mode-hook
+;;           (lambda ()
+;;             (define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
+;;             (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+;;             (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+;;             (define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 
 ;;----------------------------------------------------------
 ;;         FLYCHECK 
@@ -469,7 +471,7 @@ Return a list of installed packages or nil for every skipped package."
 (key-chord-mode 1)
 
 ;; mashing jk when in evil insert mode will put me into normal mode
-(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 
 ;;----------------------------------------------------------
 ;;          WINUM
@@ -523,13 +525,13 @@ Return a list of installed packages or nil for every skipped package."
 (when (display-graphic-p) 
   (pdf-tools-install))
 
-;;----------------------------------------------------------
-;;          SWITCH WINDOW
-;;----------------------------------------------------------
+;; ;;----------------------------------------------------------
+;; ;;          SWITCH WINDOW
+;; ;;----------------------------------------------------------
 
-;; offer a visual way to choose a window to switch to
-(require 'switch-window)
-(global-set-key (kbd "C-x o") 'switch-window)
+;; ;; offer a visual way to choose a window to switch to
+;; (require 'switch-window)
+;; (global-set-key (kbd "C-x o") 'switch-window)
 
 ;;----------------------------------------------------------
 ;;          YASNIPPET

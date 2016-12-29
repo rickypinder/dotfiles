@@ -19,7 +19,7 @@
  '(git-gutter:update-interval 1)
  '(package-selected-packages
    (quote
-    (shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord pdf-tools hlinum smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck evil-surround base16-theme)))
+    (shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord pdf-tools hlinum smex rbenv quickrun org-bullets neotree magit ido-vertical-mode ido-ubiquitous flycheck base16-theme)))
  '(shell-pop-full-span t)
  '(shell-pop-shell-type
    (quote
