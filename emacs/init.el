@@ -242,6 +242,15 @@ Return a list of installed packages or nil for every skipped package."
   (split-window-right)
   (switch-to-buffer (other-buffer)))
 
+(defun window-right-to-left (prefix)
+  " moves window from the right of the screen to the left of the screen "
+  (interactive "p")
+  (delete-window)
+  (split-window-right)
+  (switch-to-buffer (other-buffer))
+  (other-window 1))
+
+  
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          HOOKS 
