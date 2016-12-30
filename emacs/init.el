@@ -234,6 +234,14 @@ Return a list of installed packages or nil for every skipped package."
   (interactive)
   (shell-command (concat "vmd " (buffer-file-name) " &")))
 
+(defun window-left-to-right (prefix)
+" moves window from the left of the screen to the right of the screen "
+  (interactive "p")
+  (other-window 1)
+  (delete-window)
+  (split-window-right)
+  (switch-to-buffer (other-buffer)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          HOOKS 
