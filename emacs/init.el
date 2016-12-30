@@ -76,10 +76,8 @@ Return a list of installed packages or nil for every skipped package."
  'quickrun
  'magit
  'rbenv
- 'spacegray-theme
  'hlinum
  'key-chord
- 'winum
  'which-key
  'github-browse-file
  'yasnippet
@@ -91,6 +89,7 @@ Return a list of installed packages or nil for every skipped package."
  'flycheck-irony
  'fiplr
  'ample-theme
+ 'darktooth-theme
  'shell-pop
  )
 
@@ -102,7 +101,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (if (display-graphic-p)
     (progn
-     (load-theme 'spacegray t)) ;; loads spacegray theme if using emacs window
+     (load-theme 'soothe t)) ;; loads spacegray theme if using emacs window
   (load-theme 'ample t t)       ;; loads ample theme in terminal
   (enable-theme 'ample))
 
@@ -120,12 +119,15 @@ Return a list of installed packages or nil for every skipped package."
 (setq inhibit-startup-screen t) ;; disables emacs start screen
 
 ;; Inactive modeline is darker 
-(when (display-graphic-p)
-  (set-face-foreground 'modeline-inactive "#777777")
-  (set-face-background 'modeline-inactive "#181b22"))
+;; (when (display-graphic-p)
+;;   (set-face-foreground 'modeline-inactive "#777777")
+;;   (set-face-background 'modeline-inactive "#181b22"))
 
 (setq display-time-24hr-format t)
 (display-time-mode 1)
+
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -459,33 +461,33 @@ Return a list of installed packages or nil for every skipped package."
 ;;          WINUM
 ;;----------------------------------------------------------
 
-(require 'winum)
+;; (require 'winum)
 
-;; puts the mode-line indicator in the space after buffer indicator but before
-;; current line number percentage of total file
-(setq winum-mode-line-position 8)
+;; ;; puts the mode-line indicator in the space after buffer indicator but before
+;; ;; current line number percentage of total file
+;; (setq winum-mode-line-position 8)
 
-;; winum-keymap-prefix is currently broken so I'm doing this instead
-(global-set-key (kbd "C-c 0") 'winum-select-window-0-or-10)
-(global-set-key (kbd "C-c 1") 'winum-select-window-1)
-(global-set-key (kbd "C-c 2") 'winum-select-window-2)
-(global-set-key (kbd "C-c 3") 'winum-select-window-3)
-(global-set-key (kbd "C-c 4") 'winum-select-window-4)
-(global-set-key (kbd "C-c 5") 'winum-select-window-5)
-(global-set-key (kbd "C-c 6") 'winum-select-window-6)
-(global-set-key (kbd "C-c 7") 'winum-select-window-7)
-(global-set-key (kbd "C-c 8") 'winum-select-window-8)
-(global-set-key (kbd "C-c 9") 'winum-select-window-9)
+;; ;; winum-keymap-prefix is currently broken so I'm doing this instead
+;; (global-set-key (kbd "C-c 0") 'winum-select-window-0-or-10)
+;; (global-set-key (kbd "C-c 1") 'winum-select-window-1)
+;; (global-set-key (kbd "C-c 2") 'winum-select-window-2)
+;; (global-set-key (kbd "C-c 3") 'winum-select-window-3)
+;; (global-set-key (kbd "C-c 4") 'winum-select-window-4)
+;; (global-set-key (kbd "C-c 5") 'winum-select-window-5)
+;; (global-set-key (kbd "C-c 6") 'winum-select-window-6)
+;; (global-set-key (kbd "C-c 7") 'winum-select-window-7)
+;; (global-set-key (kbd "C-c 8") 'winum-select-window-8)
+;; (global-set-key (kbd "C-c 9") 'winum-select-window-9)
 
-(winum-mode)
+;; (winum-mode)
 
-;;----------------------------------------------------------
-;;          WHICH-KEY
-;;----------------------------------------------------------
+;; ;;----------------------------------------------------------
+;; ;;          WHICH-KEY
+;; ;;----------------------------------------------------------
 
-;; displays keybindings following your currently entered incomplete command
-(require 'which-key)
-(which-key-mode)
+;; ;; displays keybindings following your currently entered incomplete command
+;; (require 'which-key)
+;; (which-key-mode)
 
 ;;----------------------------------------------------------
 ;;          ORG MODE
