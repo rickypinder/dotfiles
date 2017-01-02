@@ -89,8 +89,9 @@ Return a list of installed packages or nil for every skipped package."
  'flycheck-irony
  'fiplr
  'ample-theme
- 'darktooth-theme
+ 'soothe-theme
  'shell-pop
+ 'dashboard
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -559,3 +560,12 @@ Return a list of installed packages or nil for every skipped package."
 (require 'shell-pop)
 (global-set-key (kbd "C-c t") 'shell-pop)
 (add-hook 'shell-pop-out-hook (lambda() (kill-buffer "*eshell-1*")))
+
+;;----------------------------------------------------------
+;;          DASHBOARD
+;;----------------------------------------------------------
+
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(setq dashboard-banner-logo-title "https://github.com/rpinder/dotfiles")
+(setq dashboard-startup-banner "~/dotfiles/emacs/banner.png")
