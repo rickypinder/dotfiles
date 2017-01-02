@@ -92,6 +92,7 @@ Return a list of installed packages or nil for every skipped package."
  'soothe-theme
  'shell-pop
  'dashboard
+ 'projectile
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -220,7 +221,8 @@ Return a list of installed packages or nil for every skipped package."
 (defun setup-prog-buffers ()
   " enables line highlighting and line numbers for programming buffers "
   (hl-line-mode 1)
-  (linum-mode 1))
+  (linum-mode 1)
+  (electric-pair-local-mode))
 
 (defun setup-c-buffers ()
   " enables c local key binds "
@@ -504,8 +506,8 @@ Return a list of installed packages or nil for every skipped package."
 ;; ;;----------------------------------------------------------
 
 ;; ;; displays keybindings following your currently entered incomplete command
-;; (require 'which-key)
-;; (which-key-mode)
+(require 'which-key)
+(which-key-mode)
 
 ;;----------------------------------------------------------
 ;;          ORG MODE
