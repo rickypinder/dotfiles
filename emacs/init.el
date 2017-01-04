@@ -252,7 +252,6 @@ Return a list of installed packages or nil for every skipped package."
   (split-window-right)
   (switch-to-buffer (other-buffer))
   (other-window 1))
-
   
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
