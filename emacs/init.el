@@ -88,11 +88,14 @@ Return a list of installed packages or nil for every skipped package."
  'company-c-headers
  'flycheck-irony
  'fiplr
- 'ample-theme
- 'soothe-theme
  'shell-pop
  'dashboard
  'projectile
+ 'pyenv-mode
+ 'evil
+ 'evil-surround
+ 'powerline
+ 'airline-themes
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -101,13 +104,17 @@ Return a list of installed packages or nil for every skipped package."
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(if (display-graphic-p)
-    (progn
-     (load-theme 'soothe t)) ;; loads spacegray theme if using emacs window
-  (load-theme 'ample t t)       ;; loads ample theme in terminal
-  (enable-theme 'ample))
+;; (if (display-graphic-p)
+;;     (progn
+;;      (load-theme 'soothe t)) ;; loads spacegray theme if using emacs window
+;;   (load-theme 'ample t t)       ;; loads ample theme in terminal
+;;   (enable-theme 'ample))
+
+(add-to-list 'load-path "~/.emacs.d/themes")
+(load-theme 'base16-ocean)
 
 (show-paren-mode)           ;; highlights matching parens
+
 
 (setq column-number-mode t) ;; puts column number in the mode line
 
@@ -144,7 +151,7 @@ Return a list of installed packages or nil for every skipped package."
   (find-file "~/dotfiles/emacs/init.el"))
 
 (defun open-dotfile-other-window ()
-  " Opens the file ~/dotfiles/emacs/init.el in another window "
+  " Opens thne file ~/dotfiles/emacs/init.el in another window "
   (interactive)
   (find-file-other-window "~/dotfiles/emacs/init.el")
   (previous-multiframe-window))
@@ -350,16 +357,12 @@ Return a list of installed packages or nil for every skipped package."
 ;;          EVIL
 ;;----------------------------------------------------------
 
-;; I'm trying out emacs keybindings for a while (at least a month) as I've
-;; never used them and would like to see how a non-modal editing style would
-;; work
+;; enables evil mode
+(require 'evil)
+(evil-mode t)
 
-;; ;; enables evil mode
-;; (require 'evil)
-;; (evil-mode t)
-
-;; ;; places a box at the start of the modeline containing text of the current evil state
-;; ;; and a background color (from spacegray theme) to match
+;; places a box at the start of the modeline containing text of the current evil state
+;; and a background color (from spacegray theme) to match
 ;; (setq evil-mode-line-format '(before . mode-line-front-space))
 ;; (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:background "#343d46")))
 ;;       evil-emacs-state-tag    (propertize " EMACS   " 'face '((:background "#C189EB")))
@@ -369,19 +372,19 @@ Return a list of installed packages or nil for every skipped package."
 ;;       evil-replace-state-tag  (propertize " REPLACE " 'face '((:background "#bf616a")))
 ;;       evil-operator-state-tag (propertize " NORMAL  " 'face '((:background "#343d46"))))
 
-;; ;; enables an evil port of tpope's surround.vim plugin
-;; (require 'evil-surround)
-;; (global-evil-surround-mode 1)
+;; enables an evil port of tpope's surround.vim plugin
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
-;; (define-key evil-normal-state-map "\S-j" nil) ;; I'm using these keys for 
-;; (define-key evil-motion-state-map "\S-k" nil) ;; scrolling the other window 
+(define-key evil-normal-state-map "\S-j" nil) ;; I'm using these keys for 
+(define-key evil-motion-state-map "\S-k" nil) ;; scrolling the other window 
 
-;; ;; I never use vim arrow keys so these get in the way of useful
-;; ;; things such as snake and tetris
-;; (define-key evil-motion-state-map (kbd "<left>")  nil)
-;; (define-key evil-motion-state-map (kbd "<down>")  nil)
-;; (define-key evil-motion-state-map (kbd "<up>")    nil)
-;; (define-key evil-motion-state-map (kbd "<right>") nil)
+;; I never use vim arrow keys so these get in the way of useful
+;; things such as snake and tetris
+(define-key evil-motion-state-map (kbd "<left>")  nil)
+(define-key evil-motion-state-map (kbd "<down>")  nil)
+(define-key evil-motion-state-map (kbd "<up>")    nil)
+(define-key evil-motion-state-map (kbd "<right>") nil)
 
 ;;----------------------------------------------------------
 ;;          INTERACTIVELY DO THINGS (ido)
@@ -570,3 +573,21 @@ Return a list of installed packages or nil for every skipped package."
 (dashboard-setup-startup-hook)
 (setq dashboard-banner-logo-title "https://github.com/rpinder/dotfiles")
 (setq dashboard-startup-banner "~/dotfiles/emacs/banner.png")
+
+;;----------------------------------------------------------
+;;          PYENV MODE
+;;----------------------------------------------------------
+
+(pyenv-mode)
+
+;;----------------------------------------------------------
+;;          powerline
+;;----------------------------------------------------------
+
+(require 'powerline)
+(require 'airline-themes)
+(load-theme 'airline-base16-gui-dark)
+
+;;-----------------------------------------------------------------------------
+
+(fringe-mode 0)
