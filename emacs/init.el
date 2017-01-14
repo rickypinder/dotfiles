@@ -110,7 +110,7 @@ Return a list of installed packages or nil for every skipped package."
 ;;   (load-theme 'ample t t)       ;; loads ample theme in terminal
 ;;   (enable-theme 'ample))
 
-(add-to-list 'load-path "~/.emacs.d/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (load-theme 'base16-ocean)
 
 (show-paren-mode)           ;; highlights matching parens
@@ -586,7 +586,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'powerline)
 (require 'airline-themes)
-(load-theme 'airline-base16-gui-dark)
+(load-theme 'airline-base16)
 
 ;;-----------------------------------------------------------------------------
 
