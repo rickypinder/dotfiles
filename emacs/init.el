@@ -96,6 +96,8 @@ Return a list of installed packages or nil for every skipped package."
  'evil-surround
  'powerline
  'airline-themes
+ 'company-jedi
+ 'exec-path-from-shell
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -353,6 +355,10 @@ Return a list of installed packages or nil for every skipped package."
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-c-headers))
 
+;; use jedi as a backend for company
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-jedi))
+
 ;;----------------------------------------------------------
 ;;          EVIL
 ;;----------------------------------------------------------
@@ -477,7 +483,7 @@ Return a list of installed packages or nil for every skipped package."
 (key-chord-mode 1)
 
 ;; mashing jk when in evil insert mode will put me into normal mode
-;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 
 ;;----------------------------------------------------------
 ;;          WINUM
