@@ -5,14 +5,14 @@
 ;;
 ;;
 
-;; last edited: 29/12/2016
+;; last edited: 15/01/2017 (dd/mm/yyyy)
 
 ;; I know very little elisp
 
 ;; TODO
 ;; + email inside emacs
 ;; + set up eirc
-;; + latex environment
+;; + latex environment - learn latex
 ;; + set up rtags or something similar
 ;;   - and an easy way to search tags (like vim's ctrlp)
 
@@ -104,17 +104,15 @@ Return a list of installed packages or nil for every skipped package."
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (if (display-graphic-p)
-;;     (progn
-;;      (load-theme 'soothe t)) ;; loads spacegray theme if using emacs window
-;;   (load-theme 'ample t t)       ;; loads ample theme in terminal
-;;   (enable-theme 'ample))
-
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'base16-ocean)
+
+(if (display-graphic-p)
+    (progn
+      (load-theme 'base16-ocean)) ;; loads base16-ocean theme if using emacs window
+  (load-theme 'ample t t)         ;; loads ample theme in the terminal
+  (enable-theme 'ample))
 
 (show-paren-mode)           ;; highlights matching parens
-
 
 (setq column-number-mode t) ;; puts column number in the mode line
 
@@ -273,6 +271,10 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'prog-mode-hook 'setup-prog-buffers)
 
 (add-hook 'c-mode-common-hook 'setup-c-buffers)
+
+;; turns off yas-minor-mode for term-mode buffers so tab completion works
+(add-hook 'term-mode-hook (lambda()
+                            (yas-minor-mode -1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
