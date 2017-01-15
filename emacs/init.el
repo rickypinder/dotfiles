@@ -13,8 +13,6 @@
 ;; + email inside emacs
 ;; + set up eirc
 ;; + latex environment
-;; + set up emacs for python and ruby
-;;   - jedi?
 ;; + set up rtags or something similar
 ;;   - and an easy way to search tags (like vim's ctrlp)
 
