@@ -108,10 +108,9 @@ Return a list of installed packages or nil for every skipped package."
 
 (if (display-graphic-p)
     (progn
-      (load-theme 'base16-ocean)) ;; loads base16-ocean theme if using emacs window
-  (load-theme 'ample t t)         ;; loads ample theme in the terminal
-  (enable-theme 'ample))
-
+      (load-theme 'base16-ocean))
+  (load-theme 'base16-spacemacs)) ;; loads base16-ocean theme if using emacs window
+  
 (show-paren-mode)           ;; highlights matching parens
 
 (setq column-number-mode t) ;; puts column number in the mode line
@@ -124,14 +123,6 @@ Return a list of installed packages or nil for every skipped package."
     ad-do-it))
 
 (setq inhibit-startup-screen t) ;; disables emacs start screen
-
-;; Inactive modeline is darker 
-;; (when (display-graphic-p)
-;;   (set-face-foreground 'modeline-inactive "#777777")
-;;   (set-face-background 'modeline-inactive "#181b22"))
-
-;; (setq display-time-24hr-format t)
-;; (display-time-mode 1)
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
@@ -225,8 +216,10 @@ Return a list of installed packages or nil for every skipped package."
 ;; setup emacs for prog buffers
 (defun setup-prog-buffers ()
   " enables line highlighting and line numbers for programming buffers "
-  (hl-line-mode 1)
-  (linum-mode 1)
+  (if (display-graphic-p)
+      (progn
+        (hl-line-mode 1)
+        (linum-mode 1)))
   (electric-pair-local-mode))
 
 (defun setup-c-buffers ()
@@ -592,7 +585,10 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'powerline)
 (require 'airline-themes)
-(load-theme 'airline-base16)
+(if (display-graphic-p)
+    (progn
+      (load-theme 'airline-base16))
+  (load-theme 'airline-base16-shell-dark))
 
 ;;-----------------------------------------------------------------------------
 
