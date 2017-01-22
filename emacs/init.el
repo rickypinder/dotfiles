@@ -96,6 +96,7 @@ Return a list of installed packages or nil for every skipped package."
  'airline-themes
  'company-jedi
  'exec-path-from-shell
+ 'rainbow-mode
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
