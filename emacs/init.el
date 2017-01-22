@@ -106,10 +106,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-(if (display-graphic-p)
-    (progn
-      (load-theme 'base16-ocean))
-  (load-theme 'base16-spacemacs)) ;; loads base16-ocean theme if using emacs window
+(load-theme 'base16-ocean)
   
 (show-paren-mode)           ;; highlights matching parens
 
