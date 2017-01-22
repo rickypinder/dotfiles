@@ -32,4 +32,4 @@ tmux, neovim, htop, space invaders color script
 
 Emacs
 
-![emacs](https://i.gyazo.com/06430f547f1fa14b5f8c70cb04261f7d.png)
+![emacs](https://i.gyazo.com/36f29ddec5eba39f6f1d27bfcebe77cf.png)
