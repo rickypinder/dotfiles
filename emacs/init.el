@@ -5,7 +5,7 @@
 ;;
 ;;
 
-;; last edited: 15/01/2017 (dd/mm/yyyy)
+;; last edited: 22/01/2017 
 
 ;; I know very little elisp
 

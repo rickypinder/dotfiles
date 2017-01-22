@@ -30,6 +30,6 @@ tmux, neovim, htop, space invaders color script
 
 ![setup](https://i.gyazo.com/b0b357566c2dd228261cbfa38cc512b2.png)
 
-Emacs - This screenshot is out of date
+Emacs
 
 ![emacs](https://i.gyazo.com/06430f547f1fa14b5f8c70cb04261f7d.png)
