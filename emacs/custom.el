@@ -25,7 +25,7 @@
  '(main-line-separator-style (quote chamfer))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell company-jedi airline-themes powerline evil-surround pyenv-mode projectile dashboard web-mode darktooth shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord hlinum smex rbenv quickrun org-bullets magit ido-vertical-mode ido-ubiquitous flycheck base16-theme)))
+    (rainbow-mode exec-path-from-shell company-jedi airline-themes powerline evil-surround pyenv-mode projectile dashboard web-mode darktooth shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord hlinum smex rbenv quickrun org-bullets magit ido-vertical-mode ido-ubiquitous flycheck base16-theme)))
  '(powerline-color1 "#1E1E1E")
  '(powerline-color2 "#111111")
  '(shell-pop-full-span t)

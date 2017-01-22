@@ -359,14 +359,14 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; places a box at the start of the modeline containing text of the current evil state
 ;; and a background color (from spacegray theme) to match
-;; (setq evil-mode-line-format '(before . mode-line-front-space))
-;; (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:background "#343d46")))
-;;       evil-emacs-state-tag    (propertize " EMACS   " 'face '((:background "#C189EB")))
-;;       evil-insert-state-tag   (propertize " INSERT  " 'face '((:background "#27AE60")))
-;;       evil-motion-state-tag   (propertize " MOTION  " 'face '((:background "#89EBCA")))
-;;       evil-visual-state-tag   (propertize " VISUAL  " 'face '((:background "#DCA432")))
-;;       evil-replace-state-tag  (propertize " REPLACE " 'face '((:background "#bf616a")))
-;;       evil-operator-state-tag (propertize " NORMAL  " 'face '((:background "#343d46"))))
+(setq evil-mode-line-format '(before . mode-line-front-space))
+(setq evil-normal-state-tag   (propertize " N " 'face '((:background "#343d46")))
+      evil-emacs-state-tag    (propertize " E " 'face '((:background "#C189EB")))
+      evil-insert-state-tag   (propertize " I " 'face '((:background "#27AE60")))
+      evil-motion-state-tag   (propertize " M " 'face '((:background "#89EBCA")))
+      evil-visual-state-tag   (propertize " V " 'face '((:background "#DCA432")))
+      evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a")))
+      evil-operator-state-tag (propertize " N " 'face '((:background "#343d46"))))
 
 ;; enables an evil port of tpope's surround.vim plugin
 (require 'evil-surround)
@@ -580,12 +580,12 @@ Return a list of installed packages or nil for every skipped package."
 ;;          powerline
 ;;----------------------------------------------------------
 
-(require 'powerline)
-(require 'airline-themes)
-(if (display-graphic-p)
-    (progn
-      (load-theme 'airline-base16))
-  (load-theme 'airline-base16-shell-dark))
+;; (require 'powerline)
+;; (require 'airline-themes)
+;; (if (display-graphic-p)
+;;     (progn
+;;       (load-theme 'airline-base16))
+;;   (load-theme 'airline-base16-shell-dark))
 
 ;;-----------------------------------------------------------------------------
 
