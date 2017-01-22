@@ -97,6 +97,7 @@ Return a list of installed packages or nil for every skipped package."
  'company-jedi
  'exec-path-from-shell
  'rainbow-mode
+ 'diminish
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -361,13 +362,13 @@ Return a list of installed packages or nil for every skipped package."
 ;; places a box at the start of the modeline containing text of the current evil state
 ;; and a background color (from spacegray theme) to match
 (setq evil-mode-line-format '(before . mode-line-front-space))
-(setq evil-normal-state-tag   (propertize " N " 'face '((:background "#343d46")))
-      evil-emacs-state-tag    (propertize " E " 'face '((:background "#C189EB")))
-      evil-insert-state-tag   (propertize " I " 'face '((:background "#27AE60")))
-      evil-motion-state-tag   (propertize " M " 'face '((:background "#89EBCA")))
-      evil-visual-state-tag   (propertize " V " 'face '((:background "#DCA432")))
-      evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a")))
-      evil-operator-state-tag (propertize " N " 'face '((:background "#343d46"))))
+(setq evil-normal-state-tag   (propertize " N " 'face '((:background "#8fa1b3")(:foreground "#343d46")))
+      evil-emacs-state-tag    (propertize " E " 'face '((:background "#b48ead")(:foreground "#343d46")))
+      evil-insert-state-tag   (propertize " I " 'face '((:background "#a3b38c")(:foreground "#343d46")))
+      evil-motion-state-tag   (propertize " M " 'face '((:background "#96b5b4")(:foreground "#343d46")))
+      evil-visual-state-tag   (propertize " V " 'face '((:background "#d08770")(:foreground "#343d46")))
+      evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a")(:foreground "#343d46")))
+      evil-operator-state-tag (propertize " N " 'face '((:background "#343d46")(:foreground "#343d46"))))
 
 ;; enables an evil port of tpope's surround.vim plugin
 (require 'evil-surround)
@@ -587,6 +588,20 @@ Return a list of installed packages or nil for every skipped package."
 ;;     (progn
 ;;       (load-theme 'airline-base16))
 ;;   (load-theme 'airline-base16-shell-dark))
+
+;;----------------------------------------------------------
+;;          DIMINISH
+;;----------------------------------------------------------
+
+(diminish 'flycheck-mode)
+(diminish 'company-mode)
+(diminish 'undo-tree-mode)
+(diminish 'yas-global-mode)
+(diminish 'yas-minor-mode)
+(diminish 'which-key-mode)
+(diminish 'page-break-lines-mode)
+(diminish 'irony-mode)
+(diminish 'abbrev-mode)
 
 ;;-----------------------------------------------------------------------------
 
