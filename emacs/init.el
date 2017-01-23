@@ -481,31 +481,31 @@ Return a list of installed packages or nil for every skipped package."
 ;;          WINUM
 ;;----------------------------------------------------------
 
-;; (require 'winum)
+(require 'winum)
 
-;; ;; puts the mode-line indicator in the space after buffer indicator but before
-;; ;; current line number percentage of total file
-;; (setq winum-mode-line-position 8)
+;; puts the mode-line indicator in the space after buffer indicator but before
+;; current line number percentage of total file
+(setq winum-mode-line-position 8)
 
-;; ;; winum-keymap-prefix is currently broken so I'm doing this instead
-;; (global-set-key (kbd "C-c 0") 'winum-select-window-0-or-10)
-;; (global-set-key (kbd "C-c 1") 'winum-select-window-1)
-;; (global-set-key (kbd "C-c 2") 'winum-select-window-2)
-;; (global-set-key (kbd "C-c 3") 'winum-select-window-3)
-;; (global-set-key (kbd "C-c 4") 'winum-select-window-4)
-;; (global-set-key (kbd "C-c 5") 'winum-select-window-5)
-;; (global-set-key (kbd "C-c 6") 'winum-select-window-6)
-;; (global-set-key (kbd "C-c 7") 'winum-select-window-7)
-;; (global-set-key (kbd "C-c 8") 'winum-select-window-8)
-;; (global-set-key (kbd "C-c 9") 'winum-select-window-9)
+;; winum-keymap-prefix is currently broken so I'm doing this instead
+(global-set-key (kbd "C-c 0") 'winum-select-window-0-or-10)
+(global-set-key (kbd "C-c 1") 'winum-select-window-1)
+(global-set-key (kbd "C-c 2") 'winum-select-window-2)
+(global-set-key (kbd "C-c 3") 'winum-select-window-3)
+(global-set-key (kbd "C-c 4") 'winum-select-window-4)
+(global-set-key (kbd "C-c 5") 'winum-select-window-5)
+(global-set-key (kbd "C-c 6") 'winum-select-window-6)
+(global-set-key (kbd "C-c 7") 'winum-select-window-7)
+(global-set-key (kbd "C-c 8") 'winum-select-window-8)
+(global-set-key (kbd "C-c 9") 'winum-select-window-9)
 
-;; (winum-mode)
+(winum-mode)
 
 ;; ;;----------------------------------------------------------
 ;; ;;          WHICH-KEY
 ;; ;;----------------------------------------------------------
 
-;; ;; displays keybindings following your currently entered incomplete command
+;; displays keybindings following your currently entered incomplete command
 (require 'which-key)
 (which-key-mode)
 
@@ -602,6 +602,7 @@ Return a list of installed packages or nil for every skipped package."
 (diminish 'page-break-lines-mode)
 (diminish 'irony-mode)
 (diminish 'abbrev-mode)
+(diminish 'auto-revert-mode)
 
 ;;-----------------------------------------------------------------------------
 
