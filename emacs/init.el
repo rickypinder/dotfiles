@@ -110,7 +110,7 @@ Return a list of installed packages or nil for every skipped package."
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (load-theme 'base16-ocean)
-  
+
 (show-paren-mode)           ;; highlights matching parens
 
 (setq column-number-mode t) ;; puts column number in the mode line
@@ -128,10 +128,10 @@ Return a list of installed packages or nil for every skipped package."
   (windmove-default-keybindings))
 
 (unless (display-graphic-p)
-    (progn
-      (set-face-background 'mode-line "#222222")
-      (set-face-background 'mode-line-inactive "#112211")
-      (set-face-foreground 'mode-line-inactive "#222222")))
+  (progn
+    (set-face-background 'mode-line "#222222")
+    (set-face-background 'mode-line-inactive "#112211")
+    (set-face-foreground 'mode-line-inactive "#222222")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -172,7 +172,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; This turns off line numbers and line highlighting,
 ;; and also gets rid of the fringe
 (defun setup-eshell ()
-" sets up eshell by
+  " sets up eshell by
   removing line numbers
   removng fringes
   turning off line highlghting "
@@ -200,8 +200,8 @@ Return a list of installed packages or nil for every skipped package."
     (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n")
     (insert ";;\n")
     (insert ";;          " x "\n"))
-    (insert ";;\n")
-    (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"))
+  (insert ";;\n")
+  (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"))
 
 (defun find-other-file-in-other-window ()
   " opens corresponding .c, .cpp, .h, .hpp etc file in other window "
@@ -242,7 +242,7 @@ Return a list of installed packages or nil for every skipped package."
   (shell-command (concat "vmd " (buffer-file-name) " &")))
 
 (defun window-left-to-right (prefix)
-" moves window from the left of the screen to the right of the screen "
+  " moves window from the left of the screen to the right of the screen "
   (interactive "p")
   (other-window 1)
   (delete-window)
@@ -256,7 +256,7 @@ Return a list of installed packages or nil for every skipped package."
   (split-window-right)
   (switch-to-buffer (other-buffer))
   (other-window 1))
-  
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          HOOKS 
