@@ -98,6 +98,7 @@ Return a list of installed packages or nil for every skipped package."
  'exec-path-from-shell
  'rainbow-mode
  'diminish
+ 'winum
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -368,7 +369,7 @@ Return a list of installed packages or nil for every skipped package."
       evil-motion-state-tag   (propertize " M " 'face '((:background "#96b5b4")(:foreground "#343d46")))
       evil-visual-state-tag   (propertize " V " 'face '((:background "#d08770")(:foreground "#343d46")))
       evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a")(:foreground "#343d46")))
-      evil-operator-state-tag (propertize " N " 'face '((:background "#343d46")(:foreground "#343d46"))))
+      evil-operator-state-tag (propertize " N " 'face '((:background "#7fb1a3")(:foreground "#343d46"))))
 
 ;; enables an evil port of tpope's surround.vim plugin
 (require 'evil-surround)
