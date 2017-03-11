@@ -291,10 +291,6 @@ Return a list of installed packages or nil for every skipped package."
 (global-set-key (kbd "C-c o z") 'open-zsh)
 (global-set-key "\C-co\S-z" 'open-zsh-other-window)
 
-;; scroll other window with shift+jk
-(global-set-key "\S-k" 'scroll-other-window-down-two)
-(global-set-key "\S-j" 'scroll-other-window-two)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          MISCELLANEOUS  
@@ -389,8 +385,9 @@ Return a list of installed packages or nil for every skipped package."
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
-(define-key evil-normal-state-map "\S-j" nil) ;; I'm using these keys for 
-(define-key evil-motion-state-map "\S-k" nil) ;; scrolling the other window 
+(define-key evil-normal-state-map "\S-k" 'scroll-other-window-down-two)
+(define-key evil-normal-state-map "\S-j" 'scroll-other-window-two)
+
 
 ;; I never use vim arrow keys so these get in the way of useful
 ;; things such as snake and tetris
