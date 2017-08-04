@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/ricky/.oh-my-zsh
+  export ZSH=/home/pinder/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -90,35 +90,35 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias tmux="tmux -2"
+#alias tmux="tmux -2"
 
 # use different tmux config depending on  ssh or local
-if [ -f ~/.tmux.conf ];
-then
-    rm ~/.tmux.conf 
-fi
+#if [ -f ~/.tmux.conf ];
+#then
+#    rm ~/.tmux.conf 
+#fi
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    ln -s ~/dotfiles/.tmuxssh.conf ~/.tmux.conf
-else
-    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-fi
+#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#    ln -s ~/dotfiles/.tmuxssh.conf ~/.tmux.conf
+#else
+#    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+#fi
 
-DEFAULT_USER='ricky'
+DEFAULT_USER='pinder'
 
-export RBENV_ROOT="${HOME}/.rbenv"
+#export RBENV_ROOT="${HOME}/.rbenv"
 
-if [ -d "${RBENV_ROOT}" ]; then
-    export PATH="${RBENV_ROOT}/bin:${PATH}"
-    eval "$(rbenv init -)"
-fi
+#if [ -d "${RBENV_ROOT}" ]; then
+#    export PATH="${RBENV_ROOT}/bin:${PATH}"
+#    eval "$(rbenv init -)"
+#fi
+#export PATH="/home/ricky/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-export PATH="/home/ricky/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export LANG=en_GB.UTF-8
+

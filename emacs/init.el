@@ -66,10 +66,11 @@ Return a list of installed packages or nil for every skipped package."
 (package-initialize)
 
 (ensure-package-installed
+ 'ido-completing-read+
  'ido-vertical-mode
  'org-bullets
  'smex
- 'ido-ubiquitous
+ 'ido-completing-read+
  'flycheck
  'quickrun
  'magit
@@ -417,7 +418,7 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; use ido whereever possible
 (setq ido-everywhere t)
-(require 'ido-ubiquitous)
+(require 'ido-completing-read+)
 (ido-ubiquitous-mode 1)
 
 ;; M-x enhancement for emacs built on top of ido
@@ -425,7 +426,7 @@ Return a list of installed packages or nil for every skipped package."
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-commAnd)
 
 (global-set-key "\C-x\S-f" 'ido-find-file-other-window)
 (global-set-key "\C-x\S-b" 'ido-switch-buffer-other-window)

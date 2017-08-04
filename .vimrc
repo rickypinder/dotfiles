@@ -16,26 +16,21 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'                       " File browsing
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file browinsg
-Plug 'vim-airline/vim-airline'                   " status line
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'                   " colorscheme
-Plug 'neomake/neomake'                           " linter/maker
-Plug 'dojoteef/neomake-autolint'
-Plug 'mhinz/vim-startify'                        " startscreen showing most recent files
-Plug 'tpope/vim-fugitive'                        " git
-Plug 'tpope/vim-surround'                        " easily change surrounding punctuation
-Plug 'tpope/vim-commentary'                      " comment plugin
-Plug 'majutsushi/tagbar'                         " class outline viewer
-Plug 'jiangmiao/auto-pairs'                      " insert r delete brackets, parens, quotes in pair
-Plug 'vim-scripts/a.vim'                         " switch between header and corresponding file
-Plug 'airblade/vim-gitgutter'                    " shows git diff in the gutter
-Plug 'ntpeters/vim-better-whitespace'            " highlight trailing whitespace
-Plug 'mtth/scratch.vim'                          " unobtrusive scratch window
+Plug 'mhinz/vim-startify'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/a.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'mtth/scratch.vim'
+Plug 'dylanaraps/wal.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
+Plug 'junegunn/fzf.vim'
 
-call plug#end()                                  " Add plugins to &runtimepath
+call plug#end()
 
 if has("gui_running")
     set guioptions+=c
@@ -71,12 +66,7 @@ end
 " Colors
 set t_Co=256                                     " terminal colours look like gvim
 syntax enable                                    " enable symtax processing
-if filereadable(expand("~/.vimrc_background"))
-    let base16colorspace=256
-    source ~/.vimrc_background
-endif
-colorscheme base16-ocean
-colorscheme base16-ocean
+colorscheme wal
 
 " Spaces & Tabs
 set tabstop=4                                    " number of visual spaces per TAB
@@ -90,7 +80,7 @@ set shiftwidth=4
 set number                                       " show line numbers
 set relativenumber                               " Relative line numbers
 set showcmd                                      " show command in bottom bar
-set cursorline                                   " highlight current line
+"set cursorline                                   " highlight current line
 filetype indent on                               " load filetype-specific ident files
 set wildmenu                                     " visual autocomplete for command menu
 set lazyredraw                                   " redraw only when we need to
@@ -182,25 +172,8 @@ nnoremap j gj
 nnoremap k gk
 
 " Airline
-let g:airline_theme='base16'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
-
-" CTRLP
-let g:ctrlp_map =''
-nnoremap <leader>b :CtrlPBuffer<cr>
-nnoremap <leader>p :CtrlP<cr>
-nnoremap <leader>t :CtrlPTag<cr>
-
-" YCM
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-
-" Neomake
-let g:neomake_c_enabled_makers = []              " ycm handles c and c++
-let g:neomake_cpp_enabled_makers = []
-
-nnoremap <leader>lo :lopen<cr>
-nnoremap <leader>lc :lclose<cr>
-nnoremap <leader>ll :ll<cr>
 
 " Startify
 let g:startify_list_order = [
@@ -219,6 +192,10 @@ let g:startify_files_number = 5
 let g:startify_update_oldfiles = 1
 let g:startify_bookmarks = [ '~/dotfiles/vimrc', '~/dotfiles/zshrc', '~/code/']
 
+" FZF
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+
 " jk or kj to escape insert mode
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -229,18 +206,3 @@ map <space> <leader>
 " build in vim keybinds
 nnoremap <leader>w :w<cr>
 nnoremap <leader><space> :nohlsearch<CR>
-
-" plugin keybinds
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>T :TagbarToggle<CR>
-
-
-" Gets rid of the annoying different colour gutter/line number coulumn
-highlight LineNr ctermbg=black
-highlight CursorLineNr ctermbg=black
-highlight SignColumn ctermbg=black
-
-highlight GitGutterAdd ctermbg=black
-highlight GitGutterChange ctermbg=black
-highlight GitGutterDelete ctermbg=black
-highlight GitGutterChangeDelete ctermbg=black
