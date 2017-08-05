@@ -124,7 +124,6 @@ if exists('$SUDO_USER')
 else
     set directory=~/local/.vim/tmp/swap//
     set directory+=~/.vim/tmp/swap//             " keep swap files out of the way
-
     set directory+=.
 endif
 
@@ -190,7 +189,7 @@ let g:startify_list_order = [
             \]
 let g:startify_files_number = 5
 let g:startify_update_oldfiles = 1
-let g:startify_bookmarks = [ '~/dotfiles/vimrc', '~/dotfiles/zshrc', '~/code/']
+let g:startify_bookmarks = [ '~/.vimrc', '~/.zshrc', '~/code/']
 
 " FZF
 nnoremap <leader>f :Files<cr>
