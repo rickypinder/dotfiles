@@ -1,0 +1,49 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/" . "pinder/")
+ ("/home/pinder/.cache/" . "wal/")
+ ("/" . "etc/")
+ ("/home/pinder/" . ".emacs.d/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/pinder/.emacs.d/"
+ "/home/pinder/.cache/wal/"
+ "/etc/"
+ "/home/pinder/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "init.el"
+ "colors"
+ "locale.gen"
+ ".zshrc"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/pinder/.emacs.d/" (22918 2776 26673 146000) "ido.last" "custom.el~" "snippets/" "elpa/" "../" "auto-save-list/" "recentf" "init.el" "airline-base16-theme.el" "custom.el" "./" "banner.png" "smex-items" "backups/")
+
+ ("/home/pinder/" (22918 2754 616672 190000) ".fonts/" ".pki/" ".nvidia-settings-rc" ".fehbg" ".config/" "local/" ".bash_history" "music/" ".ncmpcpp/" ".vimrc" ".Xauthority" ".zshrc" ".bash_profile" ".gtkrc-2.0" ".bashrc" ".themes/" "../" ".gitconfig" ".esd_auth" ".nv/" ".mozilla/" ".Xresources" ".lesshst" ".viminfo" ".python_history" ".vim/" "code/" ".local/" ".xinitrc" ".cache/" ".zsh_history" ".icons/" ".dmrc" ".xsession-errors" ".zsh-update" ".gnupg/" ".w3m/" ".tmuxssh.conf" ".xsession-errors.old" "Downloads/" ".fzf.zsh" "Desktop/" ".bash_logout" ".tmux.conf" ".oh-my-zsh/" "pictures/" "dotfiles/" ".zcompdump-ArchLaptop-5.3.1" "./" ".emacs.d/" ".lyrics/" ".gimp-2.8/" ".thumbnails/" ".fzf/")
+
+ ("/home/pinder/dotfiles/" (22918 2753 413338 803000) ".git/" "../" "scripts/" "./" "README.md")
+
+ ("/home/pinder/.cache/wal/" (22916 58769 136462 577000) "colors.json" "schemes/" "../" "colors-putty.reg" ".#colors" "colors.Xresources" "colors.yml" "colors" "colors-gtk2.rc" "colors-konsole.colorscheme" "wal" "sequences" "./" "colors.sh" "colors.scss" "colors.css")
+
+ ("/home/pinder/.cache/" (22916 40721 322882 795000) "ImageMagick/" "pacaur/" "../" "event-sound-cache.tdb.ArchLaptop.x86_64-unknown-linux-gnu" "babl/" "thumbnails/" "chromium/" "dmenu_run" "rofi-3.runcache" "wal/" "ranger/" "./" "mozilla/" "fontconfig/" "gegl-0.2/")
+
+ ("/home/pinder/.config/" (22916 62344 18238 211000) "i3/" "gtk-3.0/" "neofetch/" "pavucontrol.ini" "htop/" "../" "gconf/" "pulse/" "polybar/" "mimeapps.list" "mpd/" "gtk-2.0/" "dconf/" "ranger/" "./" "fontconfig/")
+
+ ("/home/pinder/.config/polybar/" (22916 63894 704974 173000) "../" "config" "launch.sh" "./")
+
+ ("/etc/" (22914 21224 755989 654000) "mke2fs.conf" "pam.d/" "i3/" "hosts" "fstab" "motd" "passwd-" "gtk-3.0/" "lvm/" "gai.conf" ".pwd.lock" "openldap/" "mail.rc" "ethertypes" "nscd.conf" "bash.bashrc" "rpc" "bash.bash_logout" "sudoers" "dhcpcd.conf" "wpa_supplicant/" "mdadm.conf" "ld.so.cache" "sysctl.d/" "pacman.d/" "modprobe.d/" "nanorc" "rc_keymaps/" "polkit-1/" "ImageMagick-6/" "zsh/" "pkcs11/" "../" "gconf/" "logrotate.d/" "passwd" "pulse/" "i3blocks.conf" "localtime" "os-release" "resolvconf.conf" "rc_maps.cfg" "xml/" "shells" "sudoers.d/" "modules-load.d/" "resolv.conf.bak" "vconsole.conf" "avahi/" "protocols" "inputrc" "i3status.conf" "dhcpcd.secret" "netconfig" "group" "asciidoc/" "mtab" "shadow" "ld.so.conf.d/" "vimrc" "gtk-2.0/" "sensors3.conf" "pcmcia/" "securetty" "issue" "fonts/" "initcpio/" "hostname" "locale.gen" "X11/" "request-key.conf" "arch-release" "healthd.conf" "profile" "resolv.conf" "gshadow" "mkinitcpio.d/" "profile.d/" "gshadow-" "group-" "drirc" "environment" "iproute2/" "mkinitcpio.conf" "security/" "skel/" "ld.so.conf" "shadow-" "mime.types" "adjtime" "pacman.conf" ".updated" "conf.d/" "./" "passwd.OLD" "kernel/" "login.defs" "ssl/" "makepkg.conf" "crypttab" "request-key.d/" "libnl/" "man_db.conf" "dbus-1/" "nsswitch.conf" "iptables/" "tmpfiles.d/" "udev/" "default/" "dhcpcd.duid" "binfmt.d/" "sensors.d/" "xinetd.d/" "vdpau_wrapper.cfg" "services" "krb5.conf" "host.conf" "ca-certificates/" "xdg/" "machine-id" "netctl/" "systemd/" "logrotate.conf" "depmod.d/" "ifplugd/")
+
+ ("/home/" (22913 3517 350773 990000) "../" "pinder/" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

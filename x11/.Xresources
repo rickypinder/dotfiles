@@ -1,0 +1,9 @@
+URxvt*font: xft:Meslo LG M DZ for Powerline:size=11
+URxvt*boldFont: xft:Meslo LG M DZ for Powerline:size=11
+
+URxvt*scrollBar: false
+
+URxvt.transparent: true
+URxvt.shading: 10
+
+
