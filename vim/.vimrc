@@ -30,6 +30,7 @@ Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
 Plug 'shime/vim-livedown'
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
@@ -195,6 +196,8 @@ let g:startify_bookmarks = [ '~/.vimrc', '~/.zshrc', '~/code/']
 " FZF
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
+
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " jk or kj to escape insert mode
 inoremap jk <Esc>
