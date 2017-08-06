@@ -1,35 +1,9 @@
-# dotfiles
+# Dotfiles
 
-These are my dotfiles
+These are my dotfiles. I use GNU stow for symlinks
 
-##Terminal
-+ zsh
-+ oh-my-zsh
-+ agnoster theme
-+ base16-ocean colorscheme
-+ different zsh theme on local vs ssh. (no powerline symbols over ssh)
-+ different tmux theme on loca vs ssh. (no powerline symbols over ssh)
+Vim, i3, Polybar are configured to use Xresources
 
-##Emacs
-+ spacegray colorscheme
-+ evil mode
-+ check init.el for everything - too much for a dotfile repository
+## screenshots
+![example screenhot](https://u.teknik.io/AGM0O.png)
 
-##NeoVim
-+ base16-ocean colorscheme
-+ CtrlP for tag, buffer, and file searching
-+ check vimrc for everything 
-
-##Screenshots
-
-URXVT
-
-![URxvt](https://bot.gyazo.com/2ea36202cae500ec455260bac39964cf.png)
-
-tmux, neovim, htop, space invaders color script
-
-![setup](https://i.gyazo.com/b0b357566c2dd228261cbfa38cc512b2.png)
-
-Emacs
-
-![emacs](https://i.gyazo.com/36f29ddec5eba39f6f1d27bfcebe77cf.png)
