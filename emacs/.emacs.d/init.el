@@ -107,6 +107,10 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
+(load-theme 'xresources)
+(add-to-list 'default-frame-alist '(foreground-color . "#ED9F86"))
+(add-to-list 'default-frame-alist '(background-color . "#020104"))
+
 (show-paren-mode)           ;; highlights matching parens
 
 (setq column-number-mode t) ;; puts column number in the mode line
