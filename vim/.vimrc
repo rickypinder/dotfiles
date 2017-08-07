@@ -31,6 +31,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
 Plug 'shime/vim-livedown'
 Plug 'valloric/youcompleteme'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
