@@ -88,7 +88,6 @@ Return a list of installed packages or nil for every skipped package."
  'fiplr
  'shell-pop
  'dashboard
- 'projectile
  'pyenv-mode
  'evil
  'evil-surround
@@ -533,14 +532,6 @@ Return a list of installed packages or nil for every skipped package."
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; ;;----------------------------------------------------------
-;; ;;          SWITCH WINDOW
-;; ;;----------------------------------------------------------
-
-;; ;; offer a visual way to choose a window to switch to
-;; (require 'switch-window)
-;; (global-set-key (kbd "C-x o") 'switch-window)
-
 ;;----------------------------------------------------------
 ;;          YASNIPPET
 ;;----------------------------------------------------------
@@ -582,7 +573,7 @@ Return a list of installed packages or nil for every skipped package."
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 (setq dashboard-banner-logo-title "https://github.com/rpinder/dotfiles")
-(setq dashboard-startup-banner "~/dotfiles/emacs/banner.png")
+(setq dashboard-startup-banner "~/.emacs.d/banner.png")
 
 ;;----------------------------------------------------------
 ;;          PYENV MODE
