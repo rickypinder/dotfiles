@@ -60,6 +60,7 @@ endif
 
 if has('autocmd')
     autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
+    autocmd FileType c nnoremap <buffer> <localleader>cr map <F8> :!clear;gcc % -o %<.out && %<.out <CR>
     autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
     autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -104,15 +105,6 @@ set foldmethod=indent                            " fold based on indent level
 
 " stuff
 set autoindent                                   " maintains indent of current line
-
-noremap <Up>    <Nop>
-noremap <Down>  <Nop>
-noremap <Left>  <Nop>
-noremap <Right> <Nop>
-inoremap <Up>    <Nop>
-inoremap <Down>  <Nop>
-inoremap <Left>  <Nop>
-inoremap <Right> <Nop>
 
 if exists('$SUDO_USER')
     set nobackup                                 " don't create root owned files
@@ -169,11 +161,6 @@ if has('mksession')
     set viewoptions=cursor,folds                 " save/restore just these (with ':{mk, loadview#)
 endif
 
-" Movement
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
 " Airline
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
@@ -202,12 +189,29 @@ nnoremap <leader>b :Buffers<cr>
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " jk or kj to escape insert mode
-inoremap jk <Esc>
-inoremap kj <Esc>
+
+" Fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gp :Gpush<CR>
 
 " leader
 map <space> <leader>
 
-" build in vim keybinds
+" keybinds
 nnoremap <leader>w :w<cr>
 nnoremap <leader><space> :nohlsearch<CR>
+nnoremap j gj
+nnoremap k gk
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+noremap <Up>    <Nop>
+noremap <Down>  <Nop>
+noremap <Left>  <Nop>
+noremap <Right> <Nop>
+inoremap <Up>    <Nop>
+inoremap <Down>  <Nop>
+inoremap <Left>  <Nop>
+inoremap <Right> <Nop>
+
+

@@ -613,3 +613,5 @@ Return a list of installed packages or nil for every skipped package."
 ;;-----------------------------------------------------------------------------
 
 (fringe-mode 0)
+
+(pdf-tools-install)
