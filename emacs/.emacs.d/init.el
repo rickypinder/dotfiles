@@ -3,7 +3,7 @@
 ;; RPINDER INIT.EL FILE
 ;;   http://github.com/rpinder
 ;;
-;;
+;
 
 ;; last edited: 22/01/2017 
 
@@ -305,6 +305,9 @@ Return a list of installed packages or nil for every skipped package."
 ;; stop emacs from autosaving
 (setq auto-save-default nil)
 
+;; always follow symlinks
+(setq vc-follow-symlinks t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;          PACKAGE CONFIG  
@@ -364,21 +367,21 @@ Return a list of installed packages or nil for every skipped package."
 ;; places a box at the start of the modeline containing text of the current evil state
 ;; and a background color (from spacegray theme) to match
 (setq evil-mode-line-format '(before . mode-line-front-space))
-(if (display-graphic-p)
-    (setq evil-normal-state-tag   (propertize " N " 'face '((:background "#8fa1b3")(:foreground "#343d46")))
-          evil-emacs-state-tag    (propertize " E " 'face '((:background "#b48ead")(:foreground "#343d46")))
-          evil-insert-state-tag   (propertize " I " 'face '((:background "#a3b38c")(:foreground "#343d46")))
-          evil-motion-state-tag   (propertize " M " 'face '((:background "#96b5b4")(:foreground "#343d46")))
-          evil-visual-state-tag   (propertize " V " 'face '((:background "#d08770")(:foreground "#343d46")))
-          evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a")(:foreground "#343d46")))
-          evil-operator-state-tag (propertize " N " 'face '((:background "#7fb1a3")(:foreground "#343d46"))))
-  (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:foreground "#8fa1b3")))
-        evil-emacs-state-tag    (propertize " EMACS   " 'face '((:foreground "#b48ead")))
-        evil-insert-state-tag   (propertize " INSERT  " 'face '((:foreground "#a3b38c")))
-        evil-motion-state-tag   (propertize " MOTION  " 'face '((:foreground "#96b5b4")))
-        evil-visual-state-tag   (propertize " VISUAL  " 'face '((:foreground "#d08770")))
-        evil-replace-state-tag  (propertize " REPLACE " 'face '((:foreground "#bf616a")))
-        evil-operator-state-tag (propertize " NORMAL  " 'face '((:foreground "#7fb1a3")))))
+;; (if (display-graphic-p)
+;;     (setq evil-normal-state-tag   (propertize " N " 'face '((:background "#8fa1b3")(:foreground "#343d46")))
+;;           evil-emacs-state-tag    (propertize " E " 'face '((:background "#b48ead")(:foreground "#343d46")))
+;;           evil-insert-state-tag   (propertize " I " 'face '((:background "#a3b38c")(:foreground "#343d46")))
+;;           evil-motion-state-tag   (propertize " M " 'face '((:background "#96b5b4")(:foreground "#343d46")))
+;;           evil-visual-state-tag   (propertize " V " 'face '((:background "#d08770")(:foreground "#343d46")))
+;;           evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a")(:foreground "#343d46")))
+;;           evil-operator-state-tag (propertize " N " 'face '((:background "#7fb1a3")(:foreground "#343d46"))))
+;;   (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:foreground "#8fa1b3")))
+;;         evil-emacs-state-tag    (propertize " EMACS   " 'face '((:foreground "#b48ead")))
+;;         evil-insert-state-tag   (propertize " INSERT  " 'face '((:foreground "#a3b38c")))
+;;         evil-motion-state-tag   (propertize " MOTION  " 'face '((:foreground "#96b5b4")))
+;;         evil-visual-state-tag   (propertize " VISUAL  " 'face '((:foreground "#d08770")))
+;;         evil-replace-state-tag  (propertize " REPLACE " 'face '((:foreground "#bf616a")))
+;;         evil-operator-state-tag (propertize " NORMAL  " 'face '((:foreground "#7fb1a3")))))
 
 ;; enables an evil port of tpope's surround.vim plugin
 (require 'evil-surround)
@@ -585,12 +588,12 @@ Return a list of installed packages or nil for every skipped package."
 ;;          powerline
 ;;----------------------------------------------------------
 
-;; (require 'powerline)
-;; (require 'airline-themes)
-;; (if (display-graphic-p)
-;;     (progn
-;;       (load-theme 'airline-base16))
-;;   (load-theme 'airline-base16-shell-dark))
+(require 'powerline)
+(require 'airline-themes)
+(if (display-graphic-p)
+    (progn
+      (load-theme 'airline-distinguished))
+  (load-theme 'airline-base16-shell-dark))
 
 ;;----------------------------------------------------------
 ;;          DIMINISH
