@@ -60,7 +60,7 @@ endif
 
 if has('autocmd')
     autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
-    autocmd FileType c nnoremap <buffer> <localleader>cr map <F8> :!clear;gcc % -o %<.out && %<.out <CR>
+    autocmd FileType c nnoremap <buffer> <localleader>cr :!clear;gcc % -o %<.out && %<.out <CR>
     autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
     autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
