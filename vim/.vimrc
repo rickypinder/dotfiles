@@ -33,6 +33,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'shime/vim-livedown'
 Plug 'valloric/youcompleteme'
 Plug 'junegunn/goyo.vim'
+Plug 'thinca/vim-quickrun'
 
 call plug#end()
 
@@ -60,7 +61,7 @@ endif
 
 if has('autocmd')
     autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
-    autocmd FileType c nnoremap <buffer> <localleader>cr :!clear;gcc % -o %<.out && %<.out <CR>
+    autocmd FileType c nnoremap <buffer> <localleader>cr :w <CR> :!clear && gcc % -o %:r.out && %:r.out <CR>
     autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
     autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -180,7 +181,7 @@ let g:startify_list_order = [
             \]
 let g:startify_files_number = 5
 let g:startify_update_oldfiles = 1
-let g:startify_bookmarks = [ '~/.vimrc', '~/.zshrc', '~/code/']
+let g:startify_bookmarks = [ '~/dotfiles/vim/.vimrc', '~/dotfiles/zsh/.zshrc', '~/code/']
 
 " FZF
 nnoremap <leader>f :Files<cr>
@@ -192,7 +193,7 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " Fugitive
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gp :Gpush<CR>
+nnoremap <leader>gp :!clear<CR> :Gpush<CR>
 
 " leader
 map <space> <leader>
