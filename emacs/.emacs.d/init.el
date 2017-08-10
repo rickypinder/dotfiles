@@ -5,16 +5,13 @@
 ;;
 ;
 
-;; last edited: 22/01/2017 
-
-;; I know very little elisp
+;; last edited: 2017/08/10
 
 ;; TODO
 ;; + email inside emacs
 ;; + set up eirc
 ;; + latex environment - learn latex
 ;; + set up rtags or something similar
-;;   - and an easy way to search tags (like vim's ctrlp)
 
 ;-------------------------------------------------------------------------------
 
@@ -132,38 +129,38 @@ Return a list of installed packages or nil for every skipped package."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; opens emacs configuration file
-(defun open-dotfile ()
+(defun rp/open-dotfile ()
   " Opens the file ~/dotfiles/emacs/init.el "
   (interactive)
   (find-file "~/dotfiles/emacs/init.el"))
 
-(defun open-dotfile-other-window ()
+(defun rp/open-dotfile-other-window ()
   " Opens thne file ~/dotfiles/emacs/init.el in another window "
   (interactive)
   (find-file-other-window "~/dotfiles/emacs/init.el")
   (previous-multiframe-window))
 
 ;; opens zsh configuration file
-(defun open-zsh ()
+(defun rp/open-zsh ()
   " Opens the file ~/dotfiles/.zshrc "
   (interactive)
   (find-file "~/dotfiles/zsh/.zshrc"))
 
-(defun open-zsh-other-window ()
+(defun rp/open-zsh-other-window ()
   " Opens the file ~/dotfiles/.zshrc in another window "
   (interactive)
   (find-file-other-window "~/dotfiles/zsh/.zshrc")
   (previous-multiframe-window))
 
 ;; loads the emacs initialization file
-(defun load-emacs ()
+(defun rp/load-emacs ()
   " loads the emacs configuration file "
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
 ;; This turns off line numbers and line highlighting,
 ;; and also gets rid of the fringe
-(defun setup-eshell ()
+(defun rp/setup-eshell ()
   " sets up eshell by
   removing line numbers
   removng fringes
@@ -173,7 +170,7 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; Inserts comment subheadings like the ones in the PACKAGE CONFIG section
 ;; This is probably done horribly, tell me how to improve it
-(defun sub-comment ()
+(defun rp/sub-comment ()
   " Inserts elisp comment sub-headings "
   (interactive)
   (let ((x (read-string "Enter comment: ")))
@@ -183,7 +180,7 @@ Return a list of installed packages or nil for every skipped package."
     (insert ";;----------------------------------------------------------\n")))
 
 ;; inserts comment headings such as "HOOKS" or "CUSTOM FUNCTIONS"
-(defun heading-comment ()
+(defun rp/heading-comment ()
   " Inserts elisp comment headings "
   (interactive)
   (let ((x (read-string "Enter comment: ")))
@@ -194,24 +191,24 @@ Return a list of installed packages or nil for every skipped package."
   (insert ";;\n")
   (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n"))
 
-(defun find-other-file-in-other-window ()
+(defun rp/find-other-file-in-other-window ()
   " opens corresponding .c, .cpp, .h, .hpp etc file in other window "
   (interactive)
   (ff-find-other-file t nil)
   (previous-multiframe-window))
 
-(defun scroll-other-window-two ()
+(defun rp/scroll-other-window-two ()
   " scrolls the other window by 2 lines "
   (interactive)
   (scroll-other-window 2))
 
-(defun scroll-other-window-down-two ()
+(defun rp/scroll-other-window-down-two ()
   " scrolls the other window down by 2 lines "
   (interactive)
   (scroll-other-window-down 2))
 
 ;; setup emacs for prog buffers
-(defun setup-prog-buffers ()
+(defun rp/setup-prog-buffers ()
   " enables line highlighting and line numbers for programming buffers "
   (if (display-graphic-p)
       (progn
@@ -219,7 +216,7 @@ Return a list of installed packages or nil for every skipped package."
         (nlinum-relative-mode 1)))
   (electric-pair-local-mode))
 
-(defun setup-c-buffers ()
+(defun rp/setup-c-buffers ()
   " enables c local key binds "
   (local-set-key (kbd "C-c c a") 'ff-find-other-file)
   (local-set-key (kbd "C-c c A") 'find-other-file-in-other-window))
@@ -227,12 +224,12 @@ Return a list of installed packages or nil for every skipped package."
 ;; launches a live markdown preview of the current file
 ;; This sort of works? I would like for it to be ran outside of emacs but I am
 ;; not sure how to do that
-(defun launch-vmd ()
+(defun rp/launch-vmd ()
   " launches a live markdown preview of the currnent file using vmd "
   (interactive)
   (shell-command (concat "vmd " (buffer-file-name) " &")))
 
-(defun window-left-to-right (prefix)
+(defun rp/window-left-to-right (prefix)
   " moves window from the left of the screen to the right of the screen "
   (interactive "p")
   (other-window 1)
@@ -240,7 +237,7 @@ Return a list of installed packages or nil for every skipped package."
   (split-window-right)
   (switch-to-buffer (other-buffer)))
 
-(defun window-right-to-left (prefix)
+(defun rp/window-right-to-left (prefix)
   " moves window from the right of the screen to the left of the screen "
   (interactive "p")
   (delete-window)
@@ -255,12 +252,12 @@ Return a list of installed packages or nil for every skipped package."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; makes the eshell experience more pleasant
-(add-hook 'eshell-mode-hook  'setup-eshell)
+(add-hook 'eshell-mode-hook  'rp/setup-eshell)
 
 ;; all programming buffers have line highlighting
-(add-hook 'prog-mode-hook 'setup-prog-buffers)
+(add-hook 'prog-mode-hook 'rp/setup-prog-buffers)
 
-(add-hook 'c-mode-common-hook 'setup-c-buffers)
+(add-hook 'c-mode-common-hook 'rp/setup-c-buffers)
 
 ;; turns off yas-minor-mode for term-mode buffers so tab completion works
 (add-hook 'term-mode-hook (lambda()
@@ -276,11 +273,11 @@ Return a list of installed packages or nil for every skipped package."
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; C-c o(pen)  use shift to open that file in another window
-(global-set-key (kbd "C-c o d") 'open-dotfile)
-(global-set-key "\C-co\S-d" 'open-dotfile-other-window)
+(global-set-key (kbd "C-c o d") 'rp/open-dotfile)
+(global-set-key "\C-co\S-d" 'rp/open-dotfile-other-window)
 
-(global-set-key (kbd "C-c o z") 'open-zsh)
-(global-set-key "\C-co\S-z" 'open-zsh-other-window)
+(global-set-key (kbd "C-c o z") 'rp/open-zsh)
+(global-set-key "\C-co\S-z" 'rp/open-zsh-other-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -369,8 +366,8 @@ Return a list of installed packages or nil for every skipped package."
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 
-(define-key evil-normal-state-map "\S-k" 'scroll-other-window-down-two)
-(define-key evil-normal-state-map "\S-j" 'scroll-other-window-two)
+(define-key evil-normal-state-map "\S-k" 'rp/scroll-other-window-down-two)
+(define-key evil-normal-state-map "\S-j" 'rp/scroll-other-window-two)
 
 
 ;; I never use vim arrow keys so these get in the way of useful
