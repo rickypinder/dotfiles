@@ -74,7 +74,7 @@ Return a list of installed packages or nil for every skipped package."
  'quickrun
  'magit
  'rbenv
- 'hlinum
+ 'nlinum-relative
  'key-chord
  'which-key
  'github-browse-file
@@ -96,6 +96,7 @@ Return a list of installed packages or nil for every skipped package."
  'rainbow-mode
  'diminish
  'winum
+ 'gruvbox-theme
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -106,9 +107,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-(load-theme 'xresources)
-(add-to-list 'default-frame-alist '(foreground-color . "#ED9F86"))
-(add-to-list 'default-frame-alist '(background-color . "#020104"))
+(load-theme 'gruvbox-light-hard)
 
 (show-paren-mode)           ;; highlights matching parens
 
@@ -125,12 +124,6 @@ Return a list of installed packages or nil for every skipped package."
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
-
-(unless (display-graphic-p)
-  (progn
-    (set-face-background 'mode-line "#222222")
-    (set-face-background 'mode-line-inactive "#112211")
-    (set-face-foreground 'mode-line-inactive "#222222")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -154,12 +147,12 @@ Return a list of installed packages or nil for every skipped package."
 (defun open-zsh ()
   " Opens the file ~/dotfiles/.zshrc "
   (interactive)
-  (find-file "~/dotfiles/.zshrc"))
+  (find-file "~/dotfiles/zsh/.zshrc"))
 
 (defun open-zsh-other-window ()
   " Opens the file ~/dotfiles/.zshrc in another window "
   (interactive)
-  (find-file-other-window "~/dotfiles/.zshrc")
+  (find-file-other-window "~/dotfiles/zsh/.zshrc")
   (previous-multiframe-window))
 
 ;; loads the emacs initialization file
@@ -175,9 +168,8 @@ Return a list of installed packages or nil for every skipped package."
   removing line numbers
   removng fringes
   turning off line highlghting "
-  (linum-mode -1)
-  (set-window-fringes nil 0 0 )
-  (hl-line-mode -1))
+  (nlinum-mode -1)
+  (set-window-fringes nil 0 0 ))
 
 ;; Inserts comment subheadings like the ones in the PACKAGE CONFIG section
 ;; This is probably done horribly, tell me how to improve it
@@ -223,8 +215,8 @@ Return a list of installed packages or nil for every skipped package."
   " enables line highlighting and line numbers for programming buffers "
   (if (display-graphic-p)
       (progn
-        (hl-line-mode 1)
-        (linum-mode 1)))
+        (nlinum-mode 1)
+        (nlinum-relative-mode 1)))
   (electric-pair-local-mode))
 
 (defun setup-c-buffers ()
@@ -364,24 +356,14 @@ Return a list of installed packages or nil for every skipped package."
 (require 'evil)
 (evil-mode t)
 
-;; places a box at the start of the modeline containing text of the current evil state
-;; and a background color (from spacegray theme) to match
 (setq evil-mode-line-format '(before . mode-line-front-space))
-;; (if (display-graphic-p)
-;;     (setq evil-normal-state-tag   (propertize " N " 'face '((:background "#8fa1b3")(:foreground "#343d46")))
-;;           evil-emacs-state-tag    (propertize " E " 'face '((:background "#b48ead")(:foreground "#343d46")))
-;;           evil-insert-state-tag   (propertize " I " 'face '((:background "#a3b38c")(:foreground "#343d46")))
-;;           evil-motion-state-tag   (propertize " M " 'face '((:background "#96b5b4")(:foreground "#343d46")))
-;;           evil-visual-state-tag   (propertize " V " 'face '((:background "#d08770")(:foreground "#343d46")))
-;;           evil-replace-state-tag  (propertize " R " 'face '((:background "#bf616a")(:foreground "#343d46")))
-;;           evil-operator-state-tag (propertize " N " 'face '((:background "#7fb1a3")(:foreground "#343d46"))))
-;;   (setq evil-normal-state-tag   (propertize " NORMAL  " 'face '((:foreground "#8fa1b3")))
-;;         evil-emacs-state-tag    (propertize " EMACS   " 'face '((:foreground "#b48ead")))
-;;         evil-insert-state-tag   (propertize " INSERT  " 'face '((:foreground "#a3b38c")))
-;;         evil-motion-state-tag   (propertize " MOTION  " 'face '((:foreground "#96b5b4")))
-;;         evil-visual-state-tag   (propertize " VISUAL  " 'face '((:foreground "#d08770")))
-;;         evil-replace-state-tag  (propertize " REPLACE " 'face '((:foreground "#bf616a")))
-;;         evil-operator-state-tag (propertize " NORMAL  " 'face '((:foreground "#7fb1a3")))))
+    (setq evil-normal-state-tag   (propertize " N ")
+          evil-emacs-state-tag    (propertize " E ")
+          evil-insert-state-tag   (propertize " I ")
+          evil-motion-state-tag   (propertize " M ")
+          evil-visual-state-tag   (propertize " V ")
+          evil-replace-state-tag  (propertize " R ")
+          evil-operator-state-tag (propertize " N "))
 
 ;; enables an evil port of tpope's surround.vim plugin
 (require 'evil-surround)
@@ -474,12 +456,13 @@ Return a list of installed packages or nil for every skipped package."
 (setq rbenv-modeline-function 'rbenv--modeline-plain)
 
 ;;----------------------------------------------------------
-;;          HLINUM
+;;          Line numbers
 ;;----------------------------------------------------------
 
-;; extends linum-mode to highlight current line number
-(require 'hlinum)
-(hlinum-activate)
+(require 'nlinum-relative)
+(setq nlinum-relative-redisplay-delay 0)
+(setq nlinum-relative-current-symbol "")
+(setq nlinum-relative-offset 0)
 
 ;;----------------------------------------------------------
 ;;          KEY-CHORD
@@ -575,25 +558,17 @@ Return a list of installed packages or nil for every skipped package."
 
 (require 'dashboard)
 (dashboard-setup-startup-hook)
-(setq dashboard-banner-logo-title "https://github.com/rpinder/dotfiles")
-(setq dashboard-startup-banner "~/.emacs.d/banner.png")
+(setq dashboard-banner-logo-title "RPinder Emacs Configuration")
+(setq dashboard-startup-banner "~/pictures/banner.png")
+(setq dashboard-items '((recents . 5)
+                        (bookmarks . 5)
+                        (agenda . 5)))
 
 ;;----------------------------------------------------------
 ;;          PYENV MODE
 ;;----------------------------------------------------------
 
 (pyenv-mode)
-
-;;----------------------------------------------------------
-;;          powerline
-;;----------------------------------------------------------
-
-(require 'powerline)
-(require 'airline-themes)
-(if (display-graphic-p)
-    (progn
-      (load-theme 'airline-distinguished))
-  (load-theme 'airline-base16-shell-dark))
 
 ;;----------------------------------------------------------
 ;;          DIMINISH
