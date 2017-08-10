@@ -92,8 +92,9 @@ Return a list of installed packages or nil for every skipped package."
  'exec-path-from-shell
  'rainbow-mode
  'diminish
- 'winum
  'gruvbox-theme
+ 'ace-window
+ 'avy
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -130,24 +131,24 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; opens emacs configuration file
 (defun rp/open-dotfile ()
-  " Opens the file ~/dotfiles/emacs/init.el "
+  " Opens the file ~/dotfiles/emacs/.emacs.d/init.el "
   (interactive)
-  (find-file "~/dotfiles/emacs/init.el"))
+  (find-file "~/dotfiles/emacs/.emacs.d/init.el"))
 
 (defun rp/open-dotfile-other-window ()
-  " Opens thne file ~/dotfiles/emacs/init.el in another window "
+  " Opens the file ~/dotfiles/emacs/.emacs.d/init.el in another window "
   (interactive)
   (find-file-other-window "~/dotfiles/emacs/init.el")
   (previous-multiframe-window))
 
-;; opens zsh configuration file
+;; opens zsh configuration fil
 (defun rp/open-zsh ()
-  " Opens the file ~/dotfiles/.zshrc "
+  " Opens the file ~/dotfiles/zshrc/.zshrc"
   (interactive)
   (find-file "~/dotfiles/zsh/.zshrc"))
 
 (defun rp/open-zsh-other-window ()
-  " Opens the file ~/dotfiles/.zshrc in another window "
+  " Opens the file ~/dotfiles/zsh/zshrc in another window "
   (interactive)
   (find-file-other-window "~/dotfiles/zsh/.zshrc")
   (previous-multiframe-window))
@@ -254,7 +255,6 @@ Return a list of installed packages or nil for every skipped package."
 ;; makes the eshell experience more pleasant
 (add-hook 'eshell-mode-hook  'rp/setup-eshell)
 
-;; all programming buffers have line highlighting
 (add-hook 'prog-mode-hook 'rp/setup-prog-buffers)
 
 (add-hook 'c-mode-common-hook 'rp/setup-c-buffers)
@@ -350,6 +350,7 @@ Return a list of installed packages or nil for every skipped package."
 ;;----------------------------------------------------------
 
 ;; enables evil mode
+(setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode t)
 
@@ -472,32 +473,21 @@ Return a list of installed packages or nil for every skipped package."
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 
 ;;----------------------------------------------------------
-;;          WINUM
+;;          ACE-WINDOW
 ;;----------------------------------------------------------
 
-(require 'winum)
+(global-set-key (kbd "M-p") 'ace-window)
+(setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 
-;; puts the mode-line indicator in the space after buffer indicator but before
-;; current line number percentage of total file
-(setq winum-mode-line-position 8)
+;;----------------------------------------------------------
+;;          AVY
+;;----------------------------------------------------------
 
-;; winum-keymap-prefix is currently broken so I'm doing this instead
-(global-set-key (kbd "C-c 0") 'winum-select-window-0-or-10)
-(global-set-key (kbd "C-c 1") 'winum-select-window-1)
-(global-set-key (kbd "C-c 2") 'winum-select-window-2)
-(global-set-key (kbd "C-c 3") 'winum-select-window-3)
-(global-set-key (kbd "C-c 4") 'winum-select-window-4)
-(global-set-key (kbd "C-c 5") 'winum-select-window-5)
-(global-set-key (kbd "C-c 6") 'winum-select-window-6)
-(global-set-key (kbd "C-c 7") 'winum-select-window-7)
-(global-set-key (kbd "C-c 8") 'winum-select-window-8)
-(global-set-key (kbd "C-c 9") 'winum-select-window-9)
+(global-set-key (kbd "C-;") 'avy-goto-word-1)
 
-(winum-mode)
-
-;; ;;----------------------------------------------------------
-;; ;;          WHICH-KEY
-;; ;;----------------------------------------------------------
+;;----------------------------------------------------------
+;;          WHICH-KEY
+;;----------------------------------------------------------
 
 ;; displays keybindings following your currently entered incomplete command
 (require 'which-key)
