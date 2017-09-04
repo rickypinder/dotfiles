@@ -27,13 +27,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/a.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'mtth/scratch.vim'
-Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
 Plug 'shime/vim-livedown'
 Plug 'valloric/youcompleteme'
 Plug 'junegunn/goyo.vim'
-Plug 'thinca/vim-quickrun'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -72,7 +71,7 @@ end
 " Colors
 set t_Co=256                                     " terminal colours look like gvim
 syntax enable                                    " enable symtax processing
-colorscheme wal
+colorscheme gruvbox
 
 " Spaces & Tabs
 set tabstop=4                                    " number of visual spaces per TAB
@@ -163,8 +162,8 @@ if has('mksession')
 endif
 
 " Airline
-let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'gruvbox'
 
 " Startify
 let g:startify_list_order = [

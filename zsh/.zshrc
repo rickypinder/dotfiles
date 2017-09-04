@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/pinder/.oh-my-zsh
+  export ZSH=/Users/ricky/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 #    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 #fi
 
-DEFAULT_USER='pinder'
+DEFAULT_USER='ricky'
 
 #export RBENV_ROOT="${HOME}/.rbenv"
 
@@ -116,9 +116,4 @@ DEFAULT_USER='pinder'
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-export LANG=en_GB.UTF-8
-
