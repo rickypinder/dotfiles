@@ -216,4 +216,3 @@ inoremap <Down>  <Nop>
 inoremap <Left>  <Nop>
 inoremap <Right> <Nop>
 
-
