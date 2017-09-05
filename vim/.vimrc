@@ -186,7 +186,9 @@ let g:startify_bookmarks = [ '~/dotfiles/vim/.vimrc', '~/dotfiles/zsh/.zshrc', '
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 
+" YCM
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_extra_conf_vim_data = ['&filetype']
 
 " jk or kj to escape insert mode
 
