@@ -16,22 +16,14 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-startify'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/a.vim'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'mtth/scratch.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
-Plug 'shime/vim-livedown'
 Plug 'valloric/youcompleteme'
-Plug 'junegunn/goyo.vim'
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -161,27 +153,6 @@ if has('mksession')
     set viewoptions=cursor,folds                 " save/restore just these (with ':{mk, loadview#)
 endif
 
-" Airline
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'gruvbox'
-
-" Startify
-let g:startify_list_order = [
-            \['   Bookmarks'],
-            \'bookmarks',
-            \['   Recent files'],
-            \'files',
-            \['   Recent files in current dir'],
-            \'dir',
-            \['   Sessions'],
-            \'sessions',
-            \['   Commands'],
-            \'commands'
-            \]
-let g:startify_files_number = 5
-let g:startify_update_oldfiles = 1
-let g:startify_bookmarks = [ '~/dotfiles/vim/.vimrc', '~/dotfiles/zsh/.zshrc', '~/code/']
-
 " FZF
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
@@ -191,10 +162,6 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_vim_data = ['&filetype']
 
 " jk or kj to escape insert mode
-
-" Fugitive
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gp :!clear<CR> :Gpush<CR>
 
 " leader
 map <space> <leader>
