@@ -69,7 +69,7 @@ if has('autocmd')
 end
 
 " Colors
-set t_Co=256                                     " terminal colours look like gvim
+set termguicolors
 syntax enable                                    " enable symtax processing
 colorscheme gruvbox
 
@@ -139,9 +139,9 @@ if has('viminfo')
         set viminfo=                             " don't create root-owned files
     else
         if isdirectory('~/local/.vim/tmp')
-            set viminfo+=n~/local/.vim/tmp/viminfo
+            set viminfo=~/local/.vim/tmp/viminfo
         else
-            set viminfo+=n~/.vim/tmp/viminfo     " override ~/.viminfo default
+            "set viminfo=~/.vim/tmp/viminfo     " override ~/.viminfo default
         endif
 
         if !empty(glob('~/.vim/tmp/viminfo'))
