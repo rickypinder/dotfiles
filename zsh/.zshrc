@@ -106,14 +106,13 @@ source $ZSH/oh-my-zsh.sh
 
 DEFAULT_USER='ricky'
 
-#export RBENV_ROOT="${HOME}/.rbenv"
+eval "$(rbenv init -)"
 
-#if [ -d "${RBENV_ROOT}" ]; then
-#    export PATH="${RBENV_ROOT}/bin:${PATH}"
-#    eval "$(rbenv init -)"
-#fi
 #export PATH="/home/ricky/.pyenv/bin:$PATH"
 #eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH=/usr/local/Cellar/emacs/HEAD-79150f6/bin:/usr/local/bin:$PATH
+

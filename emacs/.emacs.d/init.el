@@ -103,7 +103,7 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
-(load-theme 'gruvbox-light-hard)
+(load-theme 'gruvbox)
 
 (show-paren-mode)           ;; highlights matching parens
 
@@ -209,10 +209,10 @@ Return a list of installed packages or nil for every skipped package."
 ;; setup emacs for prog buffers
 (defun rp/setup-prog-buffers ()
   " enables line highlighting and line numbers for programming buffers "
-  (if (display-graphic-p)
+  ;(if (display-graphic-p)
       (progn
         (nlinum-mode 1)
-        (nlinum-relative-mode 1)))
+        (nlinum-relative-mode 1));)
   (electric-pair-local-mode))
 
 (defun rp/setup-c-buffers ()
@@ -573,3 +573,6 @@ Return a list of installed packages or nil for every skipped package."
 ;;-----------------------------------------------------------------------------
 
 (fringe-mode 0)
+
+(server-start)
+(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))

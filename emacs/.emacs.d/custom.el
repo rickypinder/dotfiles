@@ -4,9 +4,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Meslo LG M DZ for Powerline" :foundry "PfEd" :slant normal :weight normal :height 140 :width normal))))
- '(linum ((t (:background "1d2021" :foreground "#a89984"))))
+ '(linum ((t (:foreground "#665c54"))))
  '(linum-highlight-face ((t (:background "#343d46" :foreground "yellow"))))
- '(nlinum-relative-current-face ((t (:inherit linum :background "#ffffd7" :foreground "#9d0006" :weight bold)))))
+ '(nlinum-relative-current-face ((t (:inherit linum :foreground "#d79921" :weight bold)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,7 +31,7 @@
  '(nlinum-relative-redisplay-delay 0)
  '(package-selected-packages
    (quote
-    (ace-window linum-relatie gruvbox-theme pdf-tools diminish rainbow-mode exec-path-from-shell company-jedi evil-surround pyenv-mode dashboard web-mode darktooth shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord smex rbenv quickrun org-bullets magit ido-vertical-mode ido-ubiquitous flycheck base16-theme)))
+    (ranger ace-window linum-relatie gruvbox-theme pdf-tools diminish rainbow-mode exec-path-from-shell company-jedi evil-surround pyenv-mode dashboard web-mode darktooth shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord smex rbenv quickrun org-bullets magit ido-vertical-mode ido-ubiquitous flycheck base16-theme)))
  '(powerline-color1 "#1E1E1E")
  '(powerline-color2 "#111111")
  '(shell-pop-full-span t)

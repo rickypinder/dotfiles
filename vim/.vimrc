@@ -38,11 +38,36 @@ if has("gui_running")
     set guioptions-=R
     set guioptions-=L
     set guioptions-=e
-    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ 11
+    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ 13
 endif
 
 set encoding=utf8
+
+" --------
+
+" STATUSLINE CONIG
+
+function! GitBranch()                           " Fetch the Git branch of cwd
+    let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null
+                \ | tr -d '\n'")
+    return strlen(l:branchname) > 0 ? l:branchname : ''
+endfunction
+
 set laststatus=2                                 " Always show statusline
+set statusline=
+set statusline=\   
+set statusline+=%F
+set statusline+=\  
+set statusline+=%([%M%R]%)
+set statusline+=%=
+set statusline+=%{GitBranch()}
+set statusline+=\  
+set statusline+=col:%-3c
+set statusline+=\  
+set statusline+=line:%4l/%-4L 
+set statusline+=\  
+
+"------------
 
 if has('folding')
     if has('window')
@@ -52,7 +77,6 @@ endif
 
 if has('autocmd')
     autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
-    autocmd FileType c nnoremap <buffer> <localleader>cr :w <CR> :!clear && gcc % -o %:r.out && %:r.out <CR>
     autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
     autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -61,7 +85,9 @@ if has('autocmd')
 end
 
 " Colors
-set termguicolors
+if has("termguicolors")
+    set termguicolors
+endif
 syntax enable                                    " enable symtax processing
 colorscheme gruvbox
 
@@ -160,6 +186,7 @@ nnoremap <leader>b :Buffers<cr>
 " YCM
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_vim_data = ['&filetype']
+nnoremap <leader>g :YcmCompleter GoTo<CR>
 
 " jk or kj to escape insert mode
 
