@@ -544,7 +544,6 @@ Return a list of installed packages or nil for every skipped package."
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 (setq dashboard-banner-logo-title "RPinder Emacs Configuration")
-(setq dashboard-startup-banner "~/pictures/banner.png")
 (setq dashboard-items '((recents . 5)
                         (bookmarks . 5)
                         (agenda . 5)))
@@ -574,5 +573,21 @@ Return a list of installed packages or nil for every skipped package."
 
 (fringe-mode 0)
 
-(server-start)
-(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; check OS type
+(cond
+ ((string-equal system-type "windows-nt") ; Microsoft Windows
+  (progn
+    (message "Microsoft Windows")))
+ ((string-equal system-type "darwin") ; Mac OS X
+  (progn
+    (setq mac-option-key-is-meta nil)
+    (setq mac-command-key-is-meta t)
+    (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier nil)
+    (message "MacOS")))
+ ((string-equal system-type "gnu/linux") ; linux
+  (progn
+    (message "Linux"))))
