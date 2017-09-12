@@ -104,7 +104,6 @@ set shiftwidth=4
 set number                                       " show line numbers
 set relativenumber                               " Relative line numbers
 set showcmd                                      " show command in bottom bar
-"set cursorline                                   " highlight current line
 filetype indent on                               " load filetype-specific ident files
 set wildmenu                                     " visual autocomplete for command menu
 set lazyredraw                                   " redraw only when we need to

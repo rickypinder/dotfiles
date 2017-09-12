@@ -1,4 +1,4 @@
-alias gr='cd $(git rev-parse --show-top-level)'
+alias gr='cd $(git rev-parse --show-top-level)' # this doesn't actually work
 
 eval "$(rbenv init -)"
 
