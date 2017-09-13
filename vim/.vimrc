@@ -39,8 +39,10 @@ if has("gui_running")
     set guioptions-=R
     set guioptions-=L
     set guioptions-=e
-    set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ 13
+    set guifont=Menlo:h14
 endif
+
+
 
 set encoding=utf8
 
