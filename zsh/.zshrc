@@ -1,4 +1,12 @@
-alias gr='cd $(git rev-parse --show-top-level)' # this doesn't actually work
+# this doesn't actually work
+alias gr='cd $(git rev-parse --show-top-level)'
+
+alias et='emacsclient -t'
+alias emacskill='emacsclient -e "(kill-emacs)"'
+
+function ec() {
+    emacsclient -c "$1" &
+}
 
 eval "$(rbenv init -)"
 
@@ -7,6 +15,7 @@ eval "$(rbenv init -)"
 export PATH=/usr/local/bin:$PATH
 export SOBOLE_THEME_MODE=dark
 export SOBOLE_DEFAILT_USER=ricky
+export ALTERNATE_EDITOR=""
 
 source /usr/local/share/antigen/antigen.zsh
 autoload -U colors && colors
