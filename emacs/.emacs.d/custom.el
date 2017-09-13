@@ -31,7 +31,7 @@
  '(nlinum-relative-redisplay-delay 0)
  '(package-selected-packages
    (quote
-    (ranger ace-window linum-relatie gruvbox-theme pdf-tools diminish rainbow-mode exec-path-from-shell company-jedi evil-surround pyenv-mode dashboard web-mode darktooth shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord smex rbenv quickrun org-bullets magit ido-vertical-mode ido-ubiquitous flycheck base16-theme)))
+    (simple-mpc ranger ace-window linum-relatie gruvbox-theme pdf-tools diminish rainbow-mode exec-path-from-shell company-jedi evil-surround pyenv-mode dashboard web-mode darktooth shell-pop ample-theme fiplr flycheck-irony company-c-headers company-mode smooth-scrolling flymake-ccp-lint yasnippet github-browse-file which-key winum key-chord smex rbenv quickrun org-bullets magit ido-vertical-mode ido-ubiquitous flycheck base16-theme)))
  '(powerline-color1 "#1E1E1E")
  '(powerline-color2 "#111111")
  '(shell-pop-full-span t)

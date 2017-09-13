@@ -18,9 +18,8 @@
 ;; remove useless (to me) clutter
 ;;   I have this here so I don't see them when emacs is loading
 (menu-bar-mode -1)
-(when (display-graphic-p) ;; these elements don't exist in the terminal emacs
-  (tool-bar-mode -1)      ;; so turning them off isn't needed
-  (scroll-bar-mode -1))
+(tool-bar-mode -1)      ;; so turning them off isn't needed
+(scroll-bar-mode -1)
 
 (setq custom-file "~/.emacs.d/custom.el") ;; I don't want the custom stuff 
 (load custom-file)                        ;; inside this file
@@ -93,6 +92,7 @@ Return a list of installed packages or nil for every skipped package."
  'gruvbox-theme
  'ace-window
  'avy
+ 'simple-mpc
  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -209,10 +209,8 @@ Return a list of installed packages or nil for every skipped package."
 ;; setup emacs for prog buffers
 (defun rp/setup-prog-buffers ()
   " enables line highlighting and line numbers for programming buffers "
-  ;(if (display-graphic-p)
-      (progn
-        (nlinum-mode 1)
-        (nlinum-relative-mode 1));)
+  (nlinum-mode 1)
+  (nlinum-relative-mode 1)
   (electric-pair-local-mode))
 
 (defun rp/setup-c-buffers ()
@@ -256,6 +254,15 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'prog-mode-hook 'rp/setup-prog-buffers)
 
 (add-hook 'c-mode-common-hook 'rp/setup-c-buffers)
+
+(add-hook 'simple-mpc-mode-hook (lambda()
+                                  (evil-emacs-state)))
+
+(add-hook 'simple-mpc-query-mode-hook (lambda()
+                                  (evil-emacs-state)))
+
+(add-hook 'simple-mpc-current-playlist-mode-hook (lambda()
+                                  (evil-emacs-state)))
 
 ;; turns off yas-minor-mode for term-mode buffers so tab completion works
 (add-hook 'term-mode-hook (lambda()
