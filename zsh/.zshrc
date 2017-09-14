@@ -5,7 +5,11 @@ alias et='emacsclient -t'
 alias emacskill='emacsclient -e "(kill-emacs)"'
 
 function ec() {
-    emacsclient -c "$1" &
+    if [ -z $1 ]; then
+        emacsclient -c &
+    else
+        emacsclient -c "$1" &
+    fi
 }
 
 eval "$(rbenv init -)"
