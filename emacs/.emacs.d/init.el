@@ -68,8 +68,8 @@ Return a list of installed packages or nil for every skipped package."
  'quickrun
  'magit
  'rbenv
- 'nlinum-relative
- 'key-chord
+ ;; 'nlinum-relative
+ ;; 'key-chord
  'which-key
  'github-browse-file
  'yasnippet
@@ -81,10 +81,10 @@ Return a list of installed packages or nil for every skipped package."
  'flycheck-irony
  'fiplr
  'shell-pop
- 'dashboard
+ ;; 'dashboard
  'pyenv-mode
- 'evil
- 'evil-surround
+ ;; 'evil
+ ;; 'evil-surround
  'company-jedi
  'exec-path-from-shell
  'rainbow-mode
@@ -209,8 +209,8 @@ Return a list of installed packages or nil for every skipped package."
 ;; setup emacs for prog buffers
 (defun rp/setup-prog-buffers ()
   " enables line highlighting and line numbers for programming buffers "
-  (nlinum-mode 1)
-  (nlinum-relative-mode 1)
+  ;; (nlinum-mode 1)
+  ;; (nlinum-relative-mode 1)
   (electric-pair-local-mode))
 
 (defun rp/setup-c-buffers ()
@@ -255,14 +255,14 @@ Return a list of installed packages or nil for every skipped package."
 
 (add-hook 'c-mode-common-hook 'rp/setup-c-buffers)
 
-(add-hook 'simple-mpc-mode-hook (lambda()
-                                  (evil-emacs-state)))
+;; (add-hook 'simple-mpc-mode-hook (lambda()
+;;                                   (evil-emacs-state)))
 
-(add-hook 'simple-mpc-query-mode-hook (lambda()
-                                  (evil-emacs-state)))
+;; (add-hook 'simple-mpc-query-mode-hook (lambda()
+;;                                   (evil-emacs-state)))
 
-(add-hook 'simple-mpc-current-playlist-mode-hook (lambda()
-                                  (evil-emacs-state)))
+;; (add-hook 'simple-mpc-current-playlist-mode-hook (lambda()
+;;                                   (evil-emacs-state)))
 
 ;; turns off yas-minor-mode for term-mode buffers so tab completion works
 (add-hook 'term-mode-hook (lambda()
@@ -301,6 +301,8 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; always follow symlinks
 (setq vc-follow-symlinks t)
+
+(setq initial-scratch-message (concat ";; " emacs-version)) 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -354,34 +356,34 @@ Return a list of installed packages or nil for every skipped package."
 ;;          EVIL
 ;;----------------------------------------------------------
 
-;; enables evil mode
-(setq evil-want-C-u-scroll t)
-(require 'evil)
-(evil-mode t)
+;; ;; enables evil mode
+;; (setq evil-want-C-u-scroll t)
+;; (require 'evil)
+;; (evil-mode t)
 
-(setq evil-mode-line-format '(before . mode-line-front-space))
-    (setq evil-normal-state-tag   (propertize " N ")
-          evil-emacs-state-tag    (propertize " E ")
-          evil-insert-state-tag   (propertize " I ")
-          evil-motion-state-tag   (propertize " M ")
-          evil-visual-state-tag   (propertize " V ")
-          evil-replace-state-tag  (propertize " R ")
-          evil-operator-state-tag (propertize " N "))
+;; (setq evil-mode-line-format '(before . mode-line-front-space))
+;;     (setq evil-normal-state-tag   (propertize " N ")
+;;           evil-emacs-state-tag    (propertize " E ")
+;;           evil-insert-state-tag   (propertize " I ")
+;;           evil-motion-state-tag   (propertize " M ")
+;;           evil-visual-state-tag   (propertize " V ")
+;;           evil-replace-state-tag  (propertize " R ")
+;;           evil-operator-state-tag (propertize " N "))
 
-;; enables an evil port of tpope's surround.vim plugin
-(require 'evil-surround)
-(global-evil-surround-mode 1)
+;; ;; enables an evil port of tpope's surround.vim plugin
+;; (require 'evil-surround)
+;; (global-evil-surround-mode 1)
 
-(define-key evil-normal-state-map "\S-k" 'rp/scroll-other-window-down-two)
-(define-key evil-normal-state-map "\S-j" 'rp/scroll-other-window-two)
+;; (define-key evil-normal-state-map "\S-k" 'rp/scroll-other-window-down-two)
+;; (define-key evil-normal-state-map "\S-j" 'rp/scroll-other-window-two)
 
 
-;; I never use vim arrow keys so these get in the way of useful
-;; things such as snake and tetris
-(define-key evil-motion-state-map (kbd "<left>")  nil)
-(define-key evil-motion-state-map (kbd "<down>")  nil)
-(define-key evil-motion-state-map (kbd "<up>")    nil)
-(define-key evil-motion-state-map (kbd "<right>") nil)
+;; ;; I never use vim arrow keys so these get in the way of useful
+;; ;; things such as snake and tetris
+;; (define-key evil-motion-state-map (kbd "<left>")  nil)
+;; (define-key evil-motion-state-map (kbd "<down>")  nil)
+;; (define-key evil-motion-state-map (kbd "<up>")    nil)
+;; (define-key evil-motion-state-map (kbd "<right>") nil)
 
 ;;----------------------------------------------------------
 ;;          INTERACTIVELY DO THINGS (ido)
@@ -462,20 +464,20 @@ Return a list of installed packages or nil for every skipped package."
 ;;          Line numbers
 ;;----------------------------------------------------------
 
-(require 'nlinum-relative)
-(setq nlinum-relative-redisplay-delay 0)
-(setq nlinum-relative-current-symbol "")
-(setq nlinum-relative-offset 0)
+;; (require 'nlinum-relative)
+;; (setq nlinum-relative-redisplay-delay 0)
+;; (setq nlinum-relative-current-symbol "")
+;; (setq nlinum-relative-offset 0)
 
 ;;----------------------------------------------------------
 ;;          KEY-CHORD
 ;;----------------------------------------------------------
 
-(require 'key-chord)
-(key-chord-mode 1)
+;; (require 'key-chord)
+;; (key-chord-mode 1)
 
-;; mashing jk when in evil insert mode will put me into normal mode
-(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+;; ;; mashing jk when in evil insert mode will put me into normal mode
+;; (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 
 ;;----------------------------------------------------------
 ;;          ACE-WINDOW
@@ -548,12 +550,12 @@ Return a list of installed packages or nil for every skipped package."
 ;;          DASHBOARD
 ;;----------------------------------------------------------
 
-(require 'dashboard)
-(dashboard-setup-startup-hook)
-(setq dashboard-banner-logo-title "RPinder Emacs Configuration")
-(setq dashboard-items '((recents . 5)
-                        (bookmarks . 5)
-                        (agenda . 5)))
+;; (require 'dashboard)
+;; (dashboard-setup-startup-hook)
+;; (setq dashboard-banner-logo-title "RPinder Emacs Configuration")
+;; (setq dashboard-items '((recents . 5)
+;;                         (bookmarks . 5)
+;;                         (agenda . 5)))
 
 ;;----------------------------------------------------------
 ;;          PYENV MODE
@@ -578,8 +580,6 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;-----------------------------------------------------------------------------
 
-(fringe-mode 0)
-
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
@@ -587,14 +587,14 @@ Return a list of installed packages or nil for every skipped package."
 (cond
  ((string-equal system-type "windows-nt") ; Microsoft Windows
   (progn
-    (message "Microsoft Windows")))
+    (message "Sorry")))
  ((string-equal system-type "darwin") ; Mac OS X
   (progn
     (setq mac-option-key-is-meta nil)
     (setq mac-command-key-is-meta t)
     (setq mac-command-modifier 'meta)
     (setq mac-option-modifier nil)
-    (message "MacOS")))
+    (message "Using MacOS specific keybinds")))
  ((string-equal system-type "gnu/linux") ; linux
   (progn
     (message "Linux"))))
