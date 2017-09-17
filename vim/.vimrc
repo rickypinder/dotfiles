@@ -26,6 +26,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'valloric/youcompleteme'
 Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs'
+Plug 'rizzatti/dash.vim'
 
 call plug#end()
 
@@ -190,7 +191,8 @@ let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_vim_data = ['&filetype']
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 
-" jk or kj to escape insert mode
+" Dash
+nmap <silent> <leader>d <Plug>DashSearch
 
 " leader
 map <space> <leader>
