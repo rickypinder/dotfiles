@@ -2,8 +2,5 @@
 
 These are my dotfiles. I use GNU stow for symlinks
 
-Vim, i3, Polybar are configured to use Xresources
-
-## screenshots
+## screenshots - old and not up to date
 ![example screenhot](https://u.teknik.io/AGM0O.png)
-
