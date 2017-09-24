@@ -4,7 +4,7 @@
 "  http://github.com/rpinder
 "
 
-" Plugins
+" Plugins {{{
 
 " vim-plug (https://github.com/junegunn/vim-plug) settings
 " Automatically install vim-plug and run PlugInstall if vim-plug not found
@@ -30,6 +30,8 @@ Plug 'rizzatti/dash.vim'
 
 call plug#end()
 
+" }}}
+
 if has("gui_running")
     set guioptions+=c
     set guioptions+=R
@@ -47,9 +49,7 @@ endif
 
 set encoding=utf8
 
-" --------
-
-" STATUSLINE CONIG
+" STATUSLINE CONIG {{{
 
 function! GitBranch()                           " Fetch the Git branch of cwd
     let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null
@@ -71,13 +71,9 @@ set statusline+=\
 set statusline+=line:%4l/%-4L 
 set statusline+=\  
 
-"------------
+" }}}
 
-if has('folding')
-    if has('window')
-        set fillchars=vert:│
-    endif
-endif
+set fillchars=stl:─,stlnc:─,vert:│,fold:─,diff:─
 
 if has('autocmd')
     autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
@@ -120,9 +116,9 @@ set hlsearch                                     " highlist matches
 
 " Folding
 set foldenable                                   " enable folding
-set foldlevelstart=10                            " open most folds by default
+set foldlevelstart=1                            " open most folds by default
 set foldnestmax=10                               " 10 nested fold max
-set foldmethod=indent                            " fold based on indent level
+set foldmethod=marker                            " fold based on indent level
 
 " stuff
 set autoindent                                   " maintains indent of current line
@@ -204,6 +200,8 @@ nnoremap j gj
 nnoremap k gk
 inoremap jk <Esc>
 inoremap kj <Esc>
+xnoremap jk <Esc>
+xnoremap kj <Esc>
 
 noremap <Up>    <Nop>
 noremap <Down>  <Nop>
@@ -214,3 +212,4 @@ inoremap <Down>  <Nop>
 inoremap <Left>  <Nop>
 inoremap <Right> <Nop>
 
+" vim:foldmethod=marker:foldlevel=0
