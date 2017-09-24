@@ -40,6 +40,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
     nnoremap <leader>f :Files<cr>
     nnoremap <leader>b :Buffers<cr>
+    nnoremap <leader>t :Tags<cr>
 Plug 'valloric/youcompleteme'
     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
     let g:ycm_extra_conf_vim_data = ['&filetype']
