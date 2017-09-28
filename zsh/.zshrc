@@ -1,5 +1,6 @@
 # this doesn't actually work
 alias gr='cd $(git rev-parse --show-top-level)'
+alias ctags="`brew --prefix`/bin/ctags"
 
 alias et='emacsclient -t'
 alias emacskill='emacsclient -e "(kill-emacs)"'
@@ -29,9 +30,8 @@ antigen use oh-my-zsh
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
-antigen bundle sobolenv/sobole-zsh-theme
-
-antigen theme sobolevn/sobole-zsh-theme
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
 
 antigen apply
 
