@@ -31,24 +31,28 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'jiangmiao/auto-pairs'
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'vim-scripts/a.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
     nnoremap <leader>f :Files<cr>
     nnoremap <leader>b :Buffers<cr>
     nnoremap <leader>t :Tags<cr>
+
+" C specific
+Plug 'vim-scripts/a.vim'
 Plug 'valloric/youcompleteme'
     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
     let g:ycm_extra_conf_vim_data = ['&filetype']
     nnoremap <leader>g :YcmCompleter GoTo<CR>
-Plug 'morhetz/gruvbox'
-Plug 'jiangmiao/auto-pairs'
+Plug 'chazy/cscope_maps'
+Plug 'ludovicchabant/vim-gutentags'
 
-" MacOS Specific Keybinds
+" MacOS Specific
 if g:os == "Darwin"
     Plug 'rizzatti/dash.vim'
         nmap <silent> <leader>d <Plug>DashSearch
@@ -100,6 +104,8 @@ set statusline+=%F
 set statusline+=\  
 set statusline+=%([%M%R]%)
 set statusline+=%=
+set statusline+=%{gutentags#statusline()}
+set statusline+=\  
 set statusline+=%{GitBranch()}
 set statusline+=\  
 set statusline+=col:%-3c
