@@ -11,6 +11,8 @@
 "             $$ |  https://github.com/rpinder/dotfiles/
 "             \__|
 
+set backspace=indent,eol,start
+
 " Plugins {{{
 
 " I want some plugins only when using a certain OS
@@ -139,7 +141,7 @@ set showcmd                                      " show command in bottom bar
 set wildmenu                                     " visual autocomplete for command menu
 set lazyredraw                                   " redraw only when we need to
 set showmatch                                    " highlight matching [{()}]
-highlight CursorLineNr ctermfg=yellow            " Current line number is yellow
+highlight CursorLineNr ctermfg=yellow guibg=bg           " Current line number is yellow
 set fillchars=stl:─,stlnc:─,vert:│,fold:─,diff:─
 set encoding=utf8
 set autoindent                                   " maintains indent of current line
