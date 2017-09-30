@@ -134,6 +134,8 @@ if has("termguicolors")
 endif
 syntax enable                                    " enable symtax processing
 colorscheme gruvbox
+highlight Statusline guifg=#3c3836
+highlight StatuslineNC guibg=#928374 guifg=#1d2021
 
 set number                                       " show line numbers
 set relativenumber                               " Relative line numbers
