@@ -142,7 +142,7 @@ set wildmenu                                     " visual autocomplete for comma
 set lazyredraw                                   " redraw only when we need to
 set showmatch                                    " highlight matching [{()}]
 highlight CursorLineNr ctermfg=yellow guibg=bg           " Current line number is yellow
-set fillchars=stl:─,stlnc:─,vert:│,fold:─,diff:─
+set fillchars=vert:│,fold:─,diff:─
 set encoding=utf8
 set autoindent                                   " maintains indent of current line
 
@@ -246,3 +246,4 @@ inoremap <Right> <Nop>
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
+
