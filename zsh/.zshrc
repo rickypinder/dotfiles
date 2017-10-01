@@ -26,8 +26,6 @@ source /usr/local/share/antigen/antigen.zsh
 autoload -U colors && colors
 setopt promptsubst
 
-antigen use oh-my-zsh
-
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle mafredri/zsh-async
