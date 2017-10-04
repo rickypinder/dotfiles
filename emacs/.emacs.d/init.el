@@ -30,7 +30,7 @@
 (use-package counsel
   :ensure t
   :bind ("M-x" . counsel-M-x)
-  :bind ("C-x C-f" . counsel-find-file))
+        ("C-x C-f" . counsel-find-file))
 
 (use-package swiper
   :ensure t
