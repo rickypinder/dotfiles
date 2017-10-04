@@ -14,6 +14,7 @@
 (load-theme 'leuven)
 
 (setq create-lockfiles nil)
+(setq vc-follow-symlinks t)
 
 (require 'package)
 (setq package-enable-at-startup nil)
