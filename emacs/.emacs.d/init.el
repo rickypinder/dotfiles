@@ -16,8 +16,19 @@
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
-(unless (package-installled-p 'use-package)
+(unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
 (require 'use-package)
+
+(use-package ivy
+  :ensure t
+  :config
+  (ivy-mode 1))
+
+(use-package counsel
+  :ensure t)
+
+(use-package swiper
+  :ensure t)
