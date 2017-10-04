@@ -40,4 +40,5 @@
   :bind ("C-s" . swiper))
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :bind ("C-c m" . magit-status))
