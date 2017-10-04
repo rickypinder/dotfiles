@@ -25,7 +25,8 @@
 (use-package ivy
   :ensure t
   :config
-  (ivy-mode 1))
+  (ivy-mode 1)
+  (setq ivy-ise-virtual-buffers t))
 
 (use-package counsel
   :ensure t
@@ -35,3 +36,6 @@
 (use-package swiper
   :ensure t
   :bind ("C-s" . swiper))
+
+(use-package magit
+  :ensure t)
