@@ -28,7 +28,10 @@
   (ivy-mode 1))
 
 (use-package counsel
-  :ensure t)
+  :ensure t
+  :bind ("M-x" . counsel-M-x)
+  :bind ("C-x C-f" . counsel-find-file))
 
 (use-package swiper
-  :ensure t)
+  :ensure t
+  :bind ("C-s" . swiper))
