@@ -9,6 +9,8 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
+(winner-mode)
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
