@@ -47,9 +47,9 @@
 (use-package ivy
   :ensure t
   :config
-  (ivy-mode 1)
-  (setq ivy-ise-virtual-buffers t))
-
+  (setq ivy-use-virtual-buffers t)
+  (ivy-mode 1))
+  
 (use-package counsel
   :ensure t
   :bind ("M-x" . counsel-M-x)
@@ -81,5 +81,48 @@
 
 (use-package try
   :ensure t)
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-idle-delay 0)
+  (eval-after-load 'company
+    '(add-to-list
+      'company-backends '(company-irony company-irony-c-headers))))
+
+(use-package irony-mode
+  :ensure t
+  :config
+  (defvar irony-mode-map)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'c++-mode-hook 'irony-mode)
+
+  (defun my-irony-mode-hook ()
+    (define-key irony-mode-map [remap completion-at-point]
+      'irony-completion-at-point-async)
+    (define-key irony-mode-map [remap complete-symbol]
+      'irony-completion-at-point-async))
+
+  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
+(use-package company-irony-c-headers
+  :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :config
+  (add-hook 'c++-mode-hook 'flycheck-mode)
+  (add-hook 'c-mode-hook 'flycheck-mode)
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+
+(use-package flycheck-irony
+  :ensure t
+  :config
+  (eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+
 
 
