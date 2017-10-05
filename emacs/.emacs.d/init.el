@@ -9,6 +9,8 @@
 (scroll-bar-mode -1)
 (menu-bar-mode -1)
 
+(setq column-number-mode t)
+
 (winner-mode)
 
 (setq vc-follow-symlinks t)
