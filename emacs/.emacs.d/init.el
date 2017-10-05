@@ -21,6 +21,8 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+(setq default-frame-alist '((font . "Source Code Pro-14")))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
