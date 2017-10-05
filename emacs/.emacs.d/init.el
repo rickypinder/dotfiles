@@ -13,8 +13,13 @@
 
 (load-theme 'leuven)
 
-(setq create-lockfiles nil)
 (setq vc-follow-symlinks t)
+
+(setq-default indent-tabs-mode nil)
+
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
 
 (require 'package)
 (setq package-enable-at-startup nil)
