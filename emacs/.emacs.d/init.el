@@ -11,8 +11,6 @@
 
 (winner-mode)
 
-(load-theme 'leuven)
-
 (setq vc-follow-symlinks t)
 
 (setq-default indent-tabs-mode nil)
@@ -35,6 +33,11 @@
   (package-install 'use-package))
 
 (require 'use-package)
+
+(use-package flatui-theme
+  :ensure t
+  :config
+  (load-theme 'flatui))
 
 (use-package ivy
   :ensure t
