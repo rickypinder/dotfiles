@@ -61,3 +61,9 @@
 (use-package magit
   :ensure t
   :bind ("C-c m" . magit-status))
+
+(use-package ace-window
+  :ensure t
+  :init
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :bind ("M-p" . ace-window))
