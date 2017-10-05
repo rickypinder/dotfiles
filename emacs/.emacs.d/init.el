@@ -13,6 +13,8 @@
 
 (winner-mode)
 
+(show-paren-mode)
+
 (setq vc-follow-symlinks t)
 
 (setq-default indent-tabs-mode nil)
