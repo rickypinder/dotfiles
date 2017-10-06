@@ -126,5 +126,19 @@
   (eval-after-load 'flycheck
     '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
+(use-package counsel-gtags
+  :ensure t
+  :config
 
+  (add-hook 'c-mode-hook 'counsel-gtags-mode)
+  (add-hook 'c++-mode-hook 'counsel-gtags-mode)
 
+  (with-eval-after-load 'counsel-gtags
+    (define-key counsel-gtags-mode-map (kbd "C-c t d") 'counsel-gtags-find-definition)
+    (define-key counsel-gtags-mode-map (kbd "C-c t s") 'counsel-gtags-find-symbol)
+    (define-key counsel-gtags-mode-map (kbd "C-c t r") 'counsel-gtags-find-reference)
+    (define-key counsel-gtags-mode-map (kbd "C-c t f") 'counsel-gtags-find-file)
+    (define-key counsel-gtags-mode-map (kbd "C-c t c") 'counsel-gtags-create-tags)
+    (define-key counsel-gtags-mode-map (kbd "C-c t u") 'counsel-gtags-update-tags)
+    (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)
+    (define-key counsel-gtags-mode-map (kbd "M-.") 'counsel-gtags-dwim)))
