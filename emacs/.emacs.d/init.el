@@ -82,6 +82,7 @@
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0)
+  (setq company-show-numbers t)
   (eval-after-load 'company
     '(add-to-list
       'company-backends '(company-irony company-irony-c-headers))))
