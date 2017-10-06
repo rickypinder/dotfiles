@@ -41,19 +41,18 @@
 
 (require 'use-package)
 
+(setq use-package-always-ensure t)
+
 (use-package flatui-theme
-  :ensure t
   :config
   (load-theme 'flatui))
 
 (use-package ivy
-  :ensure t
   :config
   (setq ivy-use-virtual-buffers t)
   (ivy-mode 1))
   
 (use-package counsel
-  :ensure t
   :bind ("M-x" . counsel-M-x)
         ("C-x C-f" . counsel-find-file)
         ("C-h f" . counsel-describe-function)
@@ -62,30 +61,24 @@
         ("C-c g f" . counsel-git-grep))
 
 (use-package swiper
-  :ensure t
   :bind ("C-s" . swiper))
 
 (use-package magit
-  :ensure t
   :bind ("C-c m" . magit-status))
 
 (use-package ace-window
-  :ensure t
   :init
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
   :bind ("M-p" . ace-window))
 
 (use-package exec-path-from-shell
-  :ensure t
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-(use-package try
-  :ensure t)
+(use-package try)
 
 (use-package company
-  :ensure t
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0)
@@ -94,7 +87,6 @@
       'company-backends '(company-irony company-irony-c-headers))))
 
 (use-package irony-mode
-  :ensure t
   :config
   (defvar irony-mode-map)
   (add-hook 'c-mode-hook 'irony-mode)
@@ -109,11 +101,9 @@
   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-irony-c-headers
-  :ensure t)
+(use-package company-irony-c-headers)
 
 (use-package flycheck
-  :ensure t
   :config
   (add-hook 'c++-mode-hook 'flycheck-mode)
   (add-hook 'c-mode-hook 'flycheck-mode)
@@ -121,13 +111,11 @@
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
 
 (use-package flycheck-irony
-  :ensure t
   :config
   (eval-after-load 'flycheck
     '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
 (use-package counsel-gtags
-  :ensure t
   :config
 
   (add-hook 'c-mode-hook 'counsel-gtags-mode)
@@ -144,6 +132,5 @@
     (define-key counsel-gtags-mode-map (kbd "M-.") 'counsel-gtags-dwim)))
 
 (use-package which-key
-  :ensure t
   :config
   (which-key-mode))
