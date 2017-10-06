@@ -25,8 +25,8 @@
 
 (setq default-frame-alist '((font . "Source Code Pro-14")))
 
-(setq c-default-style "linux"
-      c-basic-offset 4)
+(setq c-set-style "k&r")
+(setq c-basic-offset 4)
 
 (require 'package)
 (setq package-enable-at-startup nil)
