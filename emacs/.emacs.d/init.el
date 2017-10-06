@@ -142,3 +142,8 @@
     (define-key counsel-gtags-mode-map (kbd "C-c t u") 'counsel-gtags-update-tags)
     (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)
     (define-key counsel-gtags-mode-map (kbd "M-.") 'counsel-gtags-dwim)))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
