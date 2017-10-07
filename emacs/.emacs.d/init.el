@@ -162,3 +162,8 @@
   :ensure t
   :bind ("C-c v f" . helm-ls-git-ls))
 
+(use-package helm-dash
+  :ensure t
+  :bind ("C-c h" . helm-dash-at-point)
+  :config
+  (setq helm-dash-browser-func 'eww))
