@@ -31,7 +31,6 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
@@ -152,5 +151,4 @@
 (use-package yasnippet
   :ensure t
   :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode))
+  (yas-global-mode))
