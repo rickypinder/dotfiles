@@ -127,6 +127,10 @@
   ("C-x C-f" . helm-find-files)
   :config
   (require 'helm-config)
-  (helm-mode 1)
-  (define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring))
+  (helm-mode 1))
+
+(use-package helm-swoop
+  :ensure t
+  :bind ("C-s". helm-swoop))
+
 
