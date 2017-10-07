@@ -46,25 +46,6 @@
   :config
   (load-theme 'flatui))
 
-(use-package ivy
-  :ensure t
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (ivy-mode 1))
-  
-(use-package counsel
-  :ensure t
-  :bind ("M-x" . counsel-M-x)
-        ("C-x C-f" . counsel-find-file)
-        ("C-h f" . counsel-describe-function)
-        ("C-h v" . counsel-describe-variable)
-        ("C-c g g" . counsel-git)
-        ("C-c g f" . counsel-git-grep))
-
-(use-package swiper
-  :ensure t
-  :bind ("C-s" . swiper))
-
 (use-package magit
   :ensure t
   :bind ("C-c m" . magit-status))
@@ -127,22 +108,6 @@
   (eval-after-load 'flycheck
     '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
-(use-package counsel-gtags
-  :ensure t
-  :config
-  (add-hook 'c-mode-hook 'counsel-gtags-mode)
-  (add-hook 'c++-mode-hook 'counsel-gtags-mode)
-
-  (with-eval-after-load 'counsel-gtags
-    (define-key counsel-gtags-mode-map (kbd "C-c t d") 'counsel-gtags-find-definition)
-    (define-key counsel-gtags-mode-map (kbd "C-c t s") 'counsel-gtags-find-symbol)
-    (define-key counsel-gtags-mode-map (kbd "C-c t r") 'counsel-gtags-find-reference)
-    (define-key counsel-gtags-mode-map (kbd "C-c t f") 'counsel-gtags-find-file)
-    (define-key counsel-gtags-mode-map (kbd "C-c t c") 'counsel-gtags-create-tags)
-    (define-key counsel-gtags-mode-map (kbd "C-c t u") 'counsel-gtags-update-tags)
-    (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)
-    (define-key counsel-gtags-mode-map (kbd "M-.") 'counsel-gtags-dwim)))
-
 (use-package which-key
   :ensure t
   :config
@@ -152,3 +117,16 @@
   :ensure t
   :config
   (yas-global-mode))
+
+(use-package helm
+  :ensure t
+  :bind
+  ("M-x" . helm-M-x)
+  ("M-y" . helm-show-kill-ring)
+  ("C-x b" . helm-mini)
+  ("C-x C-f" . helm-find-files)
+  :config
+  (require 'helm-config)
+  (helm-mode 1)
+  (define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring))
+
