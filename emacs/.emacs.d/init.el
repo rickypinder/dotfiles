@@ -142,7 +142,12 @@
   ("C-c v g" . helm-git-do-git-grep)
   :config
   (require 'helm-config)
-  (helm-mode 1))
+  (helm-mode 1)
+  (setq helm-display-header-line nil)
+  (helm-autoresize-mode 1)
+  (setq helm-autoresize-max-height 30)
+  (setq helm-autoresize-min-height 30)
+  (setq helm-split-window-in-side-p t))
 
 (use-package helm-swoop
   :ensure t
