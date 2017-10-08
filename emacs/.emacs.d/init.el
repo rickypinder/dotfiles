@@ -179,5 +179,7 @@
 (use-package helm-dash
   :ensure t
   :bind ("C-c h" . helm-dash-at-point)
-  :config
-  (setq helm-dash-browser-func 'eww))
+  :config 
+  (setq helm-dash-browser-func 'eww)
+  (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python_3")))
+
