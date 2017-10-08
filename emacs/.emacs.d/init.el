@@ -28,6 +28,7 @@
 (winner-mode)
 
 (show-paren-mode)
+(electric-pair-mode)
 
 (setq vc-follow-symlinks t)
 
