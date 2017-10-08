@@ -43,6 +43,14 @@
 (setq-default c-set-style "k&r")
 (setq-default c-basic-offset 4)
 
+(defun rp/recompile ()
+  (interactive)
+  (recompile)
+  (other-window 1))
+
+(add-hook 'c-mode-hook
+          (lambda () (local-set-key (kbd "C-c c") 'rp/compile)))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
