@@ -149,9 +149,10 @@
   ("C-x b" . helm-mini)
   ("C-x C-f" . helm-find-files)
   ("C-c v g" . helm-git-do-git-grep)
-  ([tab] . helm-execute-persistent-action)
-  ("C-i" . helm-execute-persistent-action)
-  ("C-z" . helm-select-action)
+  (:map helm-command-map
+        ([tab] . helm-execute-persistent-action)
+        ("C-i" . helm-execute-persistent-action)
+        ("C-z" . helm-select-action))
   :config
   (require 'helm-config)
   (helm-mode 1)
