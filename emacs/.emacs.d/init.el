@@ -183,3 +183,7 @@
   (setq helm-dash-browser-func 'eww)
   (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python_3")))
 
+(use-package pdf-tools
+  :ensure t
+  :config
+  (pdf-tools-install))
