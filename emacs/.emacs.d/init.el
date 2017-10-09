@@ -48,8 +48,12 @@
   (recompile)
   (other-window 1))
 
-(add-hook 'c-mode-hook
-          (lambda () (local-set-key (kbd "C-c c") 'rp/compile)))
+(defun rp/setup-c-buffers ()
+  (local-set-key (kbd "C-c a") 'ff-find-other-file)
+  (local-set-key (kbd "C-c A") 'find-othe-file-in-other-window)
+  (local-set-key (kbd "C-c c") 'rp/recompile))
+
+(add-hook 'c-mode-hook 'rp/setup-c-buffers)
 
 (require 'package)
 (setq package-enable-at-startup nil)
