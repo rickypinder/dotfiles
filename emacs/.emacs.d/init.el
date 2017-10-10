@@ -153,10 +153,6 @@
   ("C-x b" . helm-mini)
   ("C-x C-f" . helm-find-files)
   ("C-c v g" . helm-git-do-git-grep)
-  (:map helm-command-map
-        ([tab] . helm-execute-persistent-action)
-        ("C-i" . helm-execute-persistent-action)
-        ("C-z" . helm-select-action))
   :config
   (require 'helm-config)
   (helm-mode 1)
@@ -164,7 +160,10 @@
   (helm-autoresize-mode 1)
   (setq helm-autoresize-max-height 30)
   (setq helm-autoresize-min-height 30)
-  (setq helm-split-window-in-side-p t))
+  (setq helm-split-window-in-side-p t)
+  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+  (define-key helm-map (kbd "C-z")  'helm-select-action))
 
 (use-package helm-swoop
   :ensure t
@@ -185,7 +184,7 @@
    helm-gtags-auto-update t
    helm-gtags-use-input-at-cursor t
    helm-gtags-pulse-at-cursor t
-   helm-gtags-prefix-key "\C-gt"
+   helm-gtags-prefix-key "\C-c g"
    helm-gtags-suggested-key-mapping t)
   :config
   (add-hook 'dired-mode-hook 'helm-gtags-mode)
