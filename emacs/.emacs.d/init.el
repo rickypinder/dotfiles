@@ -43,6 +43,13 @@
 (setq-default c-set-style "k&r")
 (setq-default c-basic-offset 4)
 
+(defun rp/load-emacs ()
+    (interactive)
+    (load-file "~/.emacs.d/init.el")
+    (message "Reloaded init.el"))
+
+(global-set-key (kbd "C-c e") 'rp/load-emacs)
+
 (defun rp/recompile ()
   (interactive)
   (recompile)
