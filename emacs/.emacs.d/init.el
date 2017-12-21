@@ -75,10 +75,10 @@
 
 (require 'use-package)
 
-(use-package flatui-theme
+(use-package jazz-theme
   :ensure t
   :config
-  (load-theme 'flatui))
+  (load-theme 'jazz))
 
 (use-package magit
   :ensure t
@@ -209,7 +209,7 @@
   :bind ("C-c h" . helm-dash-at-point)
   :config 
   (setq helm-dash-browser-func 'eww)
-  (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python_3")))
+  (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python_3" "Javascript")))
 
 (use-package pdf-tools
   :ensure t
