@@ -247,5 +247,7 @@ inoremap <Right> <Nop>
 
 " }}}
 
+:command Od edit $MYVIMRC
+
 " vim:foldmethod=marker:foldlevel=0
 
