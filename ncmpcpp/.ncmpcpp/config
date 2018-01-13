@@ -30,7 +30,8 @@ mpd_port = 6600
 #
 ## Needed for tag editor and file operations to work.
 ##
-mpd_music_dir = ~/Music/beets
+mpd_music_dir = ~/Music/Flac
+
 #
 #mpd_crossfade_time = 5
 #
@@ -331,7 +332,7 @@ user_interface = alternative
 #
 ## Available values: artist, album_artist, date, genre, composer, performer.
 ##
-#media_library_primary_tag = artist
+media_library_primary_tag = album_artist
 #
 #media_library_albums_split_by_date = yes
 #
