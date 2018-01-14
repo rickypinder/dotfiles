@@ -39,7 +39,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
     nnoremap <leader>f :Files<cr>
@@ -137,6 +136,14 @@ if has("gui_running")
     set guioptions-=e
     set guifont=Menlo:h14
 endif
+
+if has("autocmd")
+    augroup whitespace
+        autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    augroup END
+endif
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 " Colors
 if has("termguicolors")
