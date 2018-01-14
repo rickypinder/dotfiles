@@ -44104,13 +44104,13 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>1433 816 599 388 0 0 3008 1670 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>759 419 796 473 0 0 3008 1670 </string>
+	<string>759 511 796 473 0 0 3008 1670 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>50 50 783 928 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1000 1670 0 0 3008 1670 </string>
+	<string>110 326 1592 1034 0 0 3008 1670 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>53 851 1440 760 0 0 3008 1670 </string>
+	<string>1341 59 1648 854 0 0 3008 1670 </string>
 	<key>NSWindow Frame iTerm Window 10</key>
 	<string>50 902 56 76 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 11</key>
@@ -44357,13 +44357,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.1505126953125</real>
+				<real>0.15686274509803921</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.1505126953125</real>
+				<real>0.15686274509803921</real>
 				<key>Red Component</key>
-				<real>0.1505126953125</real>
+				<real>0.15686274509803921</real>
 			</dict>
 			<key>Badge Color</key>
 			<dict>
