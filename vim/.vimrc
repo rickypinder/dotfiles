@@ -52,7 +52,6 @@ Plug 'valloric/youcompleteme'
     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
     let g:ycm_extra_conf_vim_data = ['&filetype']
     nnoremap <leader>g :YcmCompleter GoTo<CR>
-Plug 'chazy/cscope_maps'
 Plug 'ludovicchabant/vim-gutentags'
 
 " MacOS Specific
