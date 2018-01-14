@@ -84,7 +84,6 @@ if has('autocmd')
         autocmd!
         autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
         autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
-        autocmd FileType python nnoremap <buffer> <localleader>cr :!python %<cr>
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
         autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
         autocmd FileType vim let b:AutoPairs = {'(':')', "'":"'", '[':']', '{':'}'}
