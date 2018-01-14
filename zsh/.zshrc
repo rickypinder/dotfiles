@@ -20,6 +20,7 @@ alias vim='mvim -v'
 eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--height 100% --reverse --preview 'coderay {} || head -100 {}'"
 
 export PATH=/usr/local/bin:$PATH
 export SOBOLE_THEME_MODE=dark
