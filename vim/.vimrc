@@ -45,14 +45,22 @@ Plug 'junegunn/fzf.vim'
     nnoremap <leader>f :Files<cr>
     nnoremap <leader>b :Buffers<cr>
     nnoremap <leader>t :Tags<cr>
-
-" C specific
 Plug 'vim-scripts/a.vim'
 Plug 'valloric/youcompleteme'
     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
     let g:ycm_extra_conf_vim_data = ['&filetype']
+
+    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+    let g:tcm_key_list_previous_completion = ['<C-p>', '<Up>']
+    let g:SuperTabDefaultCompletionType = '<C-n>'
     nnoremap <leader>g :YcmCompleter GoTo<CR>
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'ervandew/supertab'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " MacOS Specific
 if g:os == "Darwin"
