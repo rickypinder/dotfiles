@@ -13,6 +13,10 @@ function ec() {
     fi
 }
 
+alias pg='ping -c 5 8.8.8.8'
+
+alias vim='mvim -v'
+
 eval "$(rbenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
