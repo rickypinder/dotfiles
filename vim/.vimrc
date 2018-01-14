@@ -61,6 +61,9 @@ Plug 'honza/vim-snippets'
     let g:UltiSnipsExpandTrigger="<tab>"
     let g:UltiSnipsJumpForwardTrigger="<tab>"
     let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+Plug 'easymotion/vim-easymotion'
+    map <leader>c <Plug>(easymotion-bd-f)
+    nmap <leader>c <Plug>(easymotion-overwin-f)
 
 " MacOS Specific
 if g:os == "Darwin"
