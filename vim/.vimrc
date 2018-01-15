@@ -63,6 +63,7 @@ Plug 'honza/vim-snippets'
 Plug 'easymotion/vim-easymotion'
     map <leader>c <Plug>(easymotion-bd-f)
     nmap <leader>c <Plug>(easymotion-overwin-f)
+Plug 'junegunn/goyo.vim'
 
 " MacOS Specific
 if g:os == "Darwin"
