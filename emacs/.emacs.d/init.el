@@ -99,48 +99,76 @@
 (use-package try
   :ensure t)
 
+(use-package ycmd
+  :ensure t
+  :config 
+  (add-hook 'c-mode-hook 'ycmd-mode)
+  (add-hook 'c++-mode-hook 'ycmd-mode)
+  (add-hook 'javascript-mode 'ycmd-mode)
+  (set-variable 'ycmd-server-command `("python", (file-truename "~/ycmd/ycmd")))
+  (set-variable 'ycmd-global-config (file-truename "~/.ycm_extra_conf.py")))
+
 (use-package company
   :ensure t
   :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0)
-  (setq company-show-numbers t)
-  (eval-after-load 'company
-    '(add-to-list
-      'company-backends '(company-irony company-irony-c-headers))))
+  (setq company-show-numbers t))
 
-(use-package irony-mode
+(use-package company-ycmd
   :ensure t
   :config
-  (defvar irony-mode-map)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'c++-mode-hook 'irony-mode)
-
-  (defun my-irony-mode-hook ()
-    (define-key irony-mode-map [remap completion-at-point]
-      'irony-completion-at-point-async)
-    (define-key irony-mode-map [remap complete-symbol]
-      'irony-completion-at-point-async))
-
-  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-
-(use-package company-irony-c-headers
-  :ensure t)
+  (company-ycmd-setup))
 
 (use-package flycheck
   :ensure t
   :config
-  (add-hook 'c++-mode-hook 'flycheck-mode)
-  (add-hook 'c-mode-hook 'flycheck-mode)
   (add-hook 'after-init-hook #'global-flycheck-mode)
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  (when (not (display-graphic-p))
+    (setq flycheck-indication-mode nil)))
 
-(use-package flycheck-irony
+(use-package flycheck-ycmd
   :ensure t
   :config
-  (eval-after-load 'flycheck
-    '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
+  (flycheck-ycmd-setup))
+
+;;  (eval-after-load 'company
+;;    '(add-to-list
+;;    'company-backends '(company-irony company-irony-c-headers))))
+
+;; (use-package irony
+;;   :ensure t
+;;   :config
+;;   (defvar irony-mode-map)
+;;   (add-hook 'c-mode-hook 'irony-mode)
+;;   (add-hook 'c++-mode-hook 'irony-mode)
+
+;;   (defun my-irony-mode-hook ()
+;;     (define-key irony-mode-map [remap completion-at-point]
+;;       'irony-completion-at-point-async)
+;;     (define-key irony-mode-map [remap complete-symbol]
+;;       'irony-completion-at-point-async))
+
+;;   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
+;; (use-package company-irony-c-headers
+;;   :ensure t)
+
+;; (use-package flycheck
+;;   :ensure t
+;;   :config
+;;   (add-hook 'c++-mode-hook 'flycheck-mode)
+;;   (add-hook 'c-mode-hook 'flycheck-mode)
+;;   (add-hook 'after-init-hook #'global-flycheck-mode)
+;;   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+
+;; (use-package flycheck-irony
+;;   :ensure t
+;;   :config
+;;   (eval-after-load 'flycheck
+;;     '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
 
 (use-package which-key
   :ensure t
