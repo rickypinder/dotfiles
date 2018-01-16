@@ -44104,11 +44104,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>1433 816 599 388 0 0 3008 1670 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>759 511 796 473 0 0 3008 1670 </string>
+	<string>759 553 796 473 0 0 3008 1670 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>50 50 783 928 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>110 326 1592 1034 0 0 3008 1670 </string>
+	<string>765 726 760 634 0 0 3008 1670 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>1341 59 1648 854 0 0 3008 1670 </string>
 	<key>NSWindow Frame iTerm Window 10</key>
@@ -45692,7 +45692,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-01-13T19:13:04Z</date>
+	<date>2018-01-15T20:49:01Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
