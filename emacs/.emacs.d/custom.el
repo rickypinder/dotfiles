@@ -48,7 +48,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (flycheck-ycmd company-ycmd ycmd which-key pdf-tools helm-dash helm-ls-git helm-gtags helm-swoop helm-config helm yasnippet flycheck-irony flycheck company-irony-c-headers irony-mode company try exec-path-from-shell ace-window flatui-theme magit use-package)))
+    (helm-projectile projectile flycheck-ycmd company-ycmd ycmd which-key pdf-tools helm-dash helm-ls-git helm-gtags helm-swoop helm-config helm yasnippet flycheck-irony flycheck company-irony-c-headers irony-mode company try exec-path-from-shell ace-window flatui-theme magit use-package)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
