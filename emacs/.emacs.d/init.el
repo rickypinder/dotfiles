@@ -75,10 +75,10 @@
 
 (require 'use-package)
 
-(use-package jazz-theme
+(use-package hc-zenburn-theme
   :ensure t
   :config
-  (load-theme 'jazz))
+  (load-theme 'hc-zenburn))
 
 (use-package magit
   :ensure t
