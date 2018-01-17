@@ -270,3 +270,6 @@
   :config
   (projectile-global-mode)
   (setq projectile-completion-system 'helm))
+
+(use-package mingus
+  :ensure t)
