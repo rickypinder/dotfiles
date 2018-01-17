@@ -48,7 +48,7 @@
  '(org-fontify-whole-heading-line t)
  '(package-selected-packages
    (quote
-    (mingus evil-magit helm-projectile projectile flycheck-ycmd company-ycmd ycmd which-key pdf-tools helm-dash helm-ls-git helm-gtags helm-swoop helm-config helm yasnippet flycheck-irony flycheck company-irony-c-headers irony-mode company try exec-path-from-shell ace-window flatui-theme magit use-package)))
+    (yasnippet-snippets key-chord mingus evil-magit helm-projectile projectile flycheck-ycmd company-ycmd ycmd which-key pdf-tools helm-dash helm-ls-git helm-gtags helm-swoop helm-config helm yasnippet flycheck-irony flycheck company-irony-c-headers irony-mode company try exec-path-from-shell ace-window flatui-theme magit use-package)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(pos-tip-background-color "#36473A")
  '(pos-tip-foreground-color "#FFFFC8")
@@ -80,6 +80,7 @@
  '(vc-annotate-very-old-color "#DC8CC3")
  '(weechat-color-list
    (unspecified "#242728" "#424748" "#F70057" "#ff0066" "#86C30D" "#63de5d" "#BEB244" "#E6DB74" "#40CAE4" "#06d8ff" "#FF61FF" "#ff8eff" "#00b2ac" "#53f2dc" "#f8fbfc" "#ffffff"))
+ '(yas-global-mode t)
  '(ycmd-idle-change-delay 0.1)
  '(ycmd-parse-conditions (quote (save new-line idle-change mode-enabled))))
 (custom-set-faces

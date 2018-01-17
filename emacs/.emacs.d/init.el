@@ -196,6 +196,9 @@
   :config
   (yas-global-mode))
 
+(use-package yasnippet-snippets
+  :ensure t)
+
 (use-package helm
   :ensure t
   :bind
