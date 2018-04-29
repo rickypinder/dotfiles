@@ -34,7 +34,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
@@ -45,14 +45,14 @@ Plug 'junegunn/fzf.vim'
     nnoremap <leader>b :Buffers<cr>
     nnoremap <leader>t :Tags<cr>
 Plug 'vim-scripts/a.vim'
-Plug 'valloric/youcompleteme'
-    let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-    let g:ycm_extra_conf_vim_data = ['&filetype']
+" Plug 'valloric/youcompleteme'
+"     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+"     let g:ycm_extra_conf_vim_data = ['&filetype']
 
-    let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-    let g:tcm_key_list_previous_completion = ['<C-p>', '<Up>']
-    let g:SuperTabDefaultCompletionType = '<C-n>'
-    nnoremap <leader>g :YcmCompleter GoTo<CR>
+"     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"     let g:tcm_key_list_previous_completion = ['<C-p>', '<Up>']
+"     let g:SuperTabDefaultCompletionType = '<C-n>'
+"     nnoremap <leader>g :YcmCompleter GoTo<CR>
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
@@ -151,7 +151,7 @@ if has("termguicolors")
     set termguicolors
 endif
 syntax enable                                    " enable symtax processing
-colorscheme gruvbox
+colorscheme jellybeans
 highlight Statusline guifg=#3c3836
 highlight StatuslineNC guibg=#928374 guifg=#1d2021
 
