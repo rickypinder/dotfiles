@@ -18,6 +18,7 @@ alias pg='ping -c 5 8.8.8.8'
 alias vim='mvim -v'
 
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--height 100% --reverse --preview 'coderay {} || head -100 {}'"
