@@ -1,3 +1,9 @@
+# Moved to gitlab
+https://gitlab.com/rpinder/dotfiles/
+
+
+
+
 # Dotfiles
 
 These are my dotfiles. I use GNU stow for symlinks
