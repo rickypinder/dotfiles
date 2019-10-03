@@ -115,77 +115,6 @@
 (use-package try
   :ensure t)
 
-(use-package ycmd
-  :ensure t
-  :config 
-  (add-hook 'c-mode-hook 'ycmd-mode)
-  (add-hook 'c++-mode-hook 'ycmd-mode)
-  (add-hook 'javascript-mode 'ycmd-mode)
-  (set-variable 'ycmd-server-command `("python", (file-truename "~/ycmd/ycmd")))
-  (set-variable 'ycmd-global-config (file-truename "~/.ycm_extra_conf.py")))
-
-(use-package company
-  :ensure t
-  :config
-  (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-idle-delay 0)
-  (setq company-show-numbers t))
-
-(use-package company-ycmd
-  :ensure t
-  :config
-  (company-ycmd-setup))
-
-(use-package flycheck
-  :ensure t
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
-  (when (not (display-graphic-p))
-    (setq flycheck-indication-mode nil)))
-
-(use-package flycheck-ycmd
-  :ensure t
-  :config
-  (flycheck-ycmd-setup))
-
-;;  (eval-after-load 'company
-;;    '(add-to-list
-;;    'company-backends '(company-irony company-irony-c-headers))))
-
-;; (use-package irony
-;;   :ensure t
-;;   :config
-;;   (defvar irony-mode-map)
-;;   (add-hook 'c-mode-hook 'irony-mode)
-;;   (add-hook 'c++-mode-hook 'irony-mode)
-
-;;   (defun my-irony-mode-hook ()
-;;     (define-key irony-mode-map [remap completion-at-point]
-;;       'irony-completion-at-point-async)
-;;     (define-key irony-mode-map [remap complete-symbol]
-;;       'irony-completion-at-point-async))
-
-;;   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-
-;; (use-package company-irony-c-headers
-;;   :ensure t)
-
-;; (use-package flycheck
-;;   :ensure t
-;;   :config
-;;   (add-hook 'c++-mode-hook 'flycheck-mode)
-;;   (add-hook 'c-mode-hook 'flycheck-mode)
-;;   (add-hook 'after-init-hook #'global-flycheck-mode)
-;;   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
-
-;; (use-package flycheck-irony
-;;   :ensure t
-;;   :config
-;;   (eval-after-load 'flycheck
-;;     '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup)))
-
 (use-package which-key
   :ensure t
   :config
@@ -223,29 +152,6 @@
   :ensure t
   :bind ("C-s". helm-swoop))
 
-(use-package helm-gtags
-  :ensure t
-  :bind
-  ("C-c g a" . helm-gtags-in-this-function)
-  ("C-j" . helm-gtags-select)
-  ("M-." . helm-gtags-dwim)
-  ("M-," . helm-gtags-pop-stack)
-  ("C-c <" . helm-gtags-previous-history)
-  ("C-c >" . helm-gtags-next-history)
-  :init
-  (setq
-   helm-gtags-ignore-case t
-   helm-gtags-auto-update t
-   helm-gtags-use-input-at-cursor t
-   helm-gtags-pulse-at-cursor t
-   helm-gtags-prefix-key "\C-c g"
-   helm-gtags-suggested-key-mapping t)
-  :config
-  (add-hook 'dired-mode-hook 'helm-gtags-mode)
-  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'asm-mode-hook 'helm-gtags-mode))
 
 (use-package helm-ls-git
   :ensure t
@@ -256,7 +162,7 @@
   :bind ("C-c h" . helm-dash-at-point)
   :config 
   (setq helm-dash-browser-func 'eww)
-  (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python_3" "Javascript")))
+  (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python 3" "Javascript" "Haskell")))
 
 (use-package pdf-tools
   :ensure t
@@ -282,3 +188,11 @@
   :config
   (key-chord-mode 1)
   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state))
+
+(use-package haskell-mode
+  :ensure t)
+
+(use-package hindent
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook #'hindent-mode))
