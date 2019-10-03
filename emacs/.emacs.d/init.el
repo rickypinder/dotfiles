@@ -27,6 +27,8 @@
 
 (winner-mode)
 
+(display-battery-mode 1)
+
 (show-paren-mode)
 (electric-pair-mode)
 
