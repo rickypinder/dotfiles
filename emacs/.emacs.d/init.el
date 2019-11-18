@@ -1,4 +1,5 @@
-
+;;; init.el --- Emacs init file
+;;; Commentary:
 ;                       $$\                 $$\
 ;                       \__|                $$ |
 ;    $$$$$$\   $$$$$$\  $$\ $$$$$$$\   $$$$$$$ | $$$$$$\   $$$$$$\
@@ -10,7 +11,7 @@
 ;             $$ |
 ;             $$ |  https://github.com/rpinder/dotfiles/
 ;             \__|
-
+;;; Code:
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
@@ -24,6 +25,8 @@
 (menu-bar-mode -1)
 
 (setq column-number-mode t)
+
+(setq-default frame-title-format '("%b"))
 
 (winner-mode)
 
@@ -46,18 +49,21 @@
 (setq-default c-basic-offset 4)
 
 (defun rp/load-emacs ()
-    (interactive)
-    (load-file "~/.emacs.d/init.el")
-    (message "Reloaded init.el"))
+  "Load init.el."
+  (interactive)
+  (load-file "~/.emacs.d/init.el")
+  (message "Reloaded init.el"))
 
 (global-set-key (kbd "C-c e") 'rp/load-emacs)
 
 (defun rp/recompile ()
+  "Recompiles from last compile command."
   (interactive)
   (recompile)
   (other-window 1))
 
 (defun rp/setup-c-buffers ()
+  "Keybindings for c buffers."
   (local-set-key (kbd "C-c a") 'ff-find-other-file)
   (local-set-key (kbd "C-c A") 'find-othe-file-in-other-window)
   (local-set-key (kbd "C-c c") 'rp/recompile))
@@ -66,8 +72,8 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -93,10 +99,10 @@
 (use-package evil-magit
   :ensure t)
 
-(use-package hc-zenburn-theme
+(use-package apropospriate-theme
   :ensure t
   :config
-  (load-theme 'hc-zenburn))
+  (load-theme 'apropospriate-light))
 
 (use-package magit
   :ensure t
@@ -145,7 +151,7 @@
   (helm-autoresize-mode 1)
   (setq helm-autoresize-max-height 30)
   (setq helm-autoresize-min-height 30)
-  (setq helm-split-window-in-side-p t)
+  (setq helm-split-window-inside-p t)
   (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z")  'helm-select-action))
@@ -162,7 +168,7 @@
 (use-package helm-dash
   :ensure t
   :bind ("C-c h" . helm-dash-at-point)
-  :config 
+  :config
   (setq helm-dash-browser-func 'eww)
   (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python 3" "Javascript" "Haskell")))
 
@@ -179,7 +185,7 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-global-mode)
+  (projectile-mode)
   (setq projectile-completion-system 'helm))
 
 (use-package mingus
@@ -198,3 +204,57 @@
   :ensure t
   :config
   (add-hook 'haskell-mode-hook #'hindent-mode))
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.3)
+  (global-company-mode 1)
+  (global-set-key (kbd "C-<tab>") 'company-complete))
+
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp
+  :config
+  (push 'company-lsp company-backends)
+  (setq company-transformers nil
+        company-lsp-async t
+        company-lsp-cache-candidates nil))
+
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :config
+  (add-hook 'c-mode-hook #'lsp)
+  (add-hook 'python-mode-hook #'lsp)
+  (setq lsp-prefer-flymake nil)
+  (setq lsp-clients-clangd-executable "/usr/local/bin/clangd")
+  (setq lsp-clients-clangd-args '("-j=4" "-background-index", "-log=error")))
+
+(use-package helm-xref
+  :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode
+  :config
+
+  (setq lsp-ui-doc-enable t
+        lsp-ui-doc-use-childframe t
+        lsp-ui-doc-position 'top
+        lsp-ui-doc-include-signature t
+        lsp-ui-sideline-enable nil
+        lsp-ui-flycheck-enable t
+        lsp-ui-flycheck-list-position 'right
+        lsp-ui-flycheck-live-reporting t
+        lsp-ui-peek-enable t
+        lsp-ui-peek-list-width 60
+        lsp-ui-peek-peek-height 25)
+
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+;;; init.el ends here
