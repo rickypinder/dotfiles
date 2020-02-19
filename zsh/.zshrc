@@ -1,3 +1,6 @@
+source '/Users/rickypinder/.ghcup/env'
+alias ctags="`brew --prefix`/bin/ctags"
+
 alias et='emacsclient -t'
 alias emacskill='emacsclient -e "(kill-emacs)"'
 
@@ -10,7 +13,9 @@ function ec() {
 }
 
 alias pg='ping -c 5 8.8.8.8'
-alias restart="sudo netctl stop eduroam && sudo netctl start eduroam"
+
+eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--height 100% --reverse --preview 'coderay {} || head -100 {}'"
@@ -19,7 +24,7 @@ export SOBOLE_THEME_MODE=dark
 export SOBOLE_DEFAILT_USER=ricky
 export ALTERNATE_EDITOR=""
 
-source ~/antigen.zsh
+source /usr/local/share/antigen/antigen.zsh
 autoload -U colors && colors
 setopt promptsubst
 
@@ -29,4 +34,6 @@ antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
 
 antigen apply
+
+
 
