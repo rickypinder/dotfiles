@@ -1,5 +1,3 @@
-;;; init.el --- Emacs init file
-;;; Commentary:
 ;                       $$\                 $$\
 ;                       \__|                $$ |
 ;    $$$$$$\   $$$$$$\  $$\ $$$$$$$\   $$$$$$$ | $$$$$$\   $$$$$$\
@@ -11,26 +9,15 @@
 ;             $$ |
 ;             $$ |  https://github.com/rpinder/dotfiles/
 ;             \__|
-;;; Code:
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file)
-
-(when (eq system-type 'darwin)
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier nil))
-
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(menu-bar-mode -1)
 
 (setq column-number-mode t)
 
 (setq-default frame-title-format '("%b"))
 
 (winner-mode)
-
-(display-battery-mode 1)
 
 (show-paren-mode)
 (electric-pair-mode)
@@ -47,6 +34,14 @@
 
 (setq-default c-set-style "k&r")
 (setq-default c-basic-offset 4)
+
+(when (eq system-type 'darwin)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil))
+
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
 
 (defun rp/load-emacs ()
   "Load init.el."
@@ -80,8 +75,88 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-
 (require 'use-package)
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode))
+
+(use-package yasnippet-snippets
+  :ensure t)
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
+(use-package lsp-mode
+  :ensure t
+  :hook (prog-mode . lsp)
+  :commands lsp
+  :config
+  (setq lsp-prefer-flymake 'nil))
+
+(use-package lsp-ui
+  :ensure t
+  :hook (lsp-mode-hook . lsp-ui-mode)
+  :commands lsp-ui-mode)
+
+(use-package lsp-haskell
+  :ensure t
+  :config
+  (setq lsp-haskell-process-path-hie "hie-wrapper"))
+
+(use-package lsp-java
+  :ensure t
+  :config
+  (add-hook 'java-mode-hook #'lsp))
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp
+  :config
+  (push 'company-lsp company-backends))
+
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration nil)
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
+(use-package evil-magit
+  :ensure t)
+
+(use-package apropospriate-theme
+  :ensure t
+  :config
+  (load-theme 'apropospriate-light))
+
+(use-package magit
+  :ensure t
+  :bind ("C-c m" . magit-status))
 
 (use-package evil
   :ensure t
@@ -108,33 +183,21 @@
   :ensure t
   :bind ("C-c m" . magit-status))
 
-(use-package ace-window
-  :ensure t
-  :init
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-  :bind ("M-p" . ace-window))
-
-(use-package exec-path-from-shell
+(use-package key-chord
   :ensure t
   :config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+  (key-chord-mode 1)
+  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+  (key-chord-define evil-normal-state-map "gr" 'lsp-find-references)
+  (key-chord-define evil-normal-state-map "gd" 'lsp-find-definition))
 
-(use-package try
+(use-package haskell-mode
   :ensure t)
 
-(use-package which-key
+(use-package hindent
   :ensure t
   :config
-  (which-key-mode))
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode))
-
-(use-package yasnippet-snippets
-  :ensure t)
+  (add-hook 'haskell-mode-hook #'hindent-mode))
 
 (use-package helm
   :ensure t
@@ -156,21 +219,12 @@
   (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
   (define-key helm-map (kbd "C-z")  'helm-select-action))
 
+(use-package helm-xref
+  :ensure t)
+
 (use-package helm-swoop
   :ensure t
   :bind ("C-s". helm-swoop))
-
-
-(use-package helm-ls-git
-  :ensure t
-  :bind ("C-c v f" . helm-ls-git-ls))
-
-(use-package helm-dash
-  :ensure t
-  :bind ("C-c h" . helm-dash-at-point)
-  :config
-  (setq helm-dash-browser-func 'eww)
-  (setq helm-dash-common-docsets '("bash" "Emacs Lisp" "C" "python 3" "Javascript" "Haskell")))
 
 (use-package pdf-tools
   :ensure t
@@ -188,73 +242,30 @@
   (projectile-mode)
   (setq projectile-completion-system 'helm))
 
-(use-package mingus
+(use-package helm-lsp
+  :ensure t
+  :commands helm-lsp-workspace-symbol)
+
+(use-package try
   :ensure t)
 
-(use-package key-chord
+(use-package magit
   :ensure t
+  :bind ("C-c m" . magit-status))
+
+(use-package ace-window
+  :ensure t
+  :init
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  :bind ("M-p" . ace-window))
+
+
+(use-package dap-mode
+  :ensure t :after lsp-mode
   :config
-  (key-chord-mode 1)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state))
+  (dap-mode t)
+  (dap-ui-mode t))
 
-(use-package haskell-mode
-  :ensure t)
-
-(use-package hindent
-  :ensure t
-  :config
-  (add-hook 'haskell-mode-hook #'hindent-mode))
-
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0.3)
-  (global-company-mode 1)
-  (global-set-key (kbd "C-<tab>") 'company-complete))
-
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp
-  :config
-  (push 'company-lsp company-backends)
-  (setq company-transformers nil
-        company-lsp-async t
-        company-lsp-cache-candidates nil))
-
-(use-package lsp-mode
-  :ensure t
-  :commands lsp
-  :config
-  (add-hook 'c-mode-hook #'lsp)
-  (add-hook 'python-mode-hook #'lsp)
-  (setq lsp-prefer-flymake nil)
-  (setq lsp-clients-clangd-executable "/usr/local/bin/clangd")
-  (setq lsp-clients-clangd-args '("-j=4" "-background-index", "-log=error")))
-
-(use-package helm-xref
-  :ensure t)
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode
-  :config
-
-  (setq lsp-ui-doc-enable t
-        lsp-ui-doc-use-childframe t
-        lsp-ui-doc-position 'top
-        lsp-ui-doc-include-signature t
-        lsp-ui-sideline-enable nil
-        lsp-ui-flycheck-enable t
-        lsp-ui-flycheck-list-position 'right
-        lsp-ui-flycheck-live-reporting t
-        lsp-ui-peek-enable t
-        lsp-ui-peek-list-width 60
-        lsp-ui-peek-peek-height 25)
-
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-
-;;; init.el ends here
+(use-package dap-java
+  :ensure nil
+  :after (lsp-java))
