@@ -34,7 +34,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'nanotech/jellybeans.vim'
+Plug 'dylanaraps/wal.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
@@ -53,7 +53,7 @@ Plug 'vim-scripts/a.vim'
 "     let g:tcm_key_list_previous_completion = ['<C-p>', '<Up>']
 "     let g:SuperTabDefaultCompletionType = '<C-n>'
 "     nnoremap <leader>g :YcmCompleter GoTo<CR>
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -116,7 +116,7 @@ set statusline+=%F
 set statusline+=\  
 set statusline+=%([%M%R]%)
 set statusline+=%=
-set statusline+=%{gutentags#statusline()}
+"set statusline+=%{gutentags#statusline()}
 set statusline+=\  
 set statusline+=%{GitBranch()}
 set statusline+=\  
@@ -151,9 +151,10 @@ if has("termguicolors")
     set termguicolors
 endif
 syntax enable                                    " enable symtax processing
-colorscheme jellybeans
-highlight Statusline guifg=#3c3836
-highlight StatuslineNC guibg=#928374 guifg=#1d2021
+set t_Co=256
+colorscheme wal
+"highlight Statusline guifg=#3c3836
+"highlight StatuslineNC guibg=#928374 guifg=#1d2021
 
 set number                                       " show line numbers
 set relativenumber                               " Relative line numbers

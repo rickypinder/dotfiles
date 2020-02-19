@@ -1,6 +1,3 @@
 # Dotfiles
 
-These are my dotfiles. I use GNU stow for symlinks
-
-## screenshots - old and not up to date
-![example screenhot](https://u.teknik.io/AGM0O.png)
+These are my dotfiles used on both Linux and MacOS. I use GNU stow for symlinks.

@@ -205,56 +205,55 @@
   :config
   (add-hook 'haskell-mode-hook #'hindent-mode))
 
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0.3)
-  (global-company-mode 1)
-  (global-set-key (kbd "C-<tab>") 'company-complete))
+;; (use-package company
+;;   :ensure t
+;;   :config
+;;   (setq company-idle-delay 0.3)
+;;   (global-company-mode 1)
+;;   (global-set-key (kbd "C-<tab>") 'company-complete))
 
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp
-  :config
-  (push 'company-lsp company-backends)
-  (setq company-transformers nil
-        company-lsp-async t
-        company-lsp-cache-candidates nil))
+;; (use-package company-lsp
+;;   :ensure t
+;;   :commands company-lsp
+;;   :config
+;;   (push 'company-lsp company-backends)
+;;   (setq company-transformers nil
+;;         company-lsp-async t
+;;         company-lsp-cache-candidates nil))
 
 (use-package lsp-mode
   :ensure t
-  :commands lsp
-  :config
-  (add-hook 'c-mode-hook #'lsp)
-  (add-hook 'python-mode-hook #'lsp)
-  (setq lsp-prefer-flymake nil)
-  (setq lsp-clients-clangd-executable "/usr/local/bin/clangd")
-  (setq lsp-clients-clangd-args '("-j=4" "-background-index", "-log=error")))
+  :hook (prog-mode . lsp)
+  :commands lsp)
+  ;; :config
+  ;; (setq lsp-prefer-flymake nil))
+  ;; ;; (setq lsp-clients-clangd-executable "/usr/local/bin/clangd")
+  ;; (setq lsp-clients-clangd-args '("-j=4" "-background-index", "-log=error")))
 
 (use-package helm-xref
   :ensure t)
 
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
+;; (use-package flycheck
+;;   :ensure t
+;;   :init (global-flycheck-mode))
 
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode
-  :config
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :commands lsp-ui-mode
+;;   :config
 
-  (setq lsp-ui-doc-enable t
-        lsp-ui-doc-use-childframe t
-        lsp-ui-doc-position 'top
-        lsp-ui-doc-include-signature t
-        lsp-ui-sideline-enable nil
-        lsp-ui-flycheck-enable t
-        lsp-ui-flycheck-list-position 'right
-        lsp-ui-flycheck-live-reporting t
-        lsp-ui-peek-enable t
-        lsp-ui-peek-list-width 60
-        lsp-ui-peek-peek-height 25)
+;;   (setq lsp-ui-doc-enable t
+;;         lsp-ui-doc-use-childframe t
+;;         lsp-ui-doc-position 'top
+;;         lsp-ui-doc-include-signature t
+;;         lsp-ui-sideline-enable nil
+;;         lsp-ui-flycheck-enable t
+;;         lsp-ui-flycheck-list-position 'right
+;;         lsp-ui-flycheck-live-reporting t
+;;         lsp-ui-peek-enable t
+;;         lsp-ui-peek-list-width 60
+;;         lsp-ui-peek-peek-height 25)
 
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 ;;; init.el ends here
