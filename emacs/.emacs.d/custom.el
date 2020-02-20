@@ -23,7 +23,7 @@
  '(highlight-tail-colors (quote (("#F8BBD0" . 0) ("#FAFAFA" . 100))))
  '(package-selected-packages
    (quote
-    (dap-java dap-mode lsp-java helm-xref try yasnippet-snippets helm-lsp helm-projectile pdf-tools helm-swoop helm exec-path-from-shell flycheck which-key hindent haskell-mode key-chord apropospriate-theme evil-magit evil-collection evil use-package lsp-mode)))
+    (company-lsp company lsp-haskell lsp-ui dap-java dap-mode lsp-java helm-xref try yasnippet-snippets helm-lsp helm-projectile pdf-tools helm-swoop helm exec-path-from-shell flycheck which-key hindent haskell-mode key-chord apropospriate-theme evil-magit evil-collection evil use-package lsp-mode)))
  '(pos-tip-background-color "#ffffffffffff")
  '(pos-tip-foreground-color "#78909C")
  '(tabbar-background-color "#ffffffffffff"))

@@ -1,0 +1,24 @@
+Config { position = Top
+       , bgColor = "black"
+       , commands = [ Run Battery [ 
+                                  "-t", "<acstatus>: <left>% - <timeleft> | <watts>W",
+                                  "-H", "90", "-h", "green",
+                                  "-L", "20", "-l", "red",
+	                          "--",
+	                          "-O", "AC",
+	                          "-o", "Bat"
+                                  ] 10
+                    , Run StdinReader
+                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                    , Run Network "wlp3s0" [
+                                           "-L", "0",
+                                           "-H", "32",
+                                           "--normal", "green",
+                                           "--high", "red"
+                                           ] 10
+                    , Run Com "/bin/bash" ["-c", "~/bin/get-volumepulse"] "volume" 10
+                    , Run Com "/bin/bash" ["-c", "~/bin/get-brightness"] "brightness" 10
+                    ]
+       , template = "%StdinReader% } { %wlp3s0% | Brightness: %brightness% | Vol: %volume% | %battery% | %date%"
+                   
+       }
