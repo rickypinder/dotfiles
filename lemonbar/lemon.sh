@@ -34,7 +34,7 @@ Workspaces() {
 	do
 		if [ "$i" -eq "$CURRENT_WORKSPACE" ]
 		then
-			echo -n " <$i>"
+			echo -n " %{B#FF0000} $i %{B-}"
 		else
 			echo -n "  $i "
 		fi
