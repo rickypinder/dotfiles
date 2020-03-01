@@ -1,4 +1,5 @@
 ///---User configurable stuff---///
+#include <X11/XF86keysym.h>
 ///---Modifiers---///
 #define MOD             XCB_MOD_MASK_4       /* Super/Windows key  or check xmodmap(1) with -pm  defined in /usr/include/xcb/xproto.h */
 ///--Speed---///
@@ -40,8 +41,13 @@ static const uint8_t borders[] = {3,5,5,4};
 #define LOOK_INTO "WM_NAME"
 static const char *ignore_names[] = {"bar", "xclock"};
 ///--Menus and Programs---///
-static const char *programcmd[]   = { "rofi -show run", NULL };
-static const char *windowcmd[] = { "rofi -show window", NULL};
+static const char *programcmd[]   = { "rofi", "-show", "run", NULL };
+static const char *windowcmd[] = { "rofi", "-show", "window", NULL};
+static const char *brightup[] = { "xbacklight", "-inc", "2", NULL};
+static const char *brightdown[] = { "xbacklight", "-dec", "2", NULL};
+static const char *volup[] = { "amixer", "-q", "sset", "Master", "3%+", NULL};
+static const char *voldown[] = { "amixer", "-q", "sset", "Master", "3%-", NULL};
+static const char *volmute[] = { "amixer", "-q", "sset", "Master", "toggle", NULL};
 static const char *terminal[]   = { "urxvt", NULL };
 ///--Custom foo---///
 static void halfandcentered(const Arg *arg)
@@ -183,6 +189,11 @@ static key keys[] = {
     {  MOD ,              XK_Return,     start,             {.com = terminal}},
     {  MOD ,              XK_p,          start,             {.com = programcmd}},
     {  MOD ,              XK_w,          start,             {.com = windowcmd}},
+    {  0 ,              XF86XK_MonBrightnessUp,          start,             {.com = brightup}},
+    {  0 ,              XF86XK_MonBrightnessDown,          start,             {.com = brightdown}},
+    {  0 ,              XF86XK_AudioMute,          start,             {.com = volmute}},
+    {  0 ,              XF86XK_AudioRaiseVolume,          start,             {.com = volup}},
+    {  0 ,              XF86XK_AudioLowerVolume,          start,             {.com = voldown}},
     // Exit or restart 2bwm
     {  MOD |CONTROL,      XK_q,          twobwm_exit,       {.i=0}},
     {  MOD |CONTROL,      XK_r,          twobwm_restart,    {.i=0}},
