@@ -7,7 +7,14 @@ Clock() {
 
 Battery() {
 	BATPERC=$(acpi --battery | awk '{print $4 " " $5}')
-	echo -n "$BATPERC"
+    CHARGING=$(acpi --battery | awk '{print $3}')
+
+    if [ $CHARGING == "Charging," ]
+    then
+        echo -n "%{F#00FF00}$BATPERC %{F-}"
+    else
+        echo -n "$BATPERC %{F-}"
+    fi
 }
 
 Volume() {
