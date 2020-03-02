@@ -34,7 +34,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'jiangmiao/auto-pairs'
-Plug 'nanotech/jellybeans.vim'
+Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
@@ -45,15 +45,6 @@ Plug 'junegunn/fzf.vim'
     nnoremap <leader>b :Buffers<cr>
     nnoremap <leader>t :Tags<cr>
 Plug 'vim-scripts/a.vim'
-" Plug 'valloric/youcompleteme'
-"     let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-"     let g:ycm_extra_conf_vim_data = ['&filetype']
-
-"     let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"     let g:tcm_key_list_previous_completion = ['<C-p>', '<Up>']
-"     let g:SuperTabDefaultCompletionType = '<C-n>'
-"     nnoremap <leader>g :YcmCompleter GoTo<CR>
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'ervandew/supertab'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -116,7 +107,7 @@ set statusline+=%F
 set statusline+=\  
 set statusline+=%([%M%R]%)
 set statusline+=%=
-set statusline+=%{gutentags#statusline()}
+"set statusline+=%{gutentags#statusline()}
 set statusline+=\  
 set statusline+=%{GitBranch()}
 set statusline+=\  
@@ -147,11 +138,10 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 " Colors
-if has("termguicolors")
-    set termguicolors
-endif
+set t_Co=256
 syntax enable                                    " enable symtax processing
-colorscheme jellybeans
+set background=light
+colorscheme solarized
 highlight Statusline guifg=#3c3836
 highlight StatuslineNC guibg=#928374 guifg=#1d2021
 
