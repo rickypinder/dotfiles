@@ -8,11 +8,18 @@ Clock() {
 Battery() {
 	BATPERC=$(acpi --battery | awk '{print $4 " " $5}')
 	echo -n "$BATPERC"
-} 
+}
 
 Volume() {
-	VOL=$(awk '/%/ {gsub(/[\[\]]/,""); print $4}' <(amixer sget Master))   
-	echo -n "Volume: $VOL"
+	VOL=$(awk '/%/ {gsub(/[\[\]]/,""); print $4}' <(amixer sget Master))
+    MUTED=$(amixer sget Master | grep "Mono:" | awk '{print $6}')
+
+    if [ $MUTED == "[on]" ]
+    then
+        echo -n "Volume: $VOL %{F-}"
+    else
+        echo -n "Volume: %{F#FF0000}$VOL %{F-}"
+    fi
 }
 
 Brightness() {
@@ -23,7 +30,6 @@ Brightness() {
 Power() {
 	POWER=$(awk '{print $1*10^-6}' /sys/class/power_supply/BAT0/power_now)
 	echo -n "$POWER W"
-
 }
 
 Workspaces() {
