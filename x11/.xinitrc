@@ -32,4 +32,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-exec i3
+2bwm &
+~/.fehbg &
+setxkbmap -layout us -option ctrl:nocaps &
+exec ~/dotfiles/lemonbar/lemon.sh | lemonbar -u 10 -p
