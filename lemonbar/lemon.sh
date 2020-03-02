@@ -54,7 +54,12 @@ Workspaces() {
 	done
 }
 
+Network() {
+    SSID=$(iw wlp2s0 link | grep 'SSID' | awk '{print $2}')
+    echo -n "$SSID"
+}
+
 while true; do
-	echo "$(Workspaces) %{r} $(Brightness) | $(Volume) | $(Power) | $(Battery) | $(Clock)"
+    echo "$(Workspaces) %{r} $(Network) | $(Brightness) | $(Volume) | $(Power) | $(Battery) | $(Clock)"
 	sleep 0.5
 done
