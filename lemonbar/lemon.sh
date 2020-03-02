@@ -56,7 +56,12 @@ Workspaces() {
 
 Network() {
     SSID=$(iw wlp2s0 link | grep 'SSID' | awk '{print $2}')
-    echo -n "$SSID"
+    if [ "$(ping -c 1 8.8.8.8 | grep '100% packet loss')" == "" ]
+    then
+        echo -n "%{F#00FF00}$SSID %{F-}"
+    else
+        echo -n "%{F#FF0000}$SSID %{F-}"
+    fi
 }
 
 while true; do
