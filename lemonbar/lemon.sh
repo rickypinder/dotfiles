@@ -18,15 +18,8 @@ Battery() {
 }
 
 Volume() {
-	VOL=$(awk '/%/ {gsub(/[\[\]]/,""); print $4}' <(amixer sget Master))
-    MUTED=$(amixer sget Master | grep "Mono:" | awk '{print $6}')
-
-    if [ $MUTED == "[on]" ]
-    then
-        echo -n "Volume: $VOL %{F-}"
-    else
-        echo -n "Volume: %{F#FF0000}$VOL %{F-}"
-    fi
+	VOL=$(pamixer --get-volume)
+    echo -n "Volume: $VOL"
 }
 
 Brightness() {
