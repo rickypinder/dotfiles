@@ -35,4 +35,5 @@ fi
 2bwm &
 ~/.fehbg &
 setxkbmap -layout us -option ctrl:nocaps &
+autorandr --change &
 exec ~/dotfiles/lemonbar/lemon.sh | lemonbar -u 10 -p
