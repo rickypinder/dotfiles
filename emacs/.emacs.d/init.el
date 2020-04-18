@@ -49,8 +49,6 @@
   (load-file "~/.emacs.d/init.el")
   (message "Reloaded init.el"))
 
-(global-set-key (kbd "C-c e") 'rp/load-emacs)
-
 (defun rp/recompile ()
   "Recompiles from last compile command."
   (interactive)
@@ -235,6 +233,7 @@
   :ensure t
   :config
   (projectile-mode)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (setq projectile-completion-system 'helm))
 
 (use-package helm-lsp
@@ -264,3 +263,8 @@
 (use-package dap-java
   :ensure nil
   :after (lsp-java))
+
+(use-package popwin
+  :ensure t
+  :config
+  (popwin-mode 1))
