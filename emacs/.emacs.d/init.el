@@ -149,10 +149,10 @@
 (use-package evil-magit
   :ensure t)
 
-(use-package apropospriate-theme
+(use-package zenburn-theme
   :ensure t
   :config
-  (load-theme 'apropospriate-light))
+  (load-theme 'zenburn))
 
 (use-package magit
   :ensure t
@@ -173,11 +173,6 @@
 
 (use-package evil-magit
   :ensure t)
-
-(use-package apropospriate-theme
-  :ensure t
-  :config
-  (load-theme 'apropospriate-light))
 
 (use-package magit
   :ensure t
