@@ -15,15 +15,6 @@ set backspace=indent,eol,start
 
 " Plugins {{{
 
-" I want some plugins only when using a certain OS
-if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
-endif
-
 " Installs plug.vim automatically
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -33,34 +24,130 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'jiangmiao/auto-pairs'
-Plug 'altercation/vim-colors-solarized'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
-Plug 'junegunn/fzf.vim'
-    nnoremap <leader>f :Files<cr>
-    nnoremap <leader>b :Buffers<cr>
-    nnoremap <leader>t :Tags<cr>
-Plug 'vim-scripts/a.vim'
-Plug 'ervandew/supertab'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-Plug 'easymotion/vim-easymotion'
-    map <leader>c <Plug>(easymotion-bd-f)
-    nmap <leader>c <Plug>(easymotion-overwin-f)
-Plug 'junegunn/goyo.vim'
+" Colorscheme
+Plug 'ewilazarus/preto'
 
-" MacOS Specific
-if g:os == "Darwin"
-    Plug 'rizzatti/dash.vim'
-        nmap <silent> <leader>d <Plug>DashSearch
+" Intellisense engine
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" COC setup {{{ 
+set hidden
+set updatetime=300
+set shortmess+=c
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+    inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+    inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand','editor.action.organizeImport')
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <leader>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
+" }}}
 
 call plug#end()
 
@@ -73,11 +160,6 @@ filetype indent on                               " load filetype-specific ident 
 if has('autocmd')
     augroup FileOptions
         autocmd!
-        autocmd FileType c nnoremap <buffer> <localleader>ca :A<cr>
-        autocmd FileType cpp nnoremap <buffer> <localleader>ca :A<cr>
-        autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-        autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 " ruby files have 2 tabs
-        autocmd FileType vim let b:AutoPairs = {'(':')', "'":"'", '[':']', '{':'}'}
         autocmd FileType crontab setlocal nobackup nowritebackup
     augroup END
 end
@@ -94,11 +176,25 @@ set shiftwidth=4
 
 " UI Config {{{
 
+" Colors
+set t_Co=256
+syntax enable                                    " enable symtax processing
+colorscheme preto
+
+set number                                       " show line numbers
+set relativenumber                               " Relative line numbers
+set showcmd                                      " show command in bottom bar
+set wildmenu                                     " visual autocomplete for command menu
+set showmatch                                    " highlight matching [{()}]
+set encoding=utf8
+set autoindent                                   " maintains indent of current line
+
 function! GitBranch()                           " Fetch the Git branch of cwd
     let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null
                 \ | tr -d '\n'")
     return strlen(l:branchname) > 0 ? l:branchname : ''
 endfunction
+
 
 set laststatus=2                                 " Always show statusline
 set statusline=
@@ -107,7 +203,8 @@ set statusline+=%F
 set statusline+=\  
 set statusline+=%([%M%R]%)
 set statusline+=%=
-"set statusline+=%{gutentags#statusline()}
+set statusline+=\  
+set statusline+=%{coc#status()}%{get(b:,'coc_current_function','')}
 set statusline+=\  
 set statusline+=%{GitBranch()}
 set statusline+=\  
@@ -116,45 +213,14 @@ set statusline+=\
 set statusline+=line:%4l/%-4L 
 set statusline+=\  
 
-if has("gui_running")
-    set guioptions+=c
-    set guioptions+=R
-    set guioptions-=m
-    set guioptions-=r
-    set guioptions-=b
-    set guioptions-=T
-    set guioptions-=R
-    set guioptions-=L
-    set guioptions-=e
-    set guifont=Menlo:h14
-endif
+highlight StatusLine ctermbg=137 ctermfg=White
 
-if has("autocmd")
-    augroup whitespace
-        autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    augroup END
-endif
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+set cursorline
+highlight CursorLine ctermbg=234
 
-" Colors
-set t_Co=256
-syntax enable                                    " enable symtax processing
-set background=light
-colorscheme solarized
-highlight Statusline guifg=#3c3836
-highlight StatuslineNC guibg=#928374 guifg=#1d2021
+let g:netrw_banner = 0
+nnoremap - :E<CR>
 
-set number                                       " show line numbers
-set relativenumber                               " Relative line numbers
-set showcmd                                      " show command in bottom bar
-set wildmenu                                     " visual autocomplete for command menu
-set lazyredraw                                   " redraw only when we need to
-set showmatch                                    " highlight matching [{()}]
-highlight CursorLineNr ctermfg=yellow guibg=bg           " Current line number is yellow
-set fillchars=vert:│,fold:─,diff:─
-set encoding=utf8
-set autoindent                                   " maintains indent of current line
 
 " }}}
 
@@ -176,7 +242,7 @@ if exists('$SUDO_USER')
     set nobackup                                 " don't create root owned files
     set nowritebackup
 else
-    set backupdir=~/local/.vim/tmp/backup
+    set backupdir=~/.local/vim/tmp/backup
     set backupdir+=~/.vim/tmp/backup             " keep backup files out of the way
     set backupdir+=.
 endif
@@ -184,7 +250,7 @@ endif
 if exists('$SUDO_USER')
     set noswapfile                               " don't create root owned files
 else
-    set directory=~/local/.vim/tmp/swap//
+    set directory=~/.local/vim/tmp/swap//
     set directory+=~/.vim/tmp/swap//             " keep swap files out of the way
     set directory+=.
 endif
@@ -193,7 +259,7 @@ if has('persistent_undo')
     if exists('$SUDO_USER')
         set noundofile                           " don't create root owned files
     else
-        set undodir=~/local/.vim/tmp/undo
+        set undodir=~/.local/vim/tmp/undo
         set undodir+=~/.vim/tmp/undo             " keep undo files out of the way
         set undodir+=.
         set undofile                             " actually use undo files
@@ -204,8 +270,8 @@ if has('viminfo')
     if exists('$SUDO_USER')
         set viminfo=                             " don't create root-owned files
     else
-        if isdirectory('~/local/.vim/tmp')
-            set viminfo=~/local/.vim/tmp/viminfo
+        if isdirectory('~/.local/vim/tmp')
+            set viminfo=~/.local/vim/tmp/viminfo
         else
             "set viminfo=~/.vim/tmp/viminfo     " override ~/.viminfo default
         endif
@@ -219,8 +285,8 @@ if has('viminfo')
 endif
 
 if has('mksession')
-    if isdirectory('~/local/.vim/tmp')
-        set viewdir=~/local/.vim/tmp/view
+    if isdirectory('~/.local/vim/tmp')
+        set viewdir=~/.local/vim/tmp/view
     else
         set viewdir=~/.vim/tmp/view              " override ~/.vim/view default
     endif
@@ -237,6 +303,7 @@ map <space> <leader>
 " keybinds
 nnoremap <leader>w :w<cr>
 nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>b :ls<CR>:b 
 nnoremap j gj
 nnoremap k gk
 inoremap jk <Esc>
@@ -253,9 +320,17 @@ inoremap <Down>  <Nop>
 inoremap <Left>  <Nop>
 inoremap <Right> <Nop>
 
-" }}}
+" comment function
+function! Commenting()
+    let comment_char = split(&commentstring, '%s')[0]
+    call inputsave()
+    let start = input('Enter start: ')
+    let end = input('Enter end: ')
+    call inputrestore()
+    :execute  start . "," . end . "s/^/" . comment_char . " /"
+endfunction
 
-command Od edit $MYVIMRC
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
 

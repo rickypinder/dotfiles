@@ -1,0 +1,33 @@
+dpi:
+  x: 158
+  y: 158
+
+window:
+  padding:
+    x: 5
+    y: 5
+
+  dynamic_padding: true
+
+font:
+  normal:
+    family: Bitstream Vera Sans Mono
+    style: Regular
+
+  bold:
+    family: Bitstream Vera Sans Mono
+    style: Bold
+
+  italic:
+    family: Bitstream Vera Sans Mono
+    style: Italic
+
+  bold_italic:
+    family: Bitstream Vera Sans Mono
+    style: Bold Italic
+
+  size: 11.0
+
+  offset:
+    x: 0
+    y: 0
