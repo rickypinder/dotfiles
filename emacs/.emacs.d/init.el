@@ -185,7 +185,9 @@
   (key-chord-define evil-normal-state-map "gd" 'lsp-find-definition))
 
 (use-package haskell-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode))
 
 (use-package hindent
   :ensure t
@@ -268,3 +270,15 @@
   :ensure t
   :config
   (popwin-mode 1))
+
+(use-package rjsx-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (setq js2-strict-missing-semi-warning nil)
+  (setq js2-missing-semi-one-line-override nil))
+
+(use-package go-mode
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook 'lsp-deferred))
