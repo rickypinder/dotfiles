@@ -26,6 +26,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+(setq tramp-default-method "ssh")
+
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
@@ -62,6 +64,8 @@
   (local-set-key (kbd "C-c c") 'rp/recompile))
 
 (add-hook 'c-mode-hook 'rp/setup-c-buffers)
+
+(load-theme 'modus-operandi)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -107,7 +111,9 @@
 (use-package lsp-ui
   :ensure t
   :hook (lsp-mode-hook . lsp-ui-mode)
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config
+  (lsp-headerline-breadcrumb-mode -1))
 
 (use-package lsp-haskell
   :ensure t
@@ -147,10 +153,10 @@
 (use-package evil-magit
   :ensure t)
 
-(use-package zenburn-theme
-  :ensure t
-  :config
-  (load-theme 'zenburn))
+;; (use-package zenburn-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'zenburn))
 
 (use-package magit
   :ensure t
@@ -282,3 +288,31 @@
   :ensure t
   :config
   (add-hook 'go-mode-hook 'lsp-deferred))
+
+(use-package rust-mode
+  :ensure t
+  :config
+  (setq rust-format-on-save t)
+  (add-hook 'rust-mode-hook #'lsp))
+
+(use-package ocamlformat
+  :ensure t
+  :custom (ocamlformat-enable 'enable-outside-detected-project)
+  :hook (before save . ocamlformat-before-save))
+
+(let ((opam-share (ignore-errors (car (process-lines "opam" "var" "share")))))
+  (when (and opam-share (file-directory-p opam-share))
+    ;; Register Merlin
+    (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+    (autoload 'merlin-mode "merlin" nil t nil)
+    ;; Automatically start it in OCaml buffers
+    (add-hook 'tuareg-mode-hook 'merlin-mode t)
+    (add-hook 'caml-mode-hook 'merlin-mode t)
+    ;; Use opam switch to lookup ocamlmerlin binary
+    (setq merlin-command 'opam)))
+
+(use-package tuareg
+  :ensure t)
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
