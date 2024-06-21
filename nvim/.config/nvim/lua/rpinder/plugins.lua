@@ -13,12 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd([[colorscheme tokyonight-night]])
-        end,
+      "EdenEast/nightfox.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+          vim.cmd([[colorscheme carbonfox]])
+      end,
     },
     {
         "folke/which-key.nvim",
@@ -136,7 +136,15 @@ require("lazy").setup({
         event = "InsertEnter",
         opts = {} -- this is equalent to setup({}) function
     },
-    { 'cdelledonne/vim-cmake' }
+    { 'cdelledonne/vim-cmake' },
+    { 'stevearc/dressing.nvim' },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup()
+        end
+    }
 })
 
 local lsp_zero = require('lsp-zero')
@@ -155,5 +163,5 @@ require('mason-lspconfig').setup({
     },
 })
 
-require("oil").setup();
+require("oil").setup({ view_options = { show_hidden = true }});
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

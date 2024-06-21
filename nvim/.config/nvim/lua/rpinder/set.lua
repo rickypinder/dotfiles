@@ -16,3 +16,6 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 50
+
+vim.opt.laststatus = 3
+vim.opt.winbar = "%=%m %f"
